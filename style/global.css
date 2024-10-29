@@ -2,24 +2,45 @@
     --elvebakken_blå: #74b2e1;
 }
 
+
 #fag_meny{
-    width: 2000px;
     overflow: hidden;
     background-color: var(--elvebakken_blå);
+    padding: 15px;
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: 1;
-    
+    grid-template-columns: repeat(12, 1fr);
+    gap: 15px;
 }
-#fag_meny > div{
-    height: 220px;
-    width: 150px;
-    text-align: center;
-    margin: 10px;
+/*lenke til de forskjellige valgfagene*/
+#fag_meny > a{
+    height: 250px;
+    width: 170px;
+    text-decoration: none;
+    color: black;
     background-color: white;
     border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
-#fag_meny > div> img{
+/*bilde i lenkene til de ulike programfagene*/
+.fag_bilde{
     width: 100%;
     height: 60%;
+    border-radius: 10px 10px 0 0; /*avrunder de øverste hjørnene*/
+}
+#fag_meny p{
+    padding-left: 10px;
+    font-size: large;
+}
+/*pil i lenkene til sidene om programfagene*/
+.pil{
+    width: 30%;
+    margin: auto 10px;
+    /*Flytter pilen tilbake etter hover*/
+    transform: translate(0px, 0px);
+    transition-duration: 0.1s;
+}
+/*Flytter pilen ved hover*/
+#fag_meny > a:hover .pil, #fag_meny > a:focus .pil{
+    transform: translate(10px, 0px);
+    transition-duration: 0.1s;
 }
