@@ -1,15 +1,24 @@
 :root {
     --elvebakken_blå: #74b2e1;
+    --margin_venstre_tall: 0;
 }
 
 
 #fag_meny{
-    overflow: hidden;
+    margin-left: calc(var(--margin_venstre_tall)*1px);
+    overflow-x: auto;
     background-color: var(--elvebakken_blå);
     padding: 15px;
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 15px;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 30px;
+    /*skjuler scrollebaren til fag_menyen for IE, Edge og Firefox */
+    -ms-overflow-style: none;  /* IE og Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/*skjuler scrollebaren til fag_menyen for Chrome, Safari og Opera*/
+#fag_meny::-webkit-scrollbar{
+    display: none;
 }
 /*lenke til de forskjellige valgfagene*/
 #fag_meny > a{
