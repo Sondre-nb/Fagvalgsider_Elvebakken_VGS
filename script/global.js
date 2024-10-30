@@ -1,32 +1,36 @@
+// blar i menyen over fagvalgene
 function flyttMeny(retning){
     skjermbredde = document.documentElement.clientWidth;
-    console.log('skjermbredde = ' + skjermbredde);
     let fag_meny = document.getElementById("fag_meny");
-    /*variabel-ting*/
+    let fag_meny_bredde = 2*15 + 16*200 // 2 ganger padding (15) + antall lenker(16) ganger plassen hver lenke tar (200)
+
+    //henter variabel
     let r = document.querySelector(':root');
     let rs = getComputedStyle(r);
+    let marginVenstre = rs.getPropertyValue('--margin_venstre_tall');
 
-    let blaLengde = skjermbredde - (skjermbredde % 200);
-    console.log('blalengde = '+ blaLengde);
-    console.log('margin_left = ' + fag_meny.style.marginLeft);
+    // regner ut hvor langt menyen skal bla om man trykker på knappene
+    let blaLengde = skjermbredde - (skjermbredde % 200); // 200px er hvor mye plass hver lenke tar
+    
     if (retning == 'høyre'){
-        console.log('høyre');
-        /*Endrer margin-left og blar til høyre*/
-        r.style.setProperty('--margin_venstre_tall', rs.getPropertyValue('--margin_venstre_tall') - blaLengde);
-        
-        /*Hindre menyen i å bla for langt til høyre*/
-        console.log('fag_meny-bredde' + fag_meny.style.width);
-        if (rs.getPropertyValue('--margin_venstre_tall') < -(fag_meny.style.width - skjermbredde)){
-            r.style.setProperty('--margin_venstre_tall',-(fag_meny.style.width - skjermbredde));
+        //Endrer margin-left og blar til høyre
+        marginVenstre -= blaLengde
+
+        //Hindrer menyen i å bla for langt til høyre
+        if (marginVenstre < -(fag_meny_bredde - skjermbredde)){
+            marginVenstre = -(fag_meny_bredde - skjermbredde);
         }
     } else{
-        console.log('venstre');
-        console.log(rs.getPropertyValue('--margin_venstre_tall'));
-        /*Endrer margin-left og blar til venstre*/
-        r.style.setProperty('--margin_venstre_tall', rs.getPropertyValue('--margin_venstre_tall') - (-blaLengde)); /* rs.getPropertyValue('--margin_venstre_tall') + blaLengde */
-        if (rs.getPropertyValue('--margin_venstre_tall') > 0){
-            r.style.setProperty('--margin_venstre_tall', 0);
+        //Endrer margin-left og blar til venstre
+       marginVenstre -= -blaLengde;
+
+        // hindrer menyen i å bla for langt til venstre 
+        if (marginVenstre > 0){
+            marginVenstre = 0;
         }
     }
+    // Oppdaterer margin
+    r.style.setProperty('--margin_venstre_tall', marginVenstre); 
+    // overgangen tar 0,8 sek 
     fag_meny.style.transitionDuration = "0.8s";
 }
