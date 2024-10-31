@@ -1,7 +1,9 @@
 :root {
     --elvebakken_blå: #74b2e1;
 }
-
+*{
+    font-family: 'Oslo Sans', sans-serif;
+}
 #fag_meny{
     overflow-x: auto;
     background-color: var(--elvebakken_blå);
@@ -20,7 +22,7 @@
 /*lenke til de forskjellige valgfagene*/
 .fag_i_meny{
     height: 250px;
-    width: 170px;
+    width: 200px;
     text-decoration: none;
     color: black;
     background-color: white;
@@ -38,7 +40,7 @@
     font-size: large;
 }
 /*pil i lenkene til sidene om programfagene*/
-.pil{
+.lenke_pil{
     width: 30%;
     margin: auto 10px;
     /*Flytter pilen tilbake etter hover*/
@@ -46,7 +48,35 @@
     transition-duration: 0.1s;
 }
 /*Flytter pilen ved hover og focus*/
-.fag_i_meny:hover .pil, .fag_i_meny:focus .pil{
+.fag_i_meny:hover .lenke_pil, .fag_i_meny:focus .lenke_pil{
     transform: translate(10px, 0px);
     transition-duration: 0.1s;
+}
+
+.bla_knapp{
+    position: absolute;
+    /*sentrerer vertikalt inni fag-menyen*/
+    align-self: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: black solid 1px;
+}
+/*hover-effekt for knappene man blar i menyen med*/
+.bla_knapp:hover, .bla_knapp:focus{
+    cursor: pointer;
+    border: black solid 2px;
+}
+/*bildene (pilene) i knappene for å scrolle menyen*/
+.bla_knapp > img{
+    width: 100%;
+    height: 100%;
+}
+#høyre_bla_knapp{
+    right: 25px;
+    transform: rotate(90deg);
+}
+#venstre_bla_knapp{
+    transform: rotate(-90deg);
+    display: none;
 }
