@@ -41,10 +41,10 @@
     border-bottom-right-radius: 10px;
 }
 
-
 .fag-tittel {
     color: var(--elvebakken_blå);
     font-size: 2.5rem;
+    margin-bottom: 5px;
 }
 
 .fag-sitat {
@@ -90,6 +90,7 @@
 
     .fag-info { 
         margin: 0px;
+        padding: 10px;
     }
 
     .fag-se-mer-knapp {
