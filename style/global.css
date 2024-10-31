@@ -5,13 +5,15 @@
 }
 * {
     margin: 0;
+    font-family: 'Oslo Sans', sans-serif;
+    scroll-behavior: smooth;
 }
 #forside {
     position: relative;
     display: grid;
     top: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.3);
+    background-color: rgba(255, 255, 255, 0.4);
     background-image: url("/assets/imgs/forsidebilde_realfag.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -24,9 +26,27 @@
 }
 #forside h1 {
     padding: 20px;
+    color: white;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }
-@media (max-width: 710px) {
+#forside #knapp {
+    position: absolute;
+    align-self: end;
+    justify-self: center;
+    bottom: 10%;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid var(--elvebakken_blå);
+    font-size: 20px;
+    line-height: 60px;
+}
+@media (max-width: 600px) {
     #forside h1{
-        font-size: 13vw;
+        font-size: 15vw;
     }
+}
+#plassholder {
+    height: 700px;
 }
