@@ -1,5 +1,7 @@
 :root {
     --elvebakken_blå: #74b2e1;
+    --mørke_blå: #204B57;
+    --mørke_grønn: #20BF55;
 }
 *{
     font-family: 'Oslo Sans', sans-serif;
@@ -79,9 +81,6 @@
 #venstre_bla_knapp{
     transform: rotate(-90deg);
     display: none;
-=======
-    --mørke_blå: #204B57;
-    --mørke_grønn: #20BF55;
 }
 * {
     margin: 0;
