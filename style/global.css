@@ -5,6 +5,85 @@
     --mørke_grønn: #75DC98;
     --lyse_grønn: #89F1AC;
 }
+*{
+    font-family: 'Oslo Sans', sans-serif;
+}
+#fag_meny{
+    overflow-x: auto;
+    background-color: var(--elvebakken_blå);
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    gap: 30px;
+    /*skjuler scrollebaren til fag_menyen for IE, Edge og Firefox */
+    -ms-overflow-style: none;  /* IE og Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+/*skjuler scrollebaren til fag_menyen for Chrome, Safari og Opera*/
+#fag_meny::-webkit-scrollbar{
+    display: none;
+}
+/*lenke til de forskjellige valgfagene*/
+.fag_i_meny{
+    height: 250px;
+    width: 200px;
+    text-decoration: none;
+    color: black;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+/*bilde i lenkene til de ulike programfagene*/
+.fag_bilde{
+    width: 100%;
+    height: 60%;
+    border-radius: 10px 10px 0 0; /*avrunder de øverste hjørnene*/
+}
+#fag_meny p{
+    padding-left: 10px;
+    font-size: large;
+}
+/*pil i lenkene til sidene om programfagene*/
+.lenke_pil{
+    width: 30%;
+    margin: auto 10px;
+    /*Flytter pilen tilbake etter hover*/
+    transform: translate(0px, 0px);
+    transition-duration: 0.1s;
+}
+/*Flytter pilen ved hover og focus*/
+.fag_i_meny:hover .lenke_pil, .fag_i_meny:focus .lenke_pil{
+    transform: translate(10px, 0px);
+    transition-duration: 0.1s;
+}
+
+.bla_knapp{
+    position: absolute;
+    /*sentrerer vertikalt inni fag-menyen*/
+    align-self: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    border: black solid 1px;
+}
+/*hover-effekt for knappene man blar i menyen med*/
+.bla_knapp:hover, .bla_knapp:focus{
+    cursor: pointer;
+    border: black solid 2px;
+}
+/*bildene (pilene) i knappene for å scrolle menyen*/
+.bla_knapp > img{
+    width: 100%;
+    height: 100%;
+}
+#høyre_bla_knapp{
+    right: 25px;
+    transform: rotate(90deg);
+}
+#venstre_bla_knapp{
+    transform: rotate(-90deg);
+    display: none;
+}
 * {
     margin: 0;
     font-family: 'Oslo Sans', sans-serif;
@@ -84,7 +163,4 @@
     #elvebakken-logo {
         width: 50px;
     }
-}
-#plassholder {
-    height: 700px;
 }
