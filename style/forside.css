@@ -66,6 +66,10 @@
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.fag-se-mer-knapp:hover {
+    background-color: var(--lyse_grønn);
+}
+
 @media (max-width: 600px) {
     .fag-element {
         flex-direction: column;

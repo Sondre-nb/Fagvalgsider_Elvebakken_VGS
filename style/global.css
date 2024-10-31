@@ -1,7 +1,9 @@
 :root {
     --elvebakken_blå: #74b2e1;
+    --elvebakken_rosa: #DC8EB6;
     --mørke_blå: #204B57;
-    --mørke_grønn: #20BF55;
+    --mørke_grønn: #75DC98;
+    --lyse_grønn: #89F1AC;
 }
 * {
     margin: 0;
