@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style/global.css">
+    <link rel="stylesheet" href="style/forside.css">
     <title>Elvebakken Realfag</title>
 </head>
 <body>
     <header>
-        <h1>Elvebakken Realfag</h1>
+        <div id="forside">
+            <a href="https://elvebakken.vgs.no/" id="elvebakken-logo" target="_blank"><img src="/assets/imgs/elvebakken-logo-hvit-e-2024-25.png" alt="Elvebakken-logo"></a>
+            <h1>Elvebakken realfag</h1>
+            <a href="#fag-oversikt" id="knapp"><img src="./assets/imgs/blå_pil_kort.svg" alt="pil nedover"></a>
+        </div>
     </header>
     <main>
-        <p>test</p>
         <!-- meny over programfagene-->
         <div id="fag_meny">
             <!-- om antall fag endres, må også css endres (grid_template_columns) -->
@@ -98,8 +102,64 @@
             <button id="venstre_bla_knapp" class="bla_knapp" onclick="flyttMeny('venstre')"><img src="/assets/imgs/sort_pil_kort.svg" alt="pil for å bla til venstre"></button>
             <button id="høyre_bla_knapp" class="bla_knapp" onclick="flyttMeny('høyre')"><img src="/assets/imgs/sort_pil_kort.svg" alt="pil for å bla til høyre"></button>
         </div>
-        <p>test</p>
+  
+        <div id="fag-oversikt">
+            <div class = "fag-element">
+                <img src="assets/imgs/placeholder_IT.png" class="fag-bilde">
+                <div class = "fag-info">
+                    <h3 class="fag-tittel">IT</h3>
+                    <p class="fag-beskrivelse">Informasjonsteknologi (IT) på Elvebakken er et spennende og praktisk fag hvor du får lære alt fra programmering og nettverk til spillutvikling og kunstig intelligens.</p>
+                    <p class="fag-sitat">"Beste shitten ever!" - Mann Med Langt Navn 2STD</p>
+                    <button class ="fag-se-mer-knapp">Se mer →</button>
+                </div>
+            </div>
+            <div class="fag-element">
+                <div class="fag-info">
+                    <h3 class="fag-tittel">Fysikk</h3>
+                    <p class="fag-beskrivelse">Fysikk på Elvebakken gir deg innsikt i alt fra kvantefysikk til astrofysikk. Du vil lære om de grunnleggende prinsippene som styrer universet og få muligheten til å utforske spennende eksperimenter.</p>
+                    <p class="fag-sitat">"Fysikk er magi som fungerer!" - Dope Dame 3KDA</p>
+                    <button class ="fag-se-mer-knapp">Se mer →</button>
+                </div>
+                <img src="assets/imgs/placeholder_fysikk.png" class="fag-bilde">
+            </div>
+            <div class="fag-element">
+                <img src="assets/imgs/placeholder_kjemi.png" class="fag-bilde">
+                <div class="fag-info">
+                    <h3 class="fag-tittel">Kjemi</h3>
+                    <p class="fag-beskrivelse">Kjemi på Elvebakken dekker alt fra grunnleggende kjemiske reaksjoner til avanserte laboratorieteknikker. Du vil lære om stoffenes egenskaper og hvordan de interagerer med hverandre.</p>
+                    <p class="fag-sitat">"Kjemi er som å lage magiske potions!" - Kul Type 1STC</p>
+                    <button class ="fag-se-mer-knapp">Se mer →</button>
+                </div>
+            </div>
+            <div class="fag-element">
+                <div class="fag-info">
+                    <h3 class="fag-tittel">Biologi</h3>
+                    <p class="fag-beskrivelse">Biologi på Elvebakken gir deg en dyp forståelse av levende organismer og deres miljø. Du vil lære om alt fra celler og genetikk til økologi og evolusjon.</p>
+                    <p class="fag-sitat">"Biologi er livets vitenskap!" - Smart Elev 2STA</p>
+                    <button class ="fag-se-mer-knapp">Se mer →</button>
+                </div>
+                <img src="assets/imgs/placeholder_biologi.png" class="fag-bilde">
+            </div>
+            <div class="fag-element">
+                <img src="assets/imgs/placeholder_tekforsk.png" class="fag-bilde">
+                <div class="fag-info">
+                    <h3 class="fag-tittel">Teknologi og forskningslære</h3>
+                    <p class="fag-beskrivelse">Biologi på Elvebakken gir deg en dyp forståelse av levende organismer og deres miljø. Du vil lære om alt fra celler og genetikk til økologi og evolusjon.</p>
+                    <p class="fag-sitat">"Tekforsk er bare det beste faget!" - Trym Bringsrud Fekjær 2STF</p>
+                    <button class ="fag-se-mer-knapp">Se mer →</button>
+                </div>
+            </div>
+            <div class="fag-element">
+                <div class="fag-info">
+                    <h3 class="fag-tittel">Geofag</h3>
+                    <p class="fag-beskrivelse">Biologi på Elvebakken gir deg en dyp forståelse av levende organismer og deres miljø. Du vil lære om alt fra celler og genetikk til økologi og evolusjon.</p>
+                    <p class="fag-sitat">"Steiner er sick da!" - Spes type 2STA</p>
+                    <button class ="fag-se-mer-knapp">Se mer →</button>
+                </div>
+                <img src="assets/imgs/placeholder_geofag.png" class="fag-bilde">
+            </div>
+        </div>
     </main>
-    <script src="script/global.js"></script>
+    <script src="./script/global.js"></script>
 </body>
 </html>

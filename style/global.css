@@ -79,4 +79,87 @@
 #venstre_bla_knapp{
     transform: rotate(-90deg);
     display: none;
+=======
+    --mørke_blå: #204B57;
+    --mørke_grønn: #20BF55;
+}
+* {
+    margin: 0;
+    font-family: 'Oslo Sans', sans-serif;
+    scroll-behavior: smooth;
+}
+#forside {
+    position: relative;
+    display: grid;
+    top: 0;
+    left: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    background-image: url("/assets/imgs/forsidebilde_realfag.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    background-size: cover;
+    width: 100%;
+    height: 100vh;
+    text-align: center;
+    align-items: center;
+    font-size: 3rem;
+}
+#forside h1 {
+    padding: 20px;
+    color: white;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+#forside #knapp {
+    position: absolute;
+    align-self: end;
+    justify-self: center;
+    bottom: 10%;
+    width: 60px;
+    height: 60px;
+    background-color: white;
+    border-radius: 15px;
+    border: 2px solid var(--elvebakken_blå);
+    font-size: 20px;
+    line-height: 60px;
+    display: grid;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#knapp img {
+    width: 45px;
+    height: 45px;
+    transform: rotate(180deg);
+    align-self: center;
+    justify-self: center;
+}
+#knapp:hover {
+    transform: translate(0px, 3px);
+}
+#elvebakken-logo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px;
+    margin: 15px;
+}
+#elvebakken-logo img {
+    width: 100%;
+}
+@media (max-width: 600px) {
+    #forside h1{
+        font-size: 15vw;
+    }
+}
+@media (max-height: 400px) {
+    #forside #knapp {
+        width: 40px;
+        height: 40px;
+    }
+    #knapp img {
+        width: 30px;
+        height: 30px;
+    }
+    #elvebakken-logo {
+        width: 50px;
+    }
 }
