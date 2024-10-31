@@ -26,7 +26,7 @@ function flyttMeny(retning){
 fag_meny.addEventListener("scroll", function(){
     let venstre_bla_knapp = document.getElementById("venstre_bla_knapp");
     let høyre_bla_knapp = document.getElementById("høyre_bla_knapp");
-    let skjermbredde = document.documentElement.clientWidth;
+    let skjermbredde = window.innerWidth;
 
     //regner ut når pilen for å bla til venstre skal skjules
     if (fag_meny.scrollLeft == 0){

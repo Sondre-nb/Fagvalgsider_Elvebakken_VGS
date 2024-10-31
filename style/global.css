@@ -77,12 +77,13 @@
     height: 100%;
 }
 #høyre_bla_knapp{
-    right: 25px;
+    right: 20px;
     transform: rotate(90deg);
 }
 #venstre_bla_knapp{
     transform: rotate(-90deg);
     display: none;
+    left: 20px;
 }
 * {
     margin: 0;
