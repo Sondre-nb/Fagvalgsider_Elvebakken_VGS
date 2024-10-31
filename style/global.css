@@ -1,11 +1,8 @@
 :root {
     --elvebakken_blå: #74b2e1;
-    --margin_venstre_tall: 0;
 }
 
-
 #fag_meny{
-    margin-left: calc(var(--margin_venstre_tall)*1px);
     overflow-x: auto;
     background-color: var(--elvebakken_blå);
     padding: 15px;
@@ -21,7 +18,7 @@
     display: none;
 }
 /*lenke til de forskjellige valgfagene*/
-#fag_meny > a{
+.fag_i_meny{
     height: 250px;
     width: 170px;
     text-decoration: none;
@@ -48,8 +45,8 @@
     transform: translate(0px, 0px);
     transition-duration: 0.1s;
 }
-/*Flytter pilen ved hover*/
-#fag_meny > a:hover .pil, #fag_meny > a:focus .pil{
+/*Flytter pilen ved hover og focus*/
+.fag_i_meny:hover .pil, .fag_i_meny:focus .pil{
     transform: translate(10px, 0px);
     transition-duration: 0.1s;
 }
