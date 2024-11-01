@@ -1,8 +1,8 @@
 //henter info fra css-fil for å bruke det til utregning av hvor langt man skal bla og når knappen for å bla il høyre i menyen skal skjules
 let fag_meny_info = document.querySelector('#fag_meny');
-fag_meny_info_computed_style = getComputedStyle(fag_meny_info);
+let fag_meny_info_computed_style = getComputedStyle(fag_meny_info);
 let fag_i_meny_info = document.querySelectorAll('.fag_i_meny');
-fag_i_meny_info_computed_style = getComputedStyle(fag_i_meny_info[0]);
+let fag_i_meny_info_computed_style = getComputedStyle(fag_i_meny_info[0]);
 let total_bredde_meny_element = parseFloat(fag_meny_info_computed_style.gap) + parseFloat(fag_i_meny_info_computed_style.width);
 
 // blar i menyen over fagvalgene
@@ -22,10 +22,12 @@ function flyttMeny(retning){
     }
 }
 
+// Henter knappene for å bla i menyen. Brukes når menyen scrolles og når man viser alle fagene i menyen under hverandre
+let høyre_bla_knapp = document.getElementById("høyre_bla_knapp");
+let venstre_bla_knapp = document.getElementById("venstre_bla_knapp");
+
 //skjuler og viser knappene man bruker til å bla menyen
 fag_meny.addEventListener("scroll", function(){
-    let venstre_bla_knapp = document.getElementById("venstre_bla_knapp");
-    let høyre_bla_knapp = document.getElementById("høyre_bla_knapp");
     let skjermbredde = window.innerWidth;
 
     //regner ut når pilen for å bla til venstre skal skjules
@@ -45,6 +47,32 @@ fag_meny.addEventListener("scroll", function(){
     }
 })
 
+let menyStatus = "rad"
+// Finner ut når "vis-alle" blir klikket
+let visAlleEl = document.querySelector('#vis-alle');
+visAlleEl.addEventListener("click", toggleMeny);
+
+// Endrer fra rad man kan bla i til alt under hverandre (og tilbake)
+function toggleMeny(){
+    fag_meny = document.getElementById("fag_meny");
+
+    //Viser alle elementene i menyen
+    if (menyStatus == "rad"){
+        visAlleEl.innerHTML = "klapp sammen <";
+        fag_meny.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
+        menyStatus = "alle";
+        høyre_bla_knapp.style.display = "none";
+        venstre_bla_knapp.style.display = "none";
+    } else{ // Legger elementene tilbake på en rad man kan bla
+        visAlleEl.innerHTML = "vis alle >";
+        fag_meny.style.gridTemplateColumns = "repeat(16, 1fr)";
+        menyStatus = "rad";
+        høyre_bla_knapp.style.display = "block";
+    }
+}
+
+
+// Gradvis skjuler knappen ned fra statskjermen
 window.addEventListener("scroll", function () {
     let header = document.getElementById("knapp");
     let scrollTop = window.pageYOffset || document.documentElement.scrollTop;

@@ -10,12 +10,13 @@
 }
 #fag_meny{
     overflow-x: auto;
-    background-color: var(--elvebakken_blå);
+    /* background-color: var(--elvebakken_blå); */
     /*background-image: url("/assets/imgs/elvebakken-logo-2024-25.jpg");*/
     padding: 15px;
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     gap: 30px;
+
     /*skjuler scrollebaren til fag_menyen for IE, Edge og Firefox */
     -ms-overflow-style: none;  /* IE og Edge */
     scrollbar-width: none;  /* Firefox */
@@ -35,7 +36,8 @@
     color: black;
     background-color: white;
     border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 /*bilde i lenkene til de ulike programfagene*/
 .fag_bilde{
@@ -52,11 +54,11 @@
     align-items: end;
     margin-bottom: 15px;
 }
-#fag-meny-tittel p{
+#vis-alle{
     padding-left: 10px;
     padding-bottom: 5px;
 }
-#fag-meny-tittel p:hover{
+#vis-alle:hover{
     text-decoration: underline;
     cursor: pointer;
 }
