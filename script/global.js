@@ -34,6 +34,7 @@ fag_meny.addEventListener("scroll", function(){
     } else{
         venstre_bla_knapp.style.display = "block";
     }
+    console.log(parseFloat(fag_meny_info_computed_style.paddingTop))
     //regner ut når pilen for å bla til høyre skal skjules
     if (fag_meny.scrollLeft + skjermbredde >= fag_meny.scrollWidth + parseFloat(fag_meny_info_computed_style.padding)){
         høyre_bla_knapp.style.display = "none";

@@ -50,6 +50,7 @@
 #fag-meny-tittel{
     display: flex;
     align-items: end;
+    padding-bottom: 10px;
 }
 #fag-meny-tittel p{
     padding-left: 10px;
