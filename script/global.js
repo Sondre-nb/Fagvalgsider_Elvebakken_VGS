@@ -34,9 +34,11 @@ fag_meny.addEventListener("scroll", function(){
     } else{
         venstre_bla_knapp.style.display = "block";
     }
-    console.log(parseFloat(fag_meny_info_computed_style.paddingTop))
+    //henter info om fag-meny-område for å bruke det til utregning om når pilen til høyre skal skjules
+    let fag_meny_område_info = document.querySelector('#fag-meny-område');
+    fag_meny_område_info_computed_style = getComputedStyle(fag_meny_område_info);
     //regner ut når pilen for å bla til høyre skal skjules
-    if (fag_meny.scrollLeft + skjermbredde >= fag_meny.scrollWidth + parseFloat(fag_meny_info_computed_style.padding)){
+    if (fag_meny.scrollLeft + skjermbredde >= fag_meny.scrollWidth + 2*parseInt(fag_meny_område_info_computed_style.marginRight)){
         høyre_bla_knapp.style.display = "none";
     } else{
         høyre_bla_knapp.style.display = "block";
