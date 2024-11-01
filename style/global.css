@@ -42,7 +42,7 @@
     width: 100%;
     height: 60%;
     border-radius: 10px 10px 0 0; /*avrunder de øverste hjørnene*/
-}
+}  
 #fag_meny p{
     padding-left: 10px;
     font-size: large;
@@ -50,6 +50,7 @@
 #fag-meny-tittel{
     display: flex;
     align-items: end;
+    margin-bottom: 15px;
 }
 #fag-meny-tittel p{
     padding-left: 10px;
