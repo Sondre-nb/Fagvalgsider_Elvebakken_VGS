@@ -73,6 +73,14 @@
     background-color: var(--lyse_grønn);
 }
 
+#intro-område{
+    margin: 50px 5% 0 5%;
+}
+
+#intro {
+    font-size: 1.5rem;
+}
+
 @media (max-width: 600px) {
     .fag-element {
         flex-direction: column;
