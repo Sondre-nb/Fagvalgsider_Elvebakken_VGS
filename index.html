@@ -20,7 +20,7 @@
         <div id="fag-meny-område">
             <div id="fag-meny-tittel">
                 <h1>Programfag</h1>
-                <p>Vis alle ></p>
+                <p id="vis-alle">Vis alle ></p>
             </div>
             <div id="fag_meny">
                 <!-- om antall fag endres, må også css endres (grid_template_columns) -->
@@ -108,11 +108,16 @@
                 <button id="høyre_bla_knapp" class="bla_knapp" onclick="flyttMeny('høyre')"></button>
             </div>
         </div>
-  
+        
+        <!-- Rask oversikt der man kan få en oversikt over hva fagene innegår. -->
+        <!-- For å legge til nye fag, kopier et helt "fag-element" div og endre tittel, bilde, hvor se mer linken går etc. -->
+        <!-- For å fjerne fag, slett den "fag-element" diven du vil fjerne. -->
         <div id="fag-oversikt">
             <div class = "fag-element">
+                <!-- Om bilde skal endres endre dettee bilde elementet.-->
                 <img src="assets/imgs/placeholder_IT.png" class="fag-bilde">
                 <div class = "fag-info">
+                    <!-- Endre info/tittel her -->
                     <h3 class="fag-tittel">IT</h3>
                     <p class="fag-beskrivelse">Informasjonsteknologi (IT) på Elvebakken er et spennende og praktisk fag hvor du får lære alt fra programmering og nettverk til spillutvikling og kunstig intelligens.</p>
                     <p class="fag-sitat">"Beste shitten ever!" - Mann Med Langt Navn 2STD</p>
