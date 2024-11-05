@@ -78,16 +78,20 @@
     position: absolute;
     /*sentrerer vertikalt inni fag-menyen*/
     align-self: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 10px;
-    border: black solid 1px;
-    background-color: white;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-right: black solid 7px;
+    border-top: black solid 7px;
+    background-color: rgba(255, 255, 255, 0);
 }
 /*hover-effekt for knappene man blar i menyen med*/
 .bla_knapp:hover, .bla_knapp:focus{
     cursor: pointer;
-    border: black solid 2px;
+}
+.bla_knapp:hover{
+    border-right: var(--elvebakken_blå) solid 7px;
+    border-top: var(--elvebakken_blå) solid 7px;
 }
 /*bildene (pilene) i knappene for å scrolle menyen*/
 .bla_knapp > img{
@@ -95,13 +99,13 @@
     height: 100%;
 }
 #høyre_bla_knapp{
-    right: 35px;
-    transform: rotate(90deg);
+    right: 20px;
+    transform: rotate(45deg);
 }
 #venstre_bla_knapp{
-    transform: rotate(-90deg);
+    transform: rotate(-135deg);
     display: none;
-    left: 35px;
+    left: 20px;
 }
 * {
     margin: 0;
@@ -113,7 +117,7 @@
     display: grid;
     top: 0;
     left: 0;
-    background-color: rgba(255, 255, 255, 0.4);
+    background-color: rgba(0, 0, 0, 0.3);
     background-image: url("/assets/imgs/forsidebilde_realfag.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -135,39 +139,37 @@
     align-self: end;
     justify-self: center;
     bottom: 10%;
-    width: 60px;
-    height: 60px;
-    background-color: white;
-    border-radius: 15px;
-    border: 2px solid var(--elvebakken_blå);
+    width: 50px;
+    height: 50px;
+    border-right: 10px solid white;
+    border-bottom: 10px solid white;
     font-size: 20px;
     line-height: 60px;
     display: grid;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    transform: rotate(45deg);
+    /*box-shadow: 0 0 15px 0px #000000;
+    clip-path: inset(0px -15px -15px 0px);*/
+    cursor: pointer;
 }
-#knapp img {
-    width: 45px;
-    height: 45px;
-    transform: rotate(180deg);
-    align-self: center;
-    justify-self: center;
-}
-#knapp:hover {
-    transform: translate(0px, 3px);
+#forside #knapp:hover {
+    bottom: 8%;
 }
 #elvebakken-logo {
     position: absolute;
     top: 0;
     left: 0;
-    width: 80px;
-    margin: 15px;
+    height: 22vh;
+    margin: 20px;
 }
 #elvebakken-logo img {
-    width: 100%;
+    height: 100%;
 }
 @media (max-width: 600px) {
     #forside h1{
         font-size: 15vw;
+    }
+    #elvebakken-logo {
+        height: 16vh;
     }
 }
 @media (max-height: 400px) {
@@ -178,8 +180,5 @@
     #knapp img {
         width: 30px;
         height: 30px;
-    }
-    #elvebakken-logo {
-        width: 50px;
     }
 }
