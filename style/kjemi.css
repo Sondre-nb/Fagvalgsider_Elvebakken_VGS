@@ -20,17 +20,16 @@
     color: white;
     text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }
+/* Knapp tilbake til reakfagssiden */
 #tilbake-knapp{
-    position: absolute;
     margin: 10px;
-    padding: 3px;
+    padding: 5px;
     text-decoration: none;
     font-size: 1.5rem;
-    color: black;
-    border-radius: 3px;
-    border: 1px solid black;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    color: white;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    /*plasserer elementet øverst til venstre*/
+    position: absolute;
     justify-self: start;
     align-self: start;
 }
