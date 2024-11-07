@@ -40,6 +40,20 @@
 #forside-bilde #knapp:hover {
     bottom: 8%;
 }
+#tilbake-knapp{
+    position: absolute;
+    margin: 10px;
+    padding: 3px;
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: black;
+    border-radius: 3px;
+    border: 1px solid black;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    justify-self: start;
+    align-self: start;
+}
 #intro-tekst {
     width: 100%;
     padding: 30px 20px 10px 20px;
