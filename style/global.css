@@ -171,12 +171,16 @@
 #elvebakken-logo img {
     height: 100%;
 }
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     #forside h1{
         font-size: 15vw;
     }
     #elvebakken-logo {
         height: 16vh;
+    }
+
+    #footer-logo {
+        display: none;
     }
 }
 @media (max-height: 400px) {
@@ -188,4 +192,34 @@
         width: 30px;
         height: 30px;
     }
+}
+
+footer {
+    position: relative;
+    background-color: var(--elvebakken_blå);
+    color: white;
+    text-align: center;
+    padding: 40px;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+}
+
+footer h3 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 1.3rem;
+}
+
+footer a {
+    color: white;
+    font-size: 1.2rem;
+}
+
+#footer-logo {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    height: 70px;
+    transform: translateY(-50%);
 }
