@@ -128,6 +128,7 @@
     display: grid;
     grid-template-rows: fit-content(50%) 1fr 1fr 1fr;
     align-items: center;
+    background-color: var(--elvebakken_rosa) !important; 
 }
 .rask-oversikt li {
     font-size: 1.1rem;
@@ -142,6 +143,7 @@
 }
 .hvordan-jobber-vi {
     grid-area: h;
+    background-color: var(--lyse_grønn) !important;
 }
 .hvordan-jobber-vi p {
     padding-block: 5px;
@@ -169,6 +171,8 @@
 }
 .mer-informasjon {
     grid-area: m;
+
+    background-color: var(--elvebakken_gul) !important;
 }
 .interaktivt-element {
     grid-area: i;
