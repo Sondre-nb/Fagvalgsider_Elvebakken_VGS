@@ -3,7 +3,7 @@
     display: grid;
     top: 0;
     left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
+    /* background-color: rgba(0, 0, 0, 0.3); */
     background-image: url("/assets/imgs/forsidebilde_realfag.jpg");
     background-position: center;
     background-repeat: no-repeat;
@@ -17,22 +17,25 @@
 }
 #forside-bilde h1 {
     padding: 20px;
+    background-color: rgba(0, 0, 0, 0.3);
     color: white;
     text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }
 /* Knapp tilbake til reakfagssiden */
 #tilbake-knapp{
-    margin: 10px;
     padding: 5px;
     text-decoration: none;
-    font-size: 1.5rem;
-    color: white;
-    text-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+    font-size: 1.2rem;
+    color: black;
+    background-color: white;
+    border-radius: 0 8px 8px 0;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     /*plasserer elementet øverst til venstre*/
     position: absolute;
-    justify-self: start;
-    align-self: start;
+    top: 25px;
+    left: 0;
 }
+
 #intro-tekst {
     width: 100%;
     padding: 30px 20px 10px 20px;
