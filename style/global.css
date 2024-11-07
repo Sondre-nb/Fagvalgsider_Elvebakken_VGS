@@ -31,6 +31,7 @@
 }
 /*lenke til de forskjellige valgfagene*/
 .fag_i_meny{
+    position: relative;
     height: 250px;
     width: 200px;
     text-decoration: none;
@@ -66,7 +67,9 @@
 /*pil i lenkene til sidene om programfagene*/
 .lenke_pil{
     width: 30%;
-    margin: 30px 10px 10px 10px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
     /*Flytter pilen tilbake etter hover*/
     transform: translate(0px, 0px);
     transition-duration: 0.1s;
