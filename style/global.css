@@ -1,5 +1,6 @@
 :root {
     --elvebakken_blå: #74b2e1;
+    --elvebakken_blå_lys: #9CC9EB;
     --elvebakken_rosa: #DC8EB6;
     --mørke_blå: #204B57;
     --mørke_grønn: #75DC98;
@@ -113,6 +114,7 @@
     margin: 0;
     font-family: 'Oslo Sans', sans-serif;
     scroll-behavior: smooth;
+    box-sizing: border-box;
 }
 #forside {
     position: relative;

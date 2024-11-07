@@ -1,0 +1,153 @@
+#forside-bilde {
+    position: relative;
+    display: grid;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    background-image: url("/assets/imgs/forsidebilde_realfag.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-blend-mode: overlay;
+    background-size: cover;
+    width: 100%;
+    height: 50vh;
+    text-align: center;
+    align-items: center;
+    font-size: 3rem;
+}
+#forside-bilde h1 {
+    padding: 20px;
+    color: white;
+    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+}
+#forside-bilde #knapp {
+    position: absolute;
+    align-self: end;
+    justify-self: center;
+    bottom: 10%;
+    width: 50px;
+    height: 50px;
+    border-right: 10px solid white;
+    border-bottom: 10px solid white;
+    font-size: 20px;
+    line-height: 60px;
+    display: grid;
+    transform: rotate(45deg);
+    /*box-shadow: 0 0 15px 0px #000000;
+    clip-path: inset(0px -15px -15px 0px);*/
+    cursor: pointer;
+}
+#forside-bilde #knapp:hover {
+    bottom: 8%;
+}
+#intro-tekst {
+    width: 100%;
+    padding: 30px 20px 10px 20px;
+    font-size: 1.5rem;
+    text-align: center;
+}
+#fagnummer-knapper {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+#fagnummer-knapper a {
+    background-color: var(--elvebakken_blå);
+    height: 60px;
+    flex-grow: 1;
+    flex-basis: 200px;
+    margin: 20px;
+    text-align: center;
+    line-height: 60px;
+    text-decoration: none;
+    color: black;
+    border-radius: 15px;
+    font-size: larger;
+}
+#fagnummer-knapper a:hover {
+    background-color: var(--elvebakken_blå_lys);
+}
+@media (max-width: 400px) {
+    #forside-bilde {
+        font-size: 12vw;
+        height: 40vh;
+    }
+    #intro-tekst {
+        font-size: 1.2rem;
+    }
+    #fagnummer-knapper {
+        padding: 10px;
+    }
+}
+.skillelinje {
+    width: 100%;
+    height: 40px;
+    background-color: white;
+    background-image: url("../assets/imgs/bølge.png");
+    background-size: contain;
+    margin-block: 10px;
+}
+.fag-informasjon h2 {
+    padding: 20px;
+    font-size: 2.5rem;
+}
+.informasjonsbokser {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-areas: 
+            "s r"
+            "s v"
+            "h h"
+            "a a"
+            "e m"
+            "i i";
+    width: 100%;
+    gap: 20px;
+    padding-inline: 20px;
+    padding-bottom: 20px;
+}
+.informasjonsbokser > div {
+    background-color: var(--elvebakken_blå_lys);
+    border-radius: 15px;
+    padding: 15px;
+}
+.sentrale-temaer {
+    grid-area: s;
+}
+.sentrale-temaer h3 {
+    font-size: 2rem;
+}
+.sentrale-temaer > ul > li {
+    list-style-type: none;
+    font-weight: bold;
+}
+.sentrale-temaer > ul {
+    -webkit-padding-start: 0;
+    padding-block: 1vw;
+}
+.sentrale-temaer li {
+    padding: 1vw;
+}
+.rask-oversikt {
+    grid-area: r;
+}
+.visuelt-element {
+    grid-area: v;
+}
+.hvordan-jobber-vi {
+    grid-area: h;
+}
+.avlangt-visuelt-element {
+    grid-area: a;
+}
+.elev-sitat {
+    grid-area: e;
+}
+.mer-informasjon {
+    grid-area: m;
+}
+.interaktivt-element {
+    grid-area: i;
+}
