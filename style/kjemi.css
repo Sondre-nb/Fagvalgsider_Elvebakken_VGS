@@ -20,26 +20,6 @@
     color: white;
     text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }
-#forside-bilde #knapp {
-    position: absolute;
-    align-self: end;
-    justify-self: center;
-    bottom: 10%;
-    width: 50px;
-    height: 50px;
-    border-right: 10px solid white;
-    border-bottom: 10px solid white;
-    font-size: 20px;
-    line-height: 60px;
-    display: grid;
-    transform: rotate(45deg);
-    /*box-shadow: 0 0 15px 0px #000000;
-    clip-path: inset(0px -15px -15px 0px);*/
-    cursor: pointer;
-}
-#forside-bilde #knapp:hover {
-    bottom: 8%;
-}
 #intro-tekst {
     width: 100%;
     padding: 30px 20px 10px 20px;
@@ -95,7 +75,7 @@
 .informasjonsbokser {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(6, 1fr);
+    grid-template-rows: 1fr 1fr auto auto auto auto;
     grid-template-areas: 
             "s r"
             "s v"
@@ -132,22 +112,85 @@
 }
 .rask-oversikt {
     grid-area: r;
+    display: grid;
+    grid-template-rows: fit-content(50%) 1fr 1fr 1fr;
+    align-items: center;
+}
+.rask-oversikt li {
+    font-size: 1.1rem;
+    padding-left: 5px;
 }
 .visuelt-element {
     grid-area: v;
+    background-image: url(../assets/imgs/placeholder_kjemi.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
 }
 .hvordan-jobber-vi {
     grid-area: h;
 }
+.hvordan-jobber-vi p {
+    padding-block: 5px;
+    font-size: 1.1rem;
+}
 .avlangt-visuelt-element {
     grid-area: a;
+    display: flex;
+    flex-wrap: wrap;
+}
+.avlangt-visuelt-element img {
+    flex-direction: row;
+    flex-basis: 400px;
+    flex-grow: 1;
+    overflow: hidden;
+    margin: 15px;
+    border-radius: 15px;
 }
 .elev-sitat {
     grid-area: e;
+}
+.elev-sitat p{
+    font-size: 1.1rem;
+    padding-top: 10px;
 }
 .mer-informasjon {
     grid-area: m;
 }
 .interaktivt-element {
     grid-area: i;
+}
+@media (max-width: 700px) {
+    .informasjonsbokser {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(9, auto);
+        grid-template-areas: 
+                "r"
+                "s"
+                "s"
+                "v"
+                "h"
+                "a"
+                "e"
+                "m"
+                "i";
+    }
+    .rask-oversikt li{
+        padding-block: 10px;
+    }
+    .visuelt-element {
+        width: 100%;
+        height: 200px;
+        overflow: hidden;
+    }
+    .avlangt-visuelt-element {
+       flex-direction: row;
+       padding-bottom: 0 !important; 
+    }
+    .avlangt-visuelt-element img{
+        width: 100%;
+        margin: 0px;
+        margin-bottom: 15px;
+        border-radius: 15px;
+    }
 }
