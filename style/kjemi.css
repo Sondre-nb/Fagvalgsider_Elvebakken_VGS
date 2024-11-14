@@ -20,7 +20,7 @@
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    text-shadow: 2px 2px 5px rgb(0, 0, 0, 0.7);
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 /* Knapp tilbake til realfagssiden */
 #tilbake-knapp{
@@ -34,7 +34,14 @@
     /*plasserer elementet øverst til venstre*/
     position: absolute;
     top: 15px;
-    left: 0;
+    left: 0px;
+    /*Gjevn overgang fra hover*/
+    transition-duration: 0.1s;
+}
+/*Hovereffekt til tilbakeknappen*/
+#tilbake-knapp:hover{
+    padding-left: 10px;
+    transition-duration: 0.1s;
 }
 /* informerende tekst om programfag */
 #intro-tekst {
