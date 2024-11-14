@@ -2,3 +2,15 @@
 #forside-bilde {
     background-image: url("/assets/imgs/placeholder_kjemi.png"); /* her kan bildet endres */
 }
+/*Liste over sentrale temaer*/
+.sentrale-temaer > ul > li {
+    list-style-type: none;
+    font-weight: bold;
+}
+.sentrale-temaer > ul {
+    -webkit-padding-start: 0;
+    padding-block: 1vw;
+}
+.sentrale-temaer li {
+    padding: 1vw;
+}

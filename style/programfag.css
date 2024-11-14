@@ -142,21 +142,14 @@
 .sentrale-temaer {
     grid-area: s;
 }
+.sentrale-temaer ul li{
+    padding-top: 5px;
+}
 /* setter overskriftene til boksene til samme størrelse */
 .informasjonsbokser h3, .flere-prosjekter h3 {
     font-size: 2rem;
 }
-.sentrale-temaer > ul > li {
-    list-style-type: none;
-    font-weight: bold;
-}
-.sentrale-temaer > ul {
-    -webkit-padding-start: 0;
-    padding-block: 1vw;
-}
-.sentrale-temaer li {
-    padding: 1vw;
-}
+
 .rask-oversikt {
     grid-area: r;
     display: grid;
