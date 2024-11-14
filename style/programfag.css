@@ -251,12 +251,13 @@
     }
     .avlangt-visuelt-element {
        flex-direction: row;
-       padding-bottom: 0 !important; 
+       padding-bottom: 0 !important;
     }
     .avlangt-visuelt-element img{
         width: 100%;
         margin: 0px;
         margin-bottom: 15px;
         border-radius: 15px;
+        height: 200px;
     }
 }
