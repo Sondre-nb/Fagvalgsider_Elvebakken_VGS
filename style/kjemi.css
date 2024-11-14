@@ -18,9 +18,9 @@
 /* overskrift over bakgrunnsbilde */
 #forside-bilde h1 {
     padding: 20px;
-    background-color: rgba(0, 0, 0, 0.3);
+    background-color: rgba(0, 0, 0, 0.5);
     color: white;
-    text-shadow: 2px 2px 5px rgb(0, 0, 0);
+    text-shadow: 2px 2px 5px rgb(0, 0, 0, 0.7);
 }
 /* Knapp tilbake til realfagssiden */
 #tilbake-knapp{
@@ -33,7 +33,7 @@
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     /*plasserer elementet øverst til venstre*/
     position: absolute;
-    top: 25px;
+    top: 15px;
     left: 0;
 }
 /* informerende tekst om programfag */
