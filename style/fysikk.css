@@ -1,0 +1,4 @@
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/assets/imgs/fysikk/placeholder_fysikk.png"); /* her kan bildet endres */
+}

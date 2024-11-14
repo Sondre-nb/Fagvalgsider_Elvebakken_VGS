@@ -16,7 +16,8 @@
 .sentrale-temaer > ul {
     -webkit-padding-start: 0;
     padding-block: 1vw;
+    padding: 0 !important;
 }
 .sentrale-temaer li {
-    padding: 1vw;
+    padding: 1vw !important;
 }
