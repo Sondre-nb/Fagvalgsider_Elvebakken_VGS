@@ -185,9 +185,11 @@
     flex-direction: row;
     flex-basis: 400px;
     flex-grow: 1;
+    height: 400px;
     overflow: hidden;
     margin: 15px;
     border-radius: 15px;
+    object-fit: cover;
 }
 .elev-sitat {
     grid-area: e;
