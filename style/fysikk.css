@@ -2,3 +2,9 @@
 #forside-bilde {
     background-image: url("/assets/imgs/fysikk/placeholder_fysikk.png"); /* her kan bildet endres */
 }
+.visuelt-element {
+    background-image: url("/assets/imgs/fysikk/placeholder_fysikk.png"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/assets/imgs/fysikk/placeholder_fysikk.png"); /* bilde kan byttes ut */
+}
