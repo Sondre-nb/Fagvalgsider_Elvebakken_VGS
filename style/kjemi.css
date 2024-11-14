@@ -1,13 +1,14 @@
+/* bakgrunnsbilde øverst på side */
 #forside-bilde {
     position: relative;
     display: grid;
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    background-image: url("/assets/imgs/forsidebilde_realfag.jpg");
+    background-image: url("/assets/imgs/forsidebilde_realfag.jpg"); /* her kan bildet endres */
     background-position: center;
     background-repeat: no-repeat;
-    background-blend-mode: overlay;
+    background-blend-mode: overlay; /* gir bakgrunnen en mørkere farge */
     background-size: cover;
     width: 100%;
     height: 50vh;
@@ -15,12 +16,13 @@
     align-items: center;
     font-size: 3rem;
 }
+/* overskrift over bakgrunnsbilde */
 #forside-bilde h1 {
     padding: 20px;
     color: white;
     text-shadow: 2px 2px 5px rgb(0, 0, 0);
 }
-/* Knapp tilbake til reakfagssiden */
+/* Knapp tilbake til realfagssiden */
 #tilbake-knapp{
     margin: 10px;
     padding: 5px;
@@ -33,18 +35,21 @@
     justify-self: start;
     align-self: start;
 }
+/* informerende tekst om programfag */
 #intro-tekst {
     width: 100%;
     padding: 30px 20px 10px 20px;
     font-size: 1.5rem;
     text-align: center;
 }
+/* knapper som tar deg ønsket del av siden */
 #fagnummer-knapper {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     padding: 20px;
 }
+/* tekst inni knappene */
 #fagnummer-knapper a {
     background-color: var(--elvebakken_blå);
     height: 60px;
@@ -58,9 +63,11 @@
     border-radius: 15px;
     font-size: larger;
 }
+/* gjøre knappene lysere ved hover */
 #fagnummer-knapper a:hover {
     background-color: var(--elvebakken_blå_lys);
 }
+/* får forsidebilde til å ta mindre plass av skjermen, gjør tekst under mindre og padding mindre når bredden er under 400px */
 @media (max-width: 400px) {
     #forside-bilde {
         font-size: 12vw;
@@ -73,22 +80,26 @@
         padding: 10px;
     }
 }
+/* bølgen som skiller seksjonene fra hverandre */
 .skillelinje {
     width: 100%;
     height: 40px;
     background-color: white;
     background-image: url("../assets/imgs/bølge.png");
+    background-repeat: repeat-x;
     background-size: contain;
     margin-block: 10px;
 }
+/* overskrift for hvert av "nivåene" for programfagene */
 .fag-informasjon h2 {
     padding: 20px;
     font-size: 2.5rem;
 }
+/* boksene med informasjon */
 .informasjonsbokser {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr 1fr auto auto auto auto;
+    grid-template-rows: 1fr 1fr auto auto auto auto; /* størrelse på bokser baserer seg på innhold */
     grid-template-areas: 
             "s r"
             "s v"
@@ -101,15 +112,21 @@
     padding-inline: 20px;
     padding-bottom: 20px;
 }
-.informasjonsbokser > div {
+.informasjonsbokser > div, .flere-prosjekter {
     background-color: var(--elvebakken_blå_lys);
     border-radius: 15px;
     padding: 15px;
 }
+/* nederste boks med flere prosjekter */
+.flere-prosjekter {
+    margin: 30px 20px 20px 20px;
+}
+/* de ulike boksene på siden */
 .sentrale-temaer {
     grid-area: s;
 }
-.informasjonsbokser h3 {
+/* setter overskriftene til boksene til samme størrelse */
+.informasjonsbokser h3, .flere-prosjekter h3 {
     font-size: 2rem;
 }
 .sentrale-temaer > ul > li {
@@ -126,7 +143,7 @@
 .rask-oversikt {
     grid-area: r;
     display: grid;
-    grid-template-rows: fit-content(50%) 1fr 1fr 1fr;
+    grid-template-rows: auto 1fr 1fr 1fr; /* fordeler elementene i listen utover boksen */
     align-items: center;
     background-color: var(--elvebakken_rosa) !important; 
 }
@@ -136,14 +153,14 @@
 }
 .visuelt-element {
     grid-area: v;
-    background-image: url(../assets/imgs/placeholder_kjemi.png);
+    background-image: url(../assets/imgs/placeholder_kjemi.png); /* bilde kan byttes ut */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
 }
 .hvordan-jobber-vi {
     grid-area: h;
-    background-color: var(--lyse_grønn) !important;
+    background-color: var(--lyse_grønn) !important; /* overstyrer originalfarge */
 }
 .hvordan-jobber-vi p {
     padding-block: 5px;
@@ -154,6 +171,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+/* midtstiller bilder i avlang bilde-boks */
 .avlangt-visuelt-element img {
     flex-direction: row;
     flex-basis: 400px;
@@ -171,12 +189,25 @@
 }
 .mer-informasjon {
     grid-area: m;
-
-    background-color: var(--elvebakken_gul) !important;
+    display: grid;
+    grid-template-rows: auto 1fr 1fr; /* fordeler liste-elementer likt nedover boks */
+    align-items: center;
+}
+.mer-informasjon li {
+    font-size: 1.1rem;
+    padding-left: 5px;
+}
+.mer-informasjon li a {
+    color: black;
+}
+/* lenkefarge ved hover */
+.mer-informasjon li a:hover {
+    color: blue;
 }
 .interaktivt-element {
     grid-area: i;
 }
+/* endrer boksplassering når bredden er under 700px og oppsettet i lenke-boksene og bildeboksene */
 @media (max-width: 700px) {
     .informasjonsbokser {
         grid-template-columns: 1fr;
@@ -192,7 +223,7 @@
                 "m"
                 "i";
     }
-    .rask-oversikt li{
+    .rask-oversikt li, .mer-informasjon li{
         padding-block: 10px;
     }
     .visuelt-element {
