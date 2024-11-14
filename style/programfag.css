@@ -138,12 +138,16 @@
 .flere-prosjekter {
     margin: 30px 20px 20px 20px;
 }
-/* de ulike boksene på siden */
+/*Liste med sentrale temaer*/
 .sentrale-temaer {
     grid-area: s;
 }
-.sentrale-temaer ul li{
-    padding-top: 5px;
+.sentrale-temaer > ul{
+    padding: 10px 25px;
+}
+.sentrale-temaer > ul > li{
+    padding: 5px;
+    font-size: 1.1rem;
 }
 /* setter overskriftene til boksene til samme størrelse */
 .informasjonsbokser h3, .flere-prosjekter h3 {
@@ -172,7 +176,7 @@
     background-color: var(--lyse_grønn) !important; /* overstyrer originalfarge */
 }
 .hvordan-jobber-vi p {
-    padding-block: 5px;
+    padding-block: 7px;
     font-size: 1.1rem;
 }
 .avlangt-visuelt-element {
