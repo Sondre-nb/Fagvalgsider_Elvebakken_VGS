@@ -14,166 +14,15 @@
     scroll-behavior: smooth;
     box-sizing: border-box;
 }
-#fag_meny{
-    overflow-x: auto;
-    padding: 15px;
-    display: grid;
-    grid-template-columns: repeat(8, 1fr); /* må endres til antall fag */
-    gap: 30px;
-
-    /* skjuler scrollebaren til fag_menyen for IE, Edge og Firefox */
-    -ms-overflow-style: none;  /* IE og Edge */
-    scrollbar-width: none;  /* Firefox */
-}
-/* skjuler scrollebaren til fag_menyen for Chrome, Safari og Opera */
-#fag_meny::-webkit-scrollbar{
-    display: none;
-}
-/* området under intro-tekst, ned til de avlange programfag-boksene */
-#fag-meny-område{
-    margin: 50px 5% 0 5%;
-}
-/*lenke til de forskjellige valgfagene*/
-.fag_i_meny{
-    position: relative;
-    height: 250px;
-    width: 200px;
-    text-decoration: none;
-    color: black;
-    background-color: white;
-    border-radius: 10px;
-    /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-/* bilde i lenkene til de ulike programfagene */
-.fag_bilde{
+/* bølgen som skiller seksjonene fra hverandre */
+.skillelinje {
     width: 100%;
-    height: 60%;
-    border-radius: 10px 10px 0 0; /* avrunder de øverste hjørnene */
-}  
-/* programfag-navnene i den øverste programfag-oversikten */
-#fag_meny p{
-    padding-left: 10px;
-    font-size: large;
-}
-/* programfag-oversikt-overskrift */
-#fag-meny-tittel{
-    display: flex;
-    align-items: end;
-    margin-bottom: 15px;
-}
-/* "vis alle"-tekst ved siden av programfag-overskrift */
-#vis-alle{
-    padding-left: 10px;
-    padding-bottom: 5px;
-}
-#vis-alle:hover{
-    text-decoration: underline;
-    cursor: pointer;
-}
-/* pil i lenkene til sidene om programfagene */
-.lenke_pil{
-    width: 30%;
-    position: absolute;
-    left: 10px;
-    bottom: 10px;
-    /*Flytter pilen tilbake etter hover*/
-    transform: translate(0px, 0px);
-    transition-duration: 0.1s;
-}
-/*Flytter pilen ved hover og focus*/
-.fag_i_meny:hover .lenke_pil, .fag_i_meny:focus .lenke_pil{
-    transform: translate(10px, 0px);
-    transition-duration: 0.1s;
-}
-
-.bla_knapp{
-    position: absolute;
-    /*sentrerer vertikalt inni fag-menyen*/
-    align-self: center;
-    width: 40px;
     height: 40px;
-    border: 0;
-    border-right: black solid 7px;
-    border-top: black solid 7px;
-    background-color: rgba(255, 255, 255, 0);
-}
-/*hover-effekt for knappene man blar i menyen med*/
-.bla_knapp:hover, .bla_knapp:focus{
-    cursor: pointer;
-}
-.bla_knapp:hover{
-    border-right: var(--elvebakken_blå) solid 7px;
-    border-top: var(--elvebakken_blå) solid 7px;
-}
-/*bildene (pilene) i knappene for å scrolle menyen*/
-.bla_knapp > img{
-    width: 100%;
-    height: 100%;
-}
-#høyre_bla_knapp{
-    right: 20px;
-    transform: rotate(45deg);
-}
-#venstre_bla_knapp{
-    transform: rotate(-135deg);
-    display: none;
-    left: 20px;
-}
-/* bakgrunnsbilde øverst på siden */
-#forside {
-    position: relative;
-    display: grid;
-    top: 0;
-    left: 0;
-    background-color: rgba(0, 0, 0, 0.3);
-    background-image: url("/assets/imgs/forsidebilde_realfag.png");
-    background-position: center;
-    background-repeat: no-repeat;
-    background-blend-mode: overlay; /* gir bakgrunnen en mørkere farge */
-    background-size: cover;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-    align-items: center;
-    font-size: 3rem;
-}
-/* overskrift øverst på skjermen */
-#forside h1 {
-    padding: 20px;
-    color: white;
-    text-shadow: 2px 2px 5px rgb(0, 0, 0);
-}
-/* pil som tar deg nedover på siden i forside-seksjonen */
-#forside #ned-knapp {
-    position: absolute;
-    align-self: end;
-    justify-self: center;
-    bottom: 10%;
-    width: 50px;
-    height: 50px;
-    border-right: 10px solid white;
-    border-bottom: 10px solid white;
-    font-size: 20px;
-    line-height: 60px;
-    display: grid;
-    transform: rotate(45deg);
-    /*box-shadow: 0 0 15px 0px #000000;
-    clip-path: inset(0px -15px -15px 0px);*/
-    cursor: pointer;
-}
-/* flytter knapp nedover ved hover */
-#forside #ned-knapp:hover {
-    bottom: 8%;
-}
-/* Elvebakken-logo i hjørnet øverst til venstre av skjermen */
-#elvebakken-logo {
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-#elvebakken-logo img {
-    height: 100%;
+    background-color: white;
+    background-image: url("../assets/imgs/bølge.png");
+    background-repeat: repeat-x;
+    background-size: contain;
+    margin-block: 10px;
 }
 
 .logo-bg {
@@ -186,22 +35,8 @@
 }
 /* endrer skriftstørrelse på overksrift, størrelse på logo, og fjerner logoen i footeren når bredden er under 700px */
 @media (max-width: 700px) {
-    #forside h1{
-        font-size: 15vw;
-    }
-    #elvebakken-logo {
-        height: 16vh;
-    }
-
     #footer-logo {
         display: none;
-    }
-}
-/* gjør ned-knappen mindre når høyden på skjermen er mindre enn 400px */
-@media (max-height: 400px) {
-    #forside #ned-knapp {
-        width: 40px;
-        height: 40px;
     }
 }
 footer {
