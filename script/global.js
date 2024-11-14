@@ -65,7 +65,7 @@ function toggleMeny(){
         venstre_bla_knapp.style.display = "none";
     } else{ // Legger elementene tilbake på en rad man kan bla
         visAlleEl.innerHTML = "vis alle >";
-        fag_meny.style.gridTemplateColumns = "repeat(16, 1fr)";
+        fag_meny.style.gridTemplateColumns = "repeat(8, 1fr)";
         menyStatus = "rad";
         høyre_bla_knapp.style.display = "block";
     }

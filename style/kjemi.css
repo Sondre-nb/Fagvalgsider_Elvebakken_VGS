@@ -69,12 +69,30 @@
     text-decoration: none;
     color: black;
     border-radius: 15px;
-    font-size: larger;
+    font-size: 1.5rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+
+    transition: transform 0.2s;
 }
 /* gjøre knappene lysere ved hover */
 #fagnummer-knapper a:hover {
-    background-color: var(--elvebakken_blå_lys);
+    transform: translateY(-3px);
 }
+/* invividuel style for hver knapp */
+#første-fag {
+    background-color: var(--elvebakken_blå) !important;
+}
+#første-fag:hover {
+    background-color: var(--elvebakken_blå_lys) !important;
+}
+#andre-fag {
+    background-color: var(--mørke_grønn) !important;
+}
+#andre-fag:hover {
+    background-color: var(--lyse_grønn) !important;
+}
+
+
 /* får forsidebilde til å ta mindre plass av skjermen, gjør tekst under mindre og padding mindre når bredden er under 400px */
 @media (max-width: 400px) {
     #forside-bilde {
@@ -104,6 +122,7 @@
             "h h"
             "a a"
             "e m"
+            "d d"
             "i i";
     width: 100%;
     gap: 20px;
@@ -203,7 +222,12 @@
 .mer-informasjon li a:hover {
     color: var(--elvebakken_blå);
 }
+.divider-element {
+    background-color: var(--elvebakken_rosa) !important;
+    grid-area: d;
+}
 .interaktivt-element {
+    background-color: var(--elvebakken_blå_lys) !important;
     grid-area: i;
 }
 /* endrer boksplassering når bredden er under 700px og oppsettet i lenke-boksene og bildeboksene */
@@ -220,6 +244,7 @@
                 "a"
                 "e"
                 "m"
+                "d"
                 "i";
     }
     .rask-oversikt li, .mer-informasjon li{
