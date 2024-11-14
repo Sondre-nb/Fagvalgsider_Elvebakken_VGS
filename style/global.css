@@ -127,7 +127,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    background-image: url("/assets/imgs/forsidebilde_realfag.jpg"); /* her kan bakgrunnsbilde endres */
+    background-image: url("/assets/imgs/forsidebilde_realfag.png");
     background-position: center;
     background-repeat: no-repeat;
     background-blend-mode: overlay; /* gir bakgrunnen en mørkere farge */
@@ -171,11 +171,18 @@
     position: absolute;
     top: 0;
     left: 0;
-    height: 22vh;
-    margin: 20px;
 }
 #elvebakken-logo img {
     height: 100%;
+}
+
+.logo-bg {
+    background-color: white;
+    height: 28vh;
+    width: 28vh;
+    margin: 25px;
+    padding: 25px;
+    border-radius: 50%;
 }
 /* endrer skriftstørrelse på overksrift, størrelse på logo, og fjerner logoen i footeren når bredden er under 700px */
 @media (max-width: 700px) {
