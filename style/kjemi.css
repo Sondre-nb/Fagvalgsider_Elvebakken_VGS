@@ -244,6 +244,7 @@
                 "a"
                 "e"
                 "m"
+                "d"
                 "i";
     }
     .rask-oversikt li, .mer-informasjon li{
@@ -263,8 +264,5 @@
         margin: 0px;
         margin-bottom: 15px;
         border-radius: 15px;
-    }
-    .divider-element {
-        display: none;
     }
 }
