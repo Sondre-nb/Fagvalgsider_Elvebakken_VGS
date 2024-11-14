@@ -163,7 +163,6 @@
 }
 .visuelt-element {
     grid-area: v;
-    background-image: url(../assets/imgs/placeholder_kjemi.png); /* bilde kan byttes ut */
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

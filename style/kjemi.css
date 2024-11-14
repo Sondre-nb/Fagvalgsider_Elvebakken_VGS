@@ -1,6 +1,12 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("/assets/imgs/placeholder_kjemi.png"); /* her kan bildet endres */
+    background-image: url("/assets/imgs/periodesystemet.png"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/assets/imgs/person_på_lab.png"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/assets/imgs/kjemiting.png"); /* bilde kan byttes ut */
 }
 /*Liste over sentrale temaer*/
 .sentrale-temaer > ul > li {
