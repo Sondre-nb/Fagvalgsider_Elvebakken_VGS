@@ -81,16 +81,6 @@
         padding: 10px;
     }
 }
-/* bølgen som skiller seksjonene fra hverandre */
-.skillelinje {
-    width: 100%;
-    height: 40px;
-    background-color: white;
-    background-image: url("../assets/imgs/bølge.png");
-    background-repeat: repeat-x;
-    background-size: contain;
-    margin-block: 10px;
-}
 /* overskrift for hvert av "nivåene" for programfagene */
 .fag-informasjon h2 {
     padding: 20px;
@@ -193,6 +183,7 @@
     display: grid;
     grid-template-rows: auto 1fr 1fr; /* fordeler liste-elementer likt nedover boks */
     align-items: center;
+    background-color: var(--elvebakken_gul) !important; 
 }
 .mer-informasjon li {
     font-size: 1.1rem;
@@ -203,7 +194,7 @@
 }
 /* lenkefarge ved hover */
 .mer-informasjon li a:hover {
-    color: blue;
+    color: var(--elvebakken_blå);
 }
 .interaktivt-element {
     grid-area: i;
