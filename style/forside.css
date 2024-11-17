@@ -6,7 +6,7 @@
 }
 
 .fag-element {
-    background-color: beige;
+    background-color: rgb(250, 250, 246);
     display: flex;
     flex-direction: row;
     width: auto;
