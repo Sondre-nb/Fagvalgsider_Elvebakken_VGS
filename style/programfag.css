@@ -138,6 +138,14 @@
 .flere-prosjekter {
     margin: 30px 20px 20px 20px;
 }
+.flere-prosjekter p{
+    font-size: 1.1rem;
+    padding-block: 10px;
+}
+.flere-prosjekter a{
+    text-decoration: none;
+    font-size: 1.1rem;
+}
 /*Liste med sentrale temaer*/
 .sentrale-temaer {
     grid-area: s;
