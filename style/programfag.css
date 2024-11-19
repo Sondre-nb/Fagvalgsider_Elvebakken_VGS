@@ -92,6 +92,22 @@
     background-color: var(--lyse_grønn) !important;
 }
 
+/*Liste med forskjeller mellom R- og S-matte. Eksisterer bare på matte-sidene*/
+#forskjell-r-og-s-matte{
+    margin: 20px 40px 50px 40px;
+    padding: 20px;
+    border-radius: 15px;
+    background-color: var(--elvebakken_gul);
+    font-size: 1.3rem;
+}
+#forskjell-r-og-s-matte > h2{
+    text-align: center;
+    padding: 5px;
+}
+#forskjell-r-og-s-matte p{
+    padding: 7px;
+}
+
 
 /* får forsidebilde til å ta mindre plass av skjermen, gjør tekst under mindre og padding mindre når bredden er under 400px */
 @media (max-width: 400px) {
@@ -104,6 +120,10 @@
     }
     #fagnummer-knapper {
         padding: 10px;
+    }
+    #forskjell-r-og-s-matte{
+        margin: 20px 30px 40px 30px;
+        font-size: 1.1rem;
     }
 }
 /* overskrift for hvert av "nivåene" for programfagene */
@@ -239,11 +259,12 @@
 /* endrer boksplassering når bredden er under 700px og oppsettet i lenke-boksene og bildeboksene */
 @media (max-width: 700px) {
     .informasjonsbokser {
-        grid-template-columns: 1fr;
-        grid-template-rows: repeat(9, auto);
+        display: flex;
+        flex-direction: column;
+        /* grid-template-columns: 1fr;
+        grid-template-rows: repeat(8, auto);
         grid-template-areas: 
                 "r"
-                "s"
                 "s"
                 "v"
                 "h"
@@ -251,7 +272,7 @@
                 "e"
                 "m"
                 "d"
-                "i";
+                "i"; */
     }
     .rask-oversikt li, .mer-informasjon li{
         padding-block: 10px;

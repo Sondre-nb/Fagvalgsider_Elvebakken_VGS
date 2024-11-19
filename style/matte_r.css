@@ -16,8 +16,13 @@
 .sentrale-temaer > ul {
     -webkit-padding-start: 0;
     padding-block: 1vw;
-    padding: 0 !important;
+    padding: 0;
 }
 .sentrale-temaer li {
-    padding: 1vw !important;
+    padding: 1vw;
+}
+@media(max-width: 670px){
+    #forside-bilde {
+        font-size: 7vw;
+    }
 }

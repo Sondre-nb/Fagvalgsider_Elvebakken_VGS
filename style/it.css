@@ -8,3 +8,8 @@
 #fagnummer2 .visuelt-element {
     background-image: url("/assets/imgs/informasjonsteknologi/placeholder_IT.png"); /* bilde kan byttes ut */
 }
+@media(max-width: 1080px){
+    #forside-bilde {
+        font-size: 4vw;
+    }
+}
