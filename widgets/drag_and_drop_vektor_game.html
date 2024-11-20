@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Game</title>
+    <style>
+        canvas {
+            border: 1px solid black;
+        }
+        #drag-and-drop-vektor-game {
+            box-sizing: border-box;
+        }
+        p {
+            text-align: center;
+            font-family: 'Oslo Sans', sans-serif;
+            margin: 10px;
+            margin-bottom: 0px;
+        }
+        #level-knapper-div {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+        }
+        button {
+            font-family: 'Oslo Sans', sans-serif;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: white;
+            cursor: pointer;
+        }
+        #toggle-tekst-knapp {
+            position: absolute;
+            top: 8%;
+            left: 2.5%;
+            font-family: 'Oslo Sans', sans-serif;
+            font-size: 14px;
+            padding: 10px;
+            border: 1px solid black;
+            background-color: white;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .disabled {
+            background-color: #f0f0f0;
+            text-decoration: line-through;
+            cursor: not-allowed;
+        }
+
+        .spill-tittel-div {
+            font-family: 'Oslo Sans', sans-serif;
+            font-size: 24px;
+            text-align: center;
+            margin-top: 10px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="spill-tittel-div">Vektorer</div>
+    <canvas id="drag-and-drop-vektor-game" width="480" height="330"></canvas>
+    <div id="level-knapper-div">
+        <button id="level-0-knapp">Level 0</button>
+        <button id="level-1-knapp" class="disabled">Level 1</button>
+        <button id="level-2-knapp" class="disabled">Level 2</button>
+        <button id="level-3-knapp" class="disabled">Level 3</button>
+        <button id="level-4-knapp" class="disabled">Level 4</button>
+        <button id="level-5-knapp" class="disabled">Level 5</button>
+    </div>
+    <button id="toggle-tekst-knapp">Vis verdier</button>
+    <p>Plasser vektorene for å koble det grønne punktet til det blå. <br>Finnes det flere måter å sammenkoble punktene?</p>
+    <script src="/script/drag_and_drop_vektor_game.js"></script>
+</body>
+</html>

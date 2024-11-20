@@ -212,6 +212,7 @@
     display: flex;
     flex-wrap: wrap;
 }
+
 /* midtstiller bilder i avlang bilde-boks */
 .avlangt-visuelt-element img {
     flex-direction: row;
@@ -252,10 +253,23 @@
     background-color: var(--elvebakken_rosa) !important;
     grid-area: d;
 }
+
+/* interaktivt element */
 .interaktivt-element {
     background-color: var(--lyse_grønn) !important;
     grid-area: i;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
 }
+
+.interaktivt-element iframe {
+    background-color: white;
+}
+
+
 /* endrer boksplassering når bredden er under 700px og oppsettet i lenke-boksene og bildeboksene */
 @media (max-width: 700px) {
     .informasjonsbokser {
@@ -292,5 +306,9 @@
         margin-bottom: 15px;
         border-radius: 15px;
         height: 200px;
+    }
+
+    iframe {
+        width: 100%;
     }
 }
