@@ -253,7 +253,7 @@
     grid-area: d;
 }
 .interaktivt-element {
-    background-color: var(--elvebakken_blå_lys) !important;
+    background-color: var(--lyse_grønn) !important;
     grid-area: i;
 }
 /* endrer boksplassering når bredden er under 700px og oppsettet i lenke-boksene og bildeboksene */

@@ -23,6 +23,37 @@ function showSlides(n) {
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
-    slides[slideIndex-1].style.display = "block";
+    slides[slideIndex-1].style.display = "grid";
+    skalerBilde();
+    let bakgrunn = slides[slideIndex-1].querySelector('img').src;
+    slides[slideIndex-1].style.backgroundImage = "url('" + bakgrunn + "')";
     dots[slideIndex-1].className += " active";
 }
+
+function skalerBilde () {
+    let slides = document.getElementsByClassName("mySlides");
+    let slides_container = document.getElementById("slideshow-container");
+    console.log(slideIndex);
+    let bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
+    let hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;
+    let bredde_totalt = slides[slideIndex-1].getBoundingClientRect().width;
+    console.log(bredde_bilde, bredde_totalt, hoyde_bilde);
+    if (bredde_bilde > bredde_totalt) {
+        slides[slideIndex-1].querySelector('img').style.height = "auto";
+        slides[slideIndex-1].querySelector('img').style.width = "100%";
+        slides[slideIndex-1].querySelector('img').style.borderRadius = "15px";
+        slides_container.style.height = "auto";
+    }
+    if (hoyde_bilde > 400) {
+        console.log()
+        slides[slideIndex-1].querySelector('img').style.height = "400px";
+        slides[slideIndex-1].querySelector('img').style.borderRadius = "0px";
+        slides[slideIndex-1].querySelector('img').style.width = "unset";
+    }
+};
+
+window.addEventListener("resize", skalerBilde);
+/*
+width: 100%;
+        height: auto;
+        border-radius: 15px;*/
