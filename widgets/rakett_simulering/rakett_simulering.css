@@ -1,0 +1,12 @@
+.spill-tittel-div {
+    font-family: 'Oslo Sans', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+canvas {
+    border: 1px solid black;
+    display: block;
+    margin: 0 auto;
+}
