@@ -1,3 +1,9 @@
+:root {
+    --biologi_blå: #0E1C36;
+    --biologi_grønn: #20BF55;
+    --biologi_lilla: #927991;
+    --biologi_rosa: #ED6A5A;
+}
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
     background-image: url("/assets/imgs/biologi/dna.png"); /* her kan bildet endres */
@@ -20,4 +26,23 @@
 }
 .sentrale-temaer li {
     padding: 1vw;
+}/*
+#andre-fag {
+    background-color: var(--mørke_grønn) !important;
+}
+#andre-fag:hover {
+    background-color: var(--lyse_grønn) !important;
+}*/
+.rask-oversikt, .divider-element {
+    background-color: var(--biologi_rosa) !important; 
+}
+.hvordan-jobber-vi, .interaktivt-element, #andre-fag {
+    background-color: var(--biologi_blå) !important; /* overstyrer originalfarge */
+    color: white !important;
+}
+#andre-fag:hover {
+    background-color: #1A2843 !important;
+}
+.mer-informasjon {
+    background-color: var(--biologi_grønn) !important; 
 }
