@@ -26,7 +26,7 @@
 
 .fag-bilde {
     width: 40%;
-    height: 300px; 
+    height: 430px; 
     object-fit: cover;
     object-position: center;
     border: 0px solid transparent;
@@ -52,6 +52,7 @@
     font-size: 1.5rem;
     font-style: italic;
     margin-top: auto;
+    padding: 10px;
 }
 
 .fag-se-mer-knapp {
@@ -98,6 +99,7 @@
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
         margin-bottom: 10px;
+        height: 350px;
     }
 
     .fag-info { 
@@ -202,12 +204,14 @@
     background-color: rgba(255, 255, 255, 0);
 }
 /*hover-effekt for knappene man blar i menyen med*/
-.bla_knapp:hover, .bla_knapp:focus{
+.bla_knapp:hover{
     cursor: pointer;
 }
-.bla_knapp:hover{
-    border-right: var(--elvebakken_blå) solid 7px;
-    border-top: var(--elvebakken_blå) solid 7px;
+@media (min-width: 700px){
+    .bla_knapp:hover{
+        border-right: var(--elvebakken_blå) solid 7px;
+        border-top: var(--elvebakken_blå) solid 7px;
+    }
 }
 /*bildene (pilene) i knappene for å scrolle menyen*/
 .bla_knapp > img{
