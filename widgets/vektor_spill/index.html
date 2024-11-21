@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="vektor_spill.css">
+    <title>Vektor spill</title>
+</head>
+<body>
+    <div class="spill-tittel-div">Vektorer  <a href="/widgets/vektor_spill/" id="fullskjerm-link">Åpne i fullskjerm</a></div>
+    <canvas id="vektor-canvas" width="480" height="330"></canvas>
+    <div id="level-knapper-div">
+        <button id="level-0-knapp">Level 0</button>
+        <button id="level-1-knapp" class="disabled">Level 1</button>
+        <button id="level-2-knapp" class="disabled">Level 2</button>
+        <button id="level-3-knapp" class="disabled">Level 3</button>
+        <button id="level-4-knapp" class="disabled">Level 4</button>
+        <button id="level-5-knapp" class="disabled">Level 5</button>
+    </div>
+    <button id="toggle-tekst-knapp">Vis verdier</button>
+    <button id="hvorfor-knapp">Hvorfor skjer dette?</button>
+    <p>Plasser vektorene for å koble det grønne punktet til det blå. <br>Finnes det flere måter å sammenkoble punktene?</p>
+    <div id="hvorfor-modal" class="modal">
+        <div class="modal-content">
+            <span id="close-modal" class="close">&times;</span>
+            <p>I R1 spiller vektorer en vesentlig rolle. Har du lagt merke til at uansett rekkefølgen du plasserer vektorene i, vil de to punktene alltid være koblet sammen? Dette er fordi vektorene er additivt. Dette betyr at om du har en vektor fra A til B og en vektor fra B til C, vil summen av disse vektorene være en vektor fra A til C. Uansett hvilken rekkefølge du legger vektorene i. <br>1 + 2 + 5 er jo tross alt det samme som 2 + 5 + 2.</p>
+        </div>
+    </div>
+    <script src="vektor_spill.js"></script>
+</body>
+</html>

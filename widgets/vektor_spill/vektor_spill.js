@@ -1,15 +1,30 @@
-const canvas = document.getElementById('drag-and-drop-vektor-game');
+// Trengs fordi det er et html-element som skal lastes inn i en iframe
+document.getElementById('fullskjerm-link').addEventListener('click', function(event) {
+    event.preventDefault();
+    window.parent.location.href = this.href;
+    fullscreen = true;  
+});
+
+// Skaffer referanse til canvas og kontekst
+const canvas = document.getElementById('vektor-canvas');
 const ctx = canvas.getContext('2d');
 
+// Museposisjon
 let offsetX, offsetY;
+
+// Vektor som blir dratt
 let draggingVector = null;
+
+// Om vi skal vise verdier over vektorene og punktene
 let showText = false;
 
+let currentLevel = 0;
 let levels = [
     {
         name: "Level 0",
-        points: [[50, 250], [350, 50]],
-        vectors: [{"pos": [250, 250], "value": [100, -150]}, {"pos": [50, 100], "value": [200, -50]}],
+        points: [[50, 250], [350, 50]], // De to punktene som vektorene skal gå til
+        vectors: [{"pos": [250, 250], "value": [100, -150]}, // Vektorene med startposisjon og verdi
+                    {"pos": [50, 100], "value": [200, -50]}],
     },
     {
         name: "Level 1",
@@ -60,8 +75,6 @@ let levels = [
 
 ];
 
-let currentLevel = 0;
-
 // Level buttons
 const level0Button = document.getElementById('level-0-knapp');
 const level1Button = document.getElementById('level-1-knapp');
@@ -70,34 +83,56 @@ const level3Button = document.getElementById('level-3-knapp');
 const level4Button = document.getElementById('level-4-knapp');
 const level5Button = document.getElementById('level-5-knapp');
 
-// Show/hide text button
-const showTextButton = document.getElementById('toggle-tekst-knapp');
-showTextButton.addEventListener('click', () => {
-    showText = !showText;
-    showTextButton.innerText = showText ? "Skjul verdier" : "Vis verdier";
+// Bare legg til eventlistener for level 0 da det er det eneste som er tilgjengelig i starten
+level0Button.addEventListener('click', () => {
+    currentLevel = 0;
+    draggingVector = null;
 });
 
+// Viser eller skjuler verdier over vektorene og punktene
+const visTekstKnapp = document.getElementById('toggle-tekst-knapp');
+visTekstKnapp.addEventListener('click', () => {
+    showText = !showText;
+    visTekstKnapp.innerText = showText ? "Skjul verdier" : "Vis verdier";
+});
 
-canvas.addEventListener("mousedown", click);
+// Hvorfor knapp
+const hvorforKnapp = document.getElementById('hvorfor-knapp');
+const modal = document.getElementById('hvorfor-modal');
+const closeModal = document.getElementById('close-modal');
+
+hvorforKnapp.addEventListener('click', () => {
+    modal.style.display = 'block';
+});
+
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+window.addEventListener('click', (event) => {
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+});
+
+// Eventlisteners for mus
+canvas.addEventListener("mousedown", onMouseDown);
 canvas.addEventListener("mousemove", onMouseMove);
 canvas.addEventListener("mouseup", onMouseUp);
 
+// Eventlisteners for touch
 canvas.addEventListener("touchstart", touchStart, { passive: false });
 canvas.addEventListener("touchmove", touchMove, { passive: false });
 canvas.addEventListener("touchend", touchEnd, { passive: false });
 
+// Funksjoner for touch
 function getTouchPos(e) {
     const rect = canvas.getBoundingClientRect();
+    // Returnerer posisjonen til touchen relativt til canvaset
     return {
         offsetX: e.touches[0].clientX - rect.left,
         offsetY: e.touches[0].clientY - rect.top
     };
-}
-
-function touchStart(e) {
-    e.preventDefault();
-    const { offsetX, offsetY } = getTouchPos(e);
-    click({ offsetX, offsetY });
 }
 
 function touchMove(e) {
@@ -106,23 +141,33 @@ function touchMove(e) {
     onMouseMove({ offsetX, offsetY });
 }
 
+function touchStart(e) {
+    e.preventDefault();
+    const { offsetX, offsetY } = getTouchPos(e);
+    onMouseDown({ offsetX, offsetY });
+}
+
 function touchEnd(e) {
     e.preventDefault();
     onMouseUp();
 }
 
+// Funksjoner for mus
 function onMouseMove(e) {
     const { offsetX, offsetY } = e;
     if (draggingVector) {
+        // Flytt vektoren til museposisjonen om vi drar på en vektor
         draggingVector.pos[0] = offsetX;
         draggingVector.pos[1] = offsetY;
         draw();
     }
 }
 
-function click(e) {
+function onMouseDown(e) {
     const { offsetX, offsetY } = e;
+    // Skjekk om vi trykker på en vektor
     for (let i = 0; i < levels[currentLevel].vectors.length; i++) {
+        // Om vi trykker på en vektor, sett draggingVector til den vektoren
         if (isMouseOnVector(offsetX, offsetY, levels[currentLevel].vectors[i])) {
             draggingVector = levels[currentLevel].vectors[i];
             break;
@@ -130,16 +175,27 @@ function click(e) {
     }
 }
 
+function isMouseOnVector(mouseX, mouseY, vector) {
+    const vectorStart = vector.pos;
+    const vectorEnd = [vectorStart[0] + vector.value[0], vectorStart[1] + vector.value[1]];
+    const distance = pointToLineDistance(mouseX, mouseY, vectorStart, vectorEnd);
+    const threshold = 10;
+    return distance < threshold;
+}
+
 function onMouseUp() {
+    // Kan bare slippe vektoren om vi har en vektor vi drar på
     if (draggingVector === null) {
         return;
     }
-    const vectorStart = draggingVector.pos;
-    const vectorEnd = [vectorStart[0] + draggingVector.value[0], vectorStart[1] + draggingVector.value[1]];
 
+    const vectorStart = draggingVector.pos;
+
+    // Disse to variablene holder på informasjon om den nærmeste vektoren eller punktet, det nærmeste punktet er det vi skal koble til
     let closestPoint = null;
     let closestDistance = Infinity;
-
+    
+    // Sjekk om vi er nære et punkt
     for (let i = 0; i < levels[currentLevel].points.length; i++) {
         const point = levels[currentLevel].points[i];
         const distance = distanceBetweenPoints(vectorStart[0], vectorStart[1], point[0], point[1]);
@@ -149,6 +205,8 @@ function onMouseUp() {
             closestDistance = distance;
         }
     }
+
+    // Sjekk om vi er nære en annen vektors ende
     for (let i = 0; i < levels[currentLevel].vectors.length; i++) {
         const otherVector = levels[currentLevel].vectors[i];
         if (otherVector === draggingVector) {
@@ -165,25 +223,23 @@ function onMouseUp() {
         }
     }
 
+    // Flytt vektoren til det nærmeste punktet
     if (closestPoint !== null) {
         draggingVector.pos[0] = closestPoint[0];
         draggingVector.pos[1] = closestPoint[1];
     }
 
+    // Reset draggingVector
     draggingVector = null;
 
+    // Sjekk om vi har løst levelen, altså om det går en linje fra et punkt til et annet
     checkIfLevelIsSolved();
 }
 
-function isMouseOnVector(mouseX, mouseY, vector) {
-    const vectorStart = vector.pos;
-    const vectorEnd = [vectorStart[0] + vector.value[0], vectorStart[1] + vector.value[1]];
-    const distance = pointToLineDistance(mouseX, mouseY, vectorStart, vectorEnd);
-    const threshold = 10; // Adjust sensitivity as needed
-    return distance < threshold;
-}
-
+// Hvor langt er et punkt fra en linje
 function pointToLineDistance(x, y, start, end) {
+    // Smarte matte greier
+    // https://stackoverflow.com/questions/849211/shortest-distance-between-a-point-and-a-line-segment
     const A = x - start[0];
     const B = y - start[1];
     const C = end[0] - start[0];
@@ -204,12 +260,14 @@ function pointToLineDistance(x, y, start, end) {
     return Math.sqrt(dx * dx + dy * dy);
 }
 
+// Hvor langt er det mellom to punkter
 function distanceBetweenPoints(x1, y1, x2, y2) {
     const dx = x2 - x1;
     const dy = y2 - y1;
     return Math.sqrt(dx * dx + dy * dy);
 }
 
+// Tegn start/slutt punkt og evt tekst
 function drawPoint(point, color) {
     ctx.beginPath();
     ctx.fillStyle = color;
@@ -219,16 +277,21 @@ function drawPoint(point, color) {
     drawText(`(${point[0]}, ${point[1]})`, point[0] + 10, point[1] - 10, color="black");
 }
 
+// Tegn vektor og evt tekst
 function drawVector(vector) {
-    start = vector.pos;
-    end = [start[0] + vector.value[0], start[1] + vector.value[1]];
+    const start = vector.pos;
+    const end = [start[0] + vector.value[0], start[1] + vector.value[1]];
+
+    // Gjør klar pennen
     ctx.beginPath();
     ctx.strokeStyle = "black";
     ctx.lineWidth = 3;
+
+    // Tegn vektoren
     ctx.moveTo(start[0], start[1]);
     ctx.lineTo(end[0], end[1]);
 
-    // Draw arrowhead
+    // Tegn pilhodet
     let angle = Math.atan2(end[1] - start[1], end[0] - start[0]);
     let headlen = 10;
     ctx.moveTo(end[0], end[1]);
@@ -236,24 +299,29 @@ function drawVector(vector) {
     ctx.moveTo(end[0], end[1]);
     ctx.lineTo(end[0] - headlen * Math.cos(angle + Math.PI / 5), end[1] - headlen * Math.sin(angle + Math.PI / 5));
     
-    // Draw all the lines
+    // Tegn vektoren og pilhodet
     ctx.stroke();
 
-    // Draw text above the vector
+    // Tegn tekst (skjer bare om showText er true   )
     const textX = start[0] + (end[0] - start[0]) / 2;
     const textY = start[1] + (end[1] - start[1]) / 2;
     drawText(`(${vector.value[0]}, ${vector.value[1]})`, textX, textY);
 }
 
+// Sjekk om levelen er løst, altså om du kan gå fra et punkt til et annet gjenom vektorene
 function checkIfLevelIsSolved() {
+    // Gå gjennom alle vektorene
     for (let i = 0; i < levels[currentLevel].vectors.length; i++) {
         const vector = levels[currentLevel].vectors[i];
         const start = vector.pos;
         const end = [start[0] + vector.value[0], start[1] + vector.value[1]];
-
+        
+        // Sjekk om startpunktet er et av punktene, i såfall skal vi sjekke om du kan følge vektorene til det andre punktet
         for (let j = 0; j < levels[currentLevel].points.length; j++) {
             const point = levels[currentLevel].points[j];
+            // Sjekk om startpunktet er et av punktene
             if (start[0] === point[0] && start[1] === point[1]) {
+                // Checknextvektor returnerer true om endepunktet er koblet til et punkt. Den kjører seg selv rekursivt for å sjekke om endepunktet er koblet til en annen vektor
                 if (checkNextVector(end)) {
                     enableNextLevel();
                 }
@@ -262,8 +330,11 @@ function checkIfLevelIsSolved() {
     }
 }
 
+// Sjekk om endepunktet er koblet til et punkt eller en annen vektor, 
+// om det er koblet til en annen vektor kjører den seg selv rekursivt
+// om det er koblet til et punkt returnerer den true.
 function checkNextVector(end) {
-    // Check if end point is connected to a point
+    // Skjer om endepunktet er koblet til et punkt
     for (let j = 0; j < levels[currentLevel].points.length; j++) {
         const point = levels[currentLevel].points[j];
         if (end[0] === point[0] && end[1] === point[1]) {
@@ -271,7 +342,7 @@ function checkNextVector(end) {
         }
     }
 
-    // Check if end point is connected to another vector
+    // Skjer om endepunktet er koblet til en annen vektor
     for (let k = 0; k < levels[currentLevel].vectors.length; k++) {
         const otherVector = levels[currentLevel].vectors[k];
         const otherVectorStart = otherVector.pos;
@@ -282,6 +353,7 @@ function checkNextVector(end) {
     }
 } 
 
+// Aktiver neste level, om det er en level etter
 function enableNextLevel() {
     if (currentLevel == 0) {
         level1Button.classList.remove("disabled");
@@ -313,9 +385,12 @@ function enableNextLevel() {
             currentLevel = 5;
             draggingVector = null;
         });
+    } else if (currentLevel == 5) {
+        hvorforKnapp.style.display = "block";
     }
 }
 
+// Tegn tekst om showText er true
 function drawText(text, x, y, color="red") {
     if (!showText) {
         return;
@@ -325,15 +400,20 @@ function drawText(text, x, y, color="red") {
     ctx.fillText(text, x, y);
 }
 
+// Tegn alt av vektorer og punkter
 function draw() {
+    // Tøm canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+    // Tegn alle vektorene
     for (let i = 0; i < levels[currentLevel].vectors.length; i++) {
         drawVector(levels[currentLevel].vectors[i]);
     }
 
+    // Tegn start og endepunkt
     drawPoint(levels[currentLevel].points[0], "green");
     drawPoint(levels[currentLevel].points[1], "blue");
 }
 
+// Tegn canvas hver frame
 setInterval(draw, 1000 / 60);
