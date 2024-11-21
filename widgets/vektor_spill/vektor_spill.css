@@ -33,7 +33,7 @@ button {
 }
 #toggle-tekst-knapp {
     position: absolute;
-    top: 7%;
+    top: 30px;
     left: 2.5%;
     font-family: 'Oslo Sans', sans-serif;
     font-size: 14px;
