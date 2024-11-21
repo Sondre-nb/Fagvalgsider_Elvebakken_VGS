@@ -26,12 +26,21 @@
 
 .fag-bilde {
     width: 40%;
-    height: 430px; 
+    height: 300px; 
     object-fit: cover;
     object-position: center;
     border: 0px solid transparent;
 }
-
+@media (max-width: 1200px) {
+    .fag-bilde{
+        height: 350px;
+    }
+}
+@media (max-width: 850px) {
+    .fag-bilde{
+        height: 400px;
+    }
+}
 .fag-bilde:nth-child(odd) {
     border-top-left-radius: 10px;
     border-bottom-left-radius: 10px;
