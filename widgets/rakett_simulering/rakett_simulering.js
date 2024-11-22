@@ -5,28 +5,44 @@ document.getElementById('fullskjerm-link').addEventListener('click', function(ev
     fullscreen = true;  
 });
 
+class Rocket {
+    constructor(pos) {
+        this.pos = pos.clone(); // m
+        this.vel = new Vek2(0, 0); // m/s
+        this.acc = new Vek2(0, 0); // m/s^2
+        this.mass = 1000; // kg
+        this.k_L = 0.01; // luftmotstandskoeffisienten
+        this.motorA1 = {
+            vector: new Vek2(-50000, -150000), // N
+            burnTime: 0.4 // s
+        };
+    }
+
+    // dt: delta time
+    update(dt) {
+        this.vel.addV(Vek2.multN(this.acc, dt));
+        this.pos.addV(Vek2.multN(this.vel, dt));
+        this.acc.set(0, 0);
+    }
+
+    // f: newton
+    applyForce(f) {
+        this.acc.addV(Vek2.divN(f, this.mass));
+    }
+}
+
 // Skaffer referanse til canvas og kontekst
 const canvas = document.getElementById('vektor-canvas');
 const ctx = canvas.getContext('2d');
 
 // Rocket
 let rocketLaunch = false;
-const platformPos = { x: canvas.width - 100, y: canvas.height - 40 };
+const platformPos = new Vek2(canvas.width - 100, canvas.height - 40);
 const platformWidth = 30;
 const platformHeight = 10;
 
-const rocketStartPos = { x: platformPos.x + platformWidth/3, y: platformPos.y - 30 };
-const rocketPos = { x: rocketStartPos.x, y: rocketStartPos.y };
-
-const rocketVector = { x: 0, y: 0 };
-let rocketRotation = 0;
-
-const gravityVector = { x: 0, y: 0.01 };
-
-const motorA1 = {
-    "vector": { x: -.02, y: -0.1 },
-    burnTime: 400
-}
+const rocketStartPos = new Vek2(platformPos.x + platformWidth/3, platformPos.y - 30);
+let rocket = new Rocket(rocketStartPos);
 
 // Buttons
 document.getElementById("reset-rocket").addEventListener("click", function() {
@@ -48,6 +64,17 @@ function drawBackground() {
 }
 
 function drawRocket(x, y, rotation) {
+
+    // function circle(pos, radius) {
+    //     const x = pos.x;
+    //     const y = pos.y;
+    //     ctx.beginPath();
+    //     ctx.arc(x, y, radius, 0, 2*Math.PI);
+    //     ctx.fill();
+    // }
+    // ctx.fillStyle = "red";
+    // circle(rocket.pos, 5);
+
     const rocketBodyColor = 'red';
     const rocketFinnColor = 'orange';
     const rocketWidth = 10;
@@ -102,31 +129,15 @@ function drawRocket(x, y, rotation) {
     // Restore the context to its original state
     ctx.restore();
 }
+
 function resetRocket() {
-    rocketPos.x = rocketStartPos.x;
-    rocketPos.y = rocketStartPos.y;
-    rocketVector.x = 0;
-    rocketVector.y = 0;
+    rocket = new Rocket(rocketStartPos);
     rocketLaunch = false;
-    motorA1.burnTime = 400;
+    rocket.motorA1.burnTime = 0.4;
 }
 
 function getRotation(vector) {
-    return Math.atan2(vector.y, vector.x)+Math.PI/2;
-}
-
-function applyForceToRocket(vector) {
-    rocketVector.x += vector.x;
-    rocketVector.y += vector.y;
-}
-
-function applyGravityToRocket() {
-    applyForceToRocket(gravityVector);
-}
-
-function moveRocket() {
-    rocketPos.x += rocketVector.x;
-    rocketPos.y += rocketVector.y;
+    return vector.rotation()+Math.PI/2;
 }
 
 function launchRocket() {
@@ -134,8 +145,15 @@ function launchRocket() {
     rocketLaunch = true;
 }
 
+let lastDrawTime; // ms
+
 // Tegn alt 
 function draw() {
+    // Regn ut tiden som har gått siden forrige draw
+    const now = performance.now(); // ms
+    const deltaTime = (now - lastDrawTime) / 1000; // s
+    lastDrawTime = now;
+
     // Tøm canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -143,22 +161,28 @@ function draw() {
     drawBackground();
 
     // Oppdater rakettens rotasjon
-    rocketRotation = getRotation(rocketVector);
+    rocketRotation = getRotation(rocket.vel);
 
     // Tegn rakett
-    drawRocket(rocketPos.x, rocketPos.y, rocketRotation);
+    drawRocket(rocket.pos.x, rocket.pos.y, rocketRotation);
 
     if (rocketLaunch) {
         // Apply engine force
-        if (motorA1.burnTime > 0) {
-            applyForceToRocket(motorA1.vector);
-            motorA1.burnTime -= 1000 / 60;
+        if (rocket.motorA1.burnTime > 0) {
+            rocket.applyForce(rocket.motorA1.vector);
+            rocket.motorA1.burnTime -= deltaTime;
         }
 
-        moveRocket();
-        applyGravityToRocket();
+        const airResistance = Vek2.normalized(rocket.vel).multN(rocket.vel.lenSq() * rocket.k_L).negate();
+        rocket.applyForce(airResistance);
+        
+        const gravity = new Vek2(0, 9.81).multN(rocket.mass);
+        rocket.applyForce(gravity, deltaTime);
+        
+        rocket.update(deltaTime);
     }
 }
 
+lastDrawTime = performance.now();
 // Tegn canvas hver frame
 setInterval(draw, 1000 / 60);
