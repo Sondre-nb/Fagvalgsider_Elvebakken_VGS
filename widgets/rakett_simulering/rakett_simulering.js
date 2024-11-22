@@ -5,16 +5,56 @@ document.getElementById('fullskjerm-link').addEventListener('click', function(ev
     fullscreen = true;  
 });
 
+const angleInput = document.getElementById('launch-angle');
+const angleValue = document.getElementById('angle-value');
+const thrustInput = document.getElementById('thrust');
+const thrustValue = document.getElementById('thrust-value');
+const massInput = document.getElementById('mass');
+const massValue = document.getElementById('mass-value');
+const burnTimeInput = document.getElementById('burn-time');
+const burnTimeValue = document.getElementById('burn-time-value');
+
+angleInput.addEventListener('input', function() {
+    angleValue.textContent = angleInput.value;
+    resetRocket();
+});
+
+thrustInput.addEventListener('input', function() {
+    if (parseFloat(thrustInput.value) > 1000) {
+        thrustValue.textContent = Math.round(parseFloat(thrustInput.value)/1000) + ' kN';
+    }
+    else {
+        thrustValue.textContent = thrustInput.value + ' N';
+    }
+    resetRocket();
+});
+
+massInput.addEventListener('input', function() {
+    massValue.textContent = massInput.value;
+    resetRocket();
+});
+
+burnTimeInput.addEventListener('input', function() {
+    burnTimeValue.textContent = burnTimeInput.value + ' s';
+    resetRocket();
+});
+
+const noseColorInput = document.getElementById('nose-color');
+const finsColorInput = document.getElementById('fins-color');
+const bodyColorInput = document.getElementById('body-color');
+
 class Rocket {
     constructor(pos) {
         this.pos = pos.clone(); // m
         this.vel = new Vek2(0, 0); // m/s
         this.acc = new Vek2(0, 0); // m/s^2
-        this.mass = 1000; // kg
+        this.mass = parseFloat(massInput.value); // kg
         this.k_L = 0.01; // luftmotstandskoeffisienten
-        this.motorA1 = {
-            vector: new Vek2(-50000, -150000), // N
-            burnTime: 0.4 // s
+        this.launch_angle = angleInput.value / 180 * Math.PI; // rad
+        this.motor = {
+            vector: new Vek2(0, 0),
+            thrust: parseFloat(thrustInput.value), // N
+            burnTime: parseFloat(burnTimeInput.value) // s
         };
     }
 
@@ -30,6 +70,7 @@ class Rocket {
         this.acc.addV(Vek2.divN(f, this.mass));
     }
 }
+
 
 // Skaffer referanse til canvas og kontekst
 const canvas = document.getElementById('vektor-canvas');
@@ -64,19 +105,9 @@ function drawBackground() {
 }
 
 function drawRocket(x, y, rotation) {
-
-    // function circle(pos, radius) {
-    //     const x = pos.x;
-    //     const y = pos.y;
-    //     ctx.beginPath();
-    //     ctx.arc(x, y, radius, 0, 2*Math.PI);
-    //     ctx.fill();
-    // }
-    // ctx.fillStyle = "red";
-    // circle(rocket.pos, 5);
-
-    const rocketBodyColor = 'red';
-    const rocketFinnColor = 'orange';
+    const rocketBodyColor = bodyColorInput.value;
+    const rocketFinnColor = finsColorInput.value;
+    const rocketNoseColor = noseColorInput.value;
     const rocketWidth = 10;
     const rocketHeight = 30;
     const coneHeight = 10;
@@ -105,7 +136,7 @@ function drawRocket(x, y, rotation) {
     ctx.lineTo(0, -rocketHeight / 2 - coneHeight);
     ctx.lineTo(rocketWidth / 2, -rocketHeight / 2);
     ctx.closePath();
-    ctx.fillStyle = 'red';
+    ctx.fillStyle = rocketNoseColor;
     ctx.fill();
 
     // Rocket fins (left)
@@ -126,6 +157,17 @@ function drawRocket(x, y, rotation) {
     ctx.fillStyle = rocketFinnColor;
     ctx.fill();
 
+    // Rocket engine
+    if (rocketLaunch == false) {
+        ctx.fillStyle = 'black';
+        ctx.fillRect(-2, rocketHeight / 2, 4, 5);
+    }
+    else if (rocket.motor.burnTime > 0) {
+        ctx.fillStyle = 'orange';
+        ctx.fillRect(-2, rocketHeight / 2, 4, 3);
+        ctx.fillStyle = 'yellow';
+        ctx.fillRect(-2, rocketHeight / 2 + 3, 4, 2);
+    }
     // Restore the context to its original state
     ctx.restore();
 }
@@ -133,7 +175,7 @@ function drawRocket(x, y, rotation) {
 function resetRocket() {
     rocket = new Rocket(rocketStartPos);
     rocketLaunch = false;
-    rocket.motorA1.burnTime = 0.4;
+    rocket.motor.burnTime  = parseFloat(burnTimeInput.value);
 }
 
 function getRotation(vector) {
@@ -160,17 +202,16 @@ function draw() {
     // Tegn bakgrunn
     drawBackground();
 
-    // Oppdater rakettens rotasjon
-    rocketRotation = getRotation(rocket.vel);
-
-    // Tegn rakett
-    drawRocket(rocket.pos.x, rocket.pos.y, rocketRotation);
-
     if (rocketLaunch) {
         // Apply engine force
-        if (rocket.motorA1.burnTime > 0) {
-            rocket.applyForce(rocket.motorA1.vector);
-            rocket.motorA1.burnTime -= deltaTime;
+        if (rocket.motor.burnTime > 0) {
+            rocket.motor.vector = new Vek2(0, rocket.motor.thrust);
+            
+            rocket.motor.vector.rotate(rocket.launch_angle+Math.PI);
+
+            rocket.applyForce(rocket.motor.vector);
+
+            rocket.motor.burnTime -= deltaTime;
         }
 
         const airResistance = Vek2.normalized(rocket.vel).multN(rocket.vel.lenSq() * rocket.k_L).negate();
@@ -181,6 +222,17 @@ function draw() {
         
         rocket.update(deltaTime);
     }
+
+    // Oppdater rakettens rotasjon
+    if (rocketLaunch === false) {
+        rocketRotation = rocket.launch_angle;
+    }
+    else {
+        rocketRotation = getRotation(rocket.vel);
+    }
+
+    // Tegn rakett
+    drawRocket(rocket.pos.x, rocket.pos.y, rocketRotation);
 }
 
 lastDrawTime = performance.now();

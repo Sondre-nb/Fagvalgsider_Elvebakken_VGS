@@ -9,9 +9,63 @@
 <body>
     <div class="spill-tittel-div">Rakett simulering  <a href="/widgets/rakett_simulering/" id="fullskjerm-link">Åpne i fullskjerm</a></div>
     <canvas id="vektor-canvas" width="480" height="330"></canvas>
-    <button id="reset-rocket">Reset rocket</button>
-    <button id="launch-rocket">Launch rocket</button>
+    <div>
+        <button id="reset-rocket">Reset rocket</button>
+        <button id="launch-rocket">Launch rocket</button>
+        <label for="launch-angle">Launch Angle:</label>
+        <input type="range" id="launch-angle" name="launch-angle" min="-90" max="90" value="-20">
+        <span id="angle-value">-20</span>°
+    </div>
+    <br>
+    <div>
+        <label for="nose-color">Nose Color:</label>
+        <input type="color" id="nose-color" name="nose-color" value="#ff0000">
+        <label for="fins-color">Fins Color:</label>
+        <input type="color" id="fins-color" name="fins-color" value="#ff9100">
+        <label for="body-color">Body Color:</label>
+        <input type="color" id="body-color" name="body-color" value="#ff0000">
+    </div>
+    <br>
+    <div>
+        <label for="thrust">Thrust:</label>
+        <input type="range" id="thrust" name="thrust" min="0" max="1000000" value="150000">
+        <span id="thrust-value">150 kN</span>
+    </div>
+    <br>
+    <div>
+        <label for="mass">Mass:</label>
+        <input type="range" id="mass" name="mass" min="1" max="2000" value="1000">
+        <span id="mass-value">1000</span> kg
+    </div>
+    <br>
+    <div>
+        <label for="burn-time">Burn Time:</label>
+        <input type="range" id="burn-time" name="burn-time" min="0.1" max="5" step="0.1" value="0.4">
+        <span id="burn-time-value">0.4 s</span>
+    </div>
     <script src="vek2.js"></script>
     <script src="rakett_simulering.js"></script>
+    <script>
+        const thrustInput = document.getElementById('thrust');
+        const thrustValue = document.getElementById('thrust-value');
+        thrustInput.addEventListener('input', function() {
+            thrustValue.textContent = thrustInput.value;
+            resetRocket();
+        });
+
+        const massInput = document.getElementById('mass');
+        const massValue = document.getElementById('mass-value');
+        massInput.addEventListener('input', function() {
+            massValue.textContent = massInput.value;
+            resetRocket();
+        });
+
+        const burnTimeInput = document.getElementById('burn-time');
+        const burnTimeValue = document.getElementById('burn-time-value');
+        burnTimeInput.addEventListener('input', function() {
+            burnTimeValue.textContent = burnTimeInput.value;
+            resetRocket();
+        });
+    </script>
 </body>
 </html>
