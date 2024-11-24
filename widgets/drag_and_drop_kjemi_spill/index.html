@@ -8,31 +8,40 @@
 </head>
 <body>
     <h1 id="spill-tittel">Match påstand med kategori</h1>
+
+    <!-- Tekst som vises når skjermbredden er for liten -->
     <div id="for-liten-bredde">
         <p>Skjermbredden din er for liten til å spille spillet. Roter skjermen eller øk størrelsen på vinduet.</p>
     </div>
+
+    <!-- Spill-element (skjules når iframe-bredden er under 520 px) -->
     <div id="spill">
+        <!-- Kjemi-temaer på venstre side -->
         <div id="kategorier">
             <div>Støkiometri</div>
             <div>Termokjemi</div>
             <div>Syrer og baser</div>
             <div>Organisk kjemi</div>
         </div>
+        <!-- Firkanter på høyre side til å dra tekst inni -->
         <div id="svar">
             <div class="svar-boks"></div>
             <div class="svar-boks"></div>
             <div class="svar-boks"></div>
             <div class="svar-boks"></div>
         </div>
+        <!-- kjemi-påstander som skal dras inn i firkantene over -->
         <div id="påstander">
             <div class="påstand" draggable="true">"Når vann fryser til is, gir det fra seg varme"</div>
             <div class="påstand" draggable="true">"Hvis jeg blander to mol hydrogengass med ett mot oksygengass, får jeg dannet ett mol vann"</div>
             <div class="påstand" draggable="true">"Hvis jeg blander eddik og natron får jeg dannet vann og karbondioksid"</div>
             <div class="påstand" draggable="true">"Etanol har en OH-gruppe og er derfor blandbar med vann"</div>
         </div>
+        <!-- sjekk svar - knapp -->
         <div id="sjekk-svar">
             <button>Sjekk svar!</button>
         </div>
+        <!-- nullstill - knapp -->
         <div id="nullstill">
             <button>Nullstill!</button>
         </div>

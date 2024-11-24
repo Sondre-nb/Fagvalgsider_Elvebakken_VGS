@@ -17,18 +17,12 @@
 body {
     background-color: var(--lyse_grønn);
 }
-
+/* Overskrift */
 #spill-tittel {
     text-align: center;
     padding-top: 10px;
 }
-#fullskjerm-lenke {
-    width: 100%;
-    text-align: center;
-}
-#fullskjerm-lenke a {
-    color: black;
-}
+/* Plassering av elementer i spillet */
 #spill {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -38,17 +32,21 @@ body {
             "pa pa"
             "sj nu";
 }
+/* Tekst som vises ved for liten bredde */
 #for-liten-bredde {
     display: none;
     text-align: center;
     padding: 10px;
 }
+/* Kjemitema-bokser */
 #kategorier {
     grid-area: ka;
 }
+/* Svar-boks-område */
 #svar {
     grid-area: sv;
 }
+/* Plassering av div-elementer innenfor de ulike seksjonene */
 #kategorier, #svar {
     margin-top: 10px;
     display: flex;
@@ -56,6 +54,7 @@ body {
     height: auto;
     justify-content: space-between;
 }
+/* 'Tekstboksene' for svar og kategorier */
 #kategorier > div, #svar > div {
     display: flex;
     flex-direction: column;
@@ -67,9 +66,11 @@ body {
     text-align: center;
     background-color: rgb(255, 255, 255);
 }
+/* Gjør at de tomme boksene fyller resterende plass */
 #svar > div {
     height: 100%;
 }
+/* Gul firkant med påstander */
 #påstander {
     grid-area: pa;
     display: flex;
@@ -90,7 +91,7 @@ body {
 }
 #sjekk-svar {
     grid-area: sj;
-    justify-self: end;
+    justify-self: end; /* Plasserer seg ved midten av siden */
 }
 #nullstill {
     grid-area: nu;
@@ -111,6 +112,7 @@ body {
     background-color: #FFD9C5;
     transform: scale(1.1);
 }
+/* skjuler spill og viser tekst om at skjermen er for liten når iframe-bredden er på under 520px */
 @media (max-width: 520px) {
     #spill {
         display: none;
