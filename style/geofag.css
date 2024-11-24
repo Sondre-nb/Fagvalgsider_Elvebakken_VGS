@@ -31,3 +31,8 @@
 .mer-informasjon {
     background-color: var(--geofag_oransje) !important; 
 }
+@media (max-width:570px){
+    iframe{
+        height: 570px;
+    }
+}
