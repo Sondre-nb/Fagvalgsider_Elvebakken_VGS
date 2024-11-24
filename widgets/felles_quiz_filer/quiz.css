@@ -1,3 +1,5 @@
+/*Tilpassning av h1 burde skje i egen css-fil inni mappen for den spesifike quizen*/
+
 #panel {
     padding-top: 20px;
     display: flex;
