@@ -10,3 +10,20 @@ canvas {
     display: block;
     margin: 0 auto;
 }
+
+button {
+    padding: 10px 20px;
+    margin: 4px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Oslo Sans', sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    text-align: center;
+}
