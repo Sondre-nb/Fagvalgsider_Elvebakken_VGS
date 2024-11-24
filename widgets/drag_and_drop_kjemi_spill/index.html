@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="drag_and_drop_kjemi_spill.css">
+    <title>Vektor spill</title>
+</head>
+<body>
+    <h1 id="spill-tittel">Match påstand med kategori</h1>
+    <div id="for-liten-bredde">
+        <p>Skjermbredden din er for liten til å spille spillet. Roter skjermen eller øk størrelsen på vinduet.</p>
+    </div>
+    <div id="spill">
+        <div id="kategorier">
+            <div>Støkiometri</div>
+            <div>Termokjemi</div>
+            <div>Syrer og baser</div>
+            <div>Organisk kjemi</div>
+        </div>
+        <div id="svar">
+            <div class="svar-boks"></div>
+            <div class="svar-boks"></div>
+            <div class="svar-boks"></div>
+            <div class="svar-boks"></div>
+        </div>
+        <div id="påstander">
+            <div class="påstand" draggable="true">"Når vann fryser til is, gir det fra seg varme"</div>
+            <div class="påstand" draggable="true">"Hvis jeg blander to mol hydrogengass med ett mot oksygengass, får jeg dannet ett mol vann"</div>
+            <div class="påstand" draggable="true">"Hvis jeg blander eddik og natron får jeg dannet vann og karbondioksid"</div>
+            <div class="påstand" draggable="true">"Etanol har en OH-gruppe og er derfor blandbar med vann"</div>
+        </div>
+        <div id="sjekk-svar">
+            <button>Sjekk svar!</button>
+        </div>
+        <div id="nullstill">
+            <button>Nullstill!</button>
+        </div>
+    </div>
+    <script src="drag_and_drop_kjemi_spill.js"></script>
+</body>
+</html>

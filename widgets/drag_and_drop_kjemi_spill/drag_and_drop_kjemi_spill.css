@@ -1,0 +1,121 @@
+:root {
+    --elvebakken_blå: #74b2e1;
+    --elvebakken_blå_lys: #9CC9EB;
+    --elvebakken_rosa: #DC8EB6;
+    --elvebakken_gul: #F0E691;
+    --elvebakken_oransje: #FAB965;
+    --mørke_blå: #204B57;
+    --mørke_grønn: #75DC98;
+    --lyse_grønn: #89F1AC;
+}
+* {
+    margin: 0;
+    font-family: 'Oslo Sans', sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--lyse_grønn);
+}
+
+#spill-tittel {
+    text-align: center;
+    padding-top: 10px;
+}
+#fullskjerm-lenke {
+    width: 100%;
+    text-align: center;
+}
+#fullskjerm-lenke a {
+    color: black;
+}
+#spill {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas: 
+            "ka sv"
+            "pa pa"
+            "sj nu";
+}
+#for-liten-bredde {
+    display: none;
+    text-align: center;
+    padding: 10px;
+}
+#kategorier {
+    grid-area: ka;
+}
+#svar {
+    grid-area: sv;
+}
+#kategorier, #svar {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    justify-content: space-between;
+}
+#kategorier > div, #svar > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5px;
+    border: 3px solid black;
+    margin: 5px;
+    border-radius: 15px;
+    text-align: center;
+    background-color: rgb(255, 255, 255);
+}
+#svar > div {
+    height: 100%;
+}
+#påstander {
+    grid-area: pa;
+    display: flex;
+    flex-wrap: wrap;   
+    justify-content: center; 
+    text-align: center;
+    padding: 10px;
+    background-color: var(--elvebakken_gul);
+    border-radius: 15px;
+    margin: 10px;
+    border: 3px solid black;
+}
+#påstander div {
+    padding: 10px;
+}
+.påstand {
+    cursor: pointer;
+}
+#sjekk-svar {
+    grid-area: sj;
+    justify-self: end;
+}
+#nullstill {
+    grid-area: nu;
+}
+#sjekk-svar button, #nullstill button {
+    border-radius: 15px;
+    padding: 10px;
+    background-color: white;
+    border: 3px solid black;
+    font-size: 1.1rem;
+    margin-inline: 10px;
+}
+#sjekk-svar button:hover, #nullstill button:hover {
+    background-color: #ccffc5;
+    transform: scale(1.1);
+}
+#nullstill button:hover {
+    background-color: #FFD9C5;
+    transform: scale(1.1);
+}
+@media (max-width: 520px) {
+    #spill {
+        display: none;
+    }
+    #for-liten-bredde {
+        display: block;
+    }
+}

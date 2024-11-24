@@ -88,6 +88,17 @@
     background-color: var(--elvebakken_rosa);
 }
 
+iframe {
+    width: 100%;
+    height: 520px;
+}
+
+@media (max-width: 590px) {
+    .interaktivt-element {
+        height: 210px !important;
+    }
+}
+
 /* Fading animation */
 .fade {
     animation-name: fade;
