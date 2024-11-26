@@ -5,6 +5,15 @@ document.getElementById('fullskjerm-link').addEventListener('click', function(ev
     fullscreen = true;  
 });
 
+document.getElementById('toggle-advanced-settings').addEventListener('change', function() {
+    const advancedSettings = document.getElementById('advanced-settings');
+    if (this.checked) {
+        advancedSettings.style.display = 'block';
+    } else {
+        advancedSettings.style.display = 'none';
+    }
+});
+
 const angleInput = document.getElementById('launch-angle');
 const angleValue = document.getElementById('angle-value');
 const thrustInput = document.getElementById('thrust');
