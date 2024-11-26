@@ -1,0 +1,42 @@
+.tittel {
+    font-family: 'Oslo Sans', sans-serif;
+    font-size: 24px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+canvas {
+    border: 1px solid black;
+    display: block;
+    margin: 0 auto;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 4px;
+}
+
+#button-row {
+    display: flex;
+    flex-direction: row;
+}
+
+body {
+    font-family: 'Oslo Sans', sans-serif;
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    text-align: center;
+}
+
+#css-editor {
+    width: 90%;
+    height: 300px;
+    margin: 10px auto;
+    display: block;
+    font-family: monospace;
+    font-size: .75rem;
+}
