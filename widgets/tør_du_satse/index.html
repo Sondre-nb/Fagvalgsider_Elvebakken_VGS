@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="tør_du_satse.css">
+    <title>Pengespill</title>
+</head>
+<body>
+    <div id="panel">
+        <h1>Tør du satse?</h1>
+        <div id="hovedtekst">Vil du satse eller stoppe?</div>
+        <div id="terningkast-tekst">Du fikk en 2-er</div>
+        <div id="valg">
+            <button id="stopp-knapp" onclick="stopp()">STOPPE</button>
+            <button id="satse-knapp" onclick="sats()">SATSE</button>
+            <button id="lavere-knapp" onclick="gambling('lavere')">LAVERE</button>
+            <button id="høyere-knapp" onclick="gambling('høyere')">HØYERE</button>
+            <button id="spill-igjen-knapp" onclick="spillIgjen()">SPILL IGJEN</button>
+        </div>
+        <div id="poeng"></div>
+        <script src="tør_du_satse.js"></script>
+    </div>
+</body>
+</html>

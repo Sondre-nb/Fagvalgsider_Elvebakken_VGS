@@ -1,0 +1,45 @@
+#panel {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: navy;
+    width: auto;
+}
+#hovedtekst {
+    text-align: center;
+    font-size: 32px;
+    margin: 20px;
+}
+#terningkast-tekst {
+    text-align: center;
+    font-size: 26px;
+    margin: 20px;
+}
+#valg {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#poeng {
+    font-size: 30px;
+    color: darkslategray;
+    margin-top: 20px;
+}
+button {
+    align-self: center;
+    margin: 20px;
+    font-size: 24px;
+    padding: 10px 20px;
+    background-color: var(--elvebakken_blå);
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background-color: var(--elvebakken_blå_lys);
+}
+#høyere-knapp, #lavere-knapp, #spill-igjen-knapp{
+    display: none;
+}
