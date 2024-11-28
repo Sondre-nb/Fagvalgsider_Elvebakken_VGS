@@ -9,6 +9,7 @@ document.getElementById('toggle-advanced-settings').addEventListener('change', f
     const advancedSettings = document.getElementById('advanced-settings');
     if (this.checked) {
         advancedSettings.style.display = 'block';
+        window.scrollTo(0, document.body.scrollHeight);
     } else {
         advancedSettings.style.display = 'none';
     }
@@ -87,11 +88,11 @@ const ctx = canvas.getContext('2d');
 
 // Rocket
 let rocketLaunch = false;
-const platformPos = new Vek2(canvas.width - 100, canvas.height - 40);
+const platformPos = new Vek2(20, canvas.height - 40);
 const platformWidth = 30;
 const platformHeight = 10;
 
-const rocketStartPos = new Vek2(platformPos.x + platformWidth/3, platformPos.y - 30);
+const rocketStartPos = new Vek2(platformPos.x + platformWidth/2, platformPos.y - 10);
 let rocket = new Rocket(rocketStartPos);
 
 // Buttons
