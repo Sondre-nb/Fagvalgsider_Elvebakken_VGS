@@ -17,6 +17,7 @@
     text-align: center;
     font-size: 26px;
     margin: 20px;
+    display: none;
 }
 #valg {
     display: flex;
@@ -40,6 +41,6 @@ button {
 button:hover {
     background-color: var(--elvebakken_blå_lys);
 }
-#høyere-knapp, #lavere-knapp, #spill-igjen-knapp{
+#høyere-knapp, #lavere-knapp, #spill-igjen-knapp, #satse-knapp, #stopp-knapp, #poeng{
     display: none;
 }

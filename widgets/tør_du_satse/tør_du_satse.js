@@ -6,18 +6,22 @@ let satseKnappEl = document.querySelector("#satse-knapp");
 let høyereKnappEl = document.querySelector("#høyere-knapp");
 let lavereKnappEl = document.querySelector("#lavere-knapp");
 let spillIgjenKnappEl = document.querySelector("#spill-igjen-knapp");
+let startKnappEl = document.querySelector("#start-knapp");
 let poengEl = document.querySelector("#poeng");
 
 let poeng = 0;
 poengEl.innerHTML = "Poeng: " + poeng;
 let terningkast = Math.floor(Math.random()*6) + 1;
 let nesteKast = 0;
-terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
+//terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
 
 let sannsynlighetForÅHaKommetSåLangt = 1;
 
+// Skjermen man har når man satser (velger høyere eller lavere)
 function sats() {
     hovedtekstEl.innerHTML = "Tror du det neste kastet er høyere eller lavere enn dette?";
+    terningkastTekstEl.style.display = "block";
+    terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
     stoppKnappEl.style.display = "none";
     satseKnappEl.style.display = "none";
     lavereKnappEl.style.display = "block";
@@ -25,6 +29,7 @@ function sats() {
     tilpassStørrelse();
 };
 
+// Sjekker om man satser riktig
 function gambling(valg) {
     nesteKast = Math.floor(Math.random()*6) + 1;
     if (valg == 'høyere'){
@@ -48,6 +53,7 @@ function gambling(valg) {
     };
 };
 
+// Starter neste runde
 function nesteRunde() {
     hovedtekstEl.innerHTML = "Det ble kastet en "+ nesteKast +"-er og du kom videre. Vil du satse eller stoppe?";
     stoppKnappEl.style.display = "block";
@@ -56,28 +62,32 @@ function nesteRunde() {
     høyereKnappEl.style.display = "none";
 
     terningkast = Math.floor(Math.random()*6) + 1;
-    terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
+    terningkastTekstEl.style.display = "none";
+    //terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
     poengEl.innerHTML = "Poeng: " + poeng;
     tilpassStørrelse();
 };
 
+// Funksjon for at runden er over
 function rundeOver() {
     lavereKnappEl.style.display = "none";
     høyereKnappEl.style.display = "none";
     spillIgjenKnappEl.style.display = "block";
 
-    terningkastTekstEl.innerHTML = "Det var en " + Math.round(sannsynlighetForÅHaKommetSåLangt*100) + "% sannsynlighet for at du kom så langt du gjorde";
+    terningkastTekstEl.innerHTML = "Det var en " + (Math.round(sannsynlighetForÅHaKommetSåLangt*10000))/100 + "% sannsynlighet for at du kom så langt du gjorde";
     poengEl.innerHTML = "Poeng: " + poeng;
     hovedtekstEl.innerHTML = "Du tapte, det neste kastet ble en " + nesteKast + "-er";
     tilpassStørrelse();
 };
 
+// Stanser spillet
 function stopp() {
     stoppKnappEl.style.display = "none";
     satseKnappEl.style.display = "none";
     spillIgjenKnappEl.style.display = "block";
-
-    terningkastTekstEl.innerHTML = "Det var en " + Math.round(sannsynlighetForÅHaKommetSåLangt*100) + "% sannsynlighet for at du kom så langt du gjorde";
+    terningkastTekstEl.style.display = "block";
+    //printer sannsynligheten med to desimaler
+    terningkastTekstEl.innerHTML = "Det var en " + (Math.round(sannsynlighetForÅHaKommetSåLangt*10000))/100 + "% sannsynlighet for at du kom så langt du gjorde";
     hovedtekstEl.innerHTML = "Du fikk " + poeng + " poeng";
     tilpassStørrelse();
 }
@@ -85,15 +95,23 @@ function stopp() {
 // Resetter nettsiden for å kunne spille igjen
 function spillIgjen() {
     terningkast = Math.floor(Math.random()*6) + 1;
-    terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
+    terningkastTekstEl.style.display = "none";
+    //terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
     sannsynlighetForÅHaKommetSåLangt = 1;
-    poeng = 0;
+    poengEl.style.display = "none";
 
-    stoppKnappEl.style.display = "block";
-    satseKnappEl.style.display = "block";
+    startKnappEl.style.display = "block";
     spillIgjenKnappEl.style.display = "none";
-    hovedtekstEl.innerHTML = "Vil du satse eller stoppe?";
+    hovedtekstEl.innerHTML = "Spillet går ut på at man kaster en terning, og så satser på om det neste kastet blir høyere eller lavere. Hvis det blir likt kommer man videre uansett. Hver gang du kommer videre får du ett poeng, men hvis du tar feil mister du alle poengene dine, så det gjelder å stoppe i tide :)";
     tilpassStørrelse();
+};
+// Starter spillet
+function start() {
+    startKnappEl.style.display = "none";
+    poeng = 0;
+    poengEl.innerHTML = "Poeng: " + poeng;
+    poengEl.style.display = "block";
+    sats();
 }
 
 let knapper = document.querySelectorAll("button");
@@ -111,7 +129,6 @@ const orgiginalPoengPaddingTop = parseInt(getComputedStyle(poengEl).paddingTop);
 
 // Tilpasser størrelsen til skjermbreddne ved å sette ned margin, padding og font-size
 function tilpassStørrelse(){
-    console.log("ting skjer");
     // Resetter verdiene som brukes til å tilpasse størrelsen
     hovedtekstEl.style.fontSize = orgiginalHovedtekstFontSize + "px";
     hovedtekstEl.style.margin = orgiginalHovedtekstMargin + "px";
@@ -123,6 +140,7 @@ function tilpassStørrelse(){
         knapper[i].style.fontSize = orgiginalKnappFontSize + "px";
     };
     // Minker alle størrelsene med 1 helt til de passer innenfor vinduet
+    // Justerer høyden
     let vinduHøyde = window.innerHeight;
     let panelHøyde = panelEl.getBoundingClientRect().height; 
     let endring = 0;
@@ -141,13 +159,12 @@ function tilpassStørrelse(){
         panelHøyde = panelEl.getBoundingClientRect().height; 
     };
 
+    // Justerer bredden
     let vinduBredde = window.innerWidth;
     let valgBredde = valg.getBoundingClientRect().width;
-    console.log(valgBredde);
     endring = 0;
     while (valgBredde >= vinduBredde){
         endring++;
-        console.log("Vi er inni while-løkka for bredden. margin: " + (orgiginalKnappMargin-endring) + "px");
         for (i=0; i < knapper.length; i++){
             knapper[i].style.margin = orgiginalKnappMargin - endring + "px";
             knapper[i].style.fontSize = orgiginalKnappFontSize - endring + "px";
