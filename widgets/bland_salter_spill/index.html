@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="bland_salter_spill.css">
+    <title>Bland salter</title>
+</head>
+<body>
+    <h1 id="spill-tittel">Bland salter</h1>
+
+    <!-- Tekst som vises når skjermbredden er for liten -->
+    <div id="for-liten-bredde">
+        <p>Skjermbredden din er for liten til å spille spillet. Roter skjermen eller øk størrelsen på vinduet.</p>
+    </div>
+
+    <!-- Spill-element (skjules når iframe-bredden er under 520 px) -->
+    <div id="spill">
+        <div id="aktivt-salt"></div>
+        <div id="reagensrør-gruppe1">
+            <div class="saltplassering">
+                <div class="salt" id="NH4Cl">
+                    <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
+                    <div class="saltfarge"></div>
+                    <div class="saltnavn">NH4Cl</div>
+                </div>
+            </div>
+            <div class="saltplassering">
+                <div class="salt" id="AgNO3">
+                    <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
+                    <div class="saltfarge"></div>
+                    <div class="saltnavn">AgNO3</div>
+                </div>
+            </div>
+            <div class="saltplassering">
+                <div class="salt" id="CuSO4">
+                    <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
+                    <div class="saltfarge"></div>
+                    <div class="saltnavn">CuSO4*5H2O</div>
+                </div>
+            </div>
+            <div class="saltplassering">
+                <div class="salt" id="NaOH">
+                    <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
+                    <div class="saltfarge"></div>
+                    <div class="saltnavn">NaOH</div>
+                </div>
+            </div>
+        </div>
+        <div id="reagensrør-gruppe2">
+            <div class="saltplassering">
+                <div class="salt" id="BaNO32">
+                    <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
+                    <div class="saltfarge"></div>
+                    <div class="saltnavn">Ba(NO3)2</div>
+                </div>
+            </div>
+            <div class="saltplassering">
+                <div class="salt" id="Na2CO3">
+                    <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
+                    <div class="saltfarge"></div>
+                    <div class="saltnavn">Na2CO3</div>
+                </div>
+            </div>
+            <div class="saltplassering">
+                <div class="salt" id="CaCl2">
+                    <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
+                    <div class="saltfarge"></div>
+                    <div class="saltnavn">CaCl2*2H2O</div>
+                </div>
+            </div>
+        </div>
+        <div id="begerglass">
+            <img src="/assets/imgs/kjemi/begerglass.png" alt="begerglass">
+            <div id="løsningsfarge"></div>
+        </div>
+        <div id="reaksjonsinfo">
+            <div id="nullstill-knapp"><button>Nullstill</button></div>
+            <div id="reaksjonstype">Reaksjonstype: </div>
+            <div id="reaksjonslikning"></div>
+        </div>
+        <div id="disclaimer">*Reaksjonslikningen er ikke balansert</div>
+    </div>
+    <script src="bland_salter_spill.js"></script>
+</body>
+</html>

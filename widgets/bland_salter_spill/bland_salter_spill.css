@@ -1,0 +1,225 @@
+:root {
+    --elvebakken_blå: #74b2e1;
+    --elvebakken_blå_lys: #9CC9EB;
+    --elvebakken_rosa: #DC8EB6;
+    --elvebakken_gul: #F0E691;
+    --elvebakken_oransje: #FAB965;
+    --mørke_blå: #204B57;
+    --mørke_grønn: #75DC98;
+    --lyse_grønn: #89F1AC;
+    --helleplassering: 100px;
+    --starthøyde: 0px;
+    --slutthøyde: 0px;
+    --original_farge: red;
+    --ny_farge: blue;
+}
+* {
+    margin: 0;
+    font-family: 'Oslo Sans', sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+body {
+    background-color: rgb(236, 235, 235);
+}
+/* Overskrift */
+#spill-tittel {
+    text-align: center;
+    padding-top: 10px;
+}
+/* Plassering av elementer i spillet */
+#spill {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+            "r1 be r2"
+            "re re re";
+}
+/* Tekst som vises ved for liten bredde */
+#for-liten-bredde {
+    display: none;
+    text-align: center;
+    padding: 10px;
+}
+#reagensrør-gruppe1 {
+    grid-area: r1;
+}
+#reagensrør-gruppe2 {
+    grid-area: r2;
+}
+#reagensrør-gruppe1, #reagensrør-gruppe2 {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    justify-items: center;
+}
+#aktivt-salt {
+    position: absolute;
+    transform: rotate(45deg);
+    top: 0px;
+    left: var(--helleplassering);
+}
+.salt img {
+    height: 300px;
+}
+.salt {
+    display: grid;
+    cursor: pointer;
+    align-items: end;
+    justify-items: center;
+}
+.salt .saltfarge {
+    z-index: -1;
+    justify-self: center;
+    width: 50px;
+    height: 150px;
+    background-color: #74b2e1;
+    position: absolute;
+}
+.salt .saltnavn {
+    position: absolute;
+    align-self: center;
+    padding-right: 150px;
+    transform: rotate(270deg);
+}
+#begerglass {
+    grid-area: be;
+    display: grid;
+    align-items: end;
+    justify-items: center;
+}
+#begerglass img {
+    height: 250px;
+}
+#løsningsfarge {
+    z-index: -1;
+    position: absolute;
+    background-color: var(--elvebakken_blå);
+    width: 190px;
+    height: 0px;
+}
+#reaksjonsinfo {
+    grid-area: re;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: auto auto;
+    grid-template-areas: 
+            "nk rt"
+            "rl rl";
+}
+#reaksjonslikning {
+    grid-area: rl;
+    width: 100%;
+    height: 60px;
+    background-color: white;
+    border: 5px solid black;
+    line-height: 50px;
+    font-size: 1.4rem;
+    text-align: center;
+}
+#reaksjonstype {
+    grid-area: rt;
+    background-color: rgb(187, 187, 187);
+    padding: 5px 30px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 32px;
+}
+#nullstill-knapp {
+    grid-area: nk;
+}
+#nullstill-knapp button {
+    border: none;
+    background-color: #FFBC98;
+    height: 40px;
+    margin: 5px 10px 10px 10px;
+    width: 70px;
+    font-weight: bold;
+    border-radius: 10px;
+    border: 3px solid black;
+    cursor: pointer;
+}
+#nullstill-knapp button:hover {
+    background-color: #FFD9C5;
+}
+#NH4Cl .saltfarge {
+    background: linear-gradient(0deg,rgba(230, 216, 138, 0.3)  95%, rgb(187, 179, 120) 95%);
+}
+#NaOH .saltfarge, #Na2CO3 .saltfarge, #CaCl2 .saltfarge {
+    /*background: linear-gradient(90deg,rgba(255,125,215,0.5)  0%, rgba(184,90,255,0.5) 50%, rgba(77,87,224,0.5) 100%);*/
+    background: linear-gradient(0deg,rgba(219, 230, 243, 0.3)  95%, rgb(161, 181, 192) 95%);
+}
+#AgNO3 .saltfarge {
+    /*NH4Cl: background: linear-gradient(0deg,rgba(230, 216, 138, 0.3)  95%, rgb(206, 194, 127) 95%);*/
+    background: linear-gradient(0deg,rgba(219, 230, 243, 0.3)  95%, rgb(161, 181, 192) 95%);
+}
+#BaNO32 .saltfarge {
+    background: linear-gradient(0deg,rgba(243, 239, 219, 0.3)  95%, rgb(197, 200, 202) 95%);
+}
+#CuSO4 .saltfarge {
+    background: linear-gradient(0deg,rgba(196, 226, 233, 0.3)  95%, rgb(156, 179, 184) 95%);
+}
+
+#disclaimer {
+    display: none;
+    padding-left: 10px;
+}
+
+@media (max-width: 730px) {
+    #spill {
+        display: none;
+    }
+    #for-liten-bredde {
+        display: block;
+    }
+}
+
+@media (max-width: 1000px) {
+    #spill {
+        grid-template-columns: repeat(2, auto);
+        grid-template-rows: auto auto auto;
+        grid-template-areas: 
+                "r1 r2"
+                "be be"
+                "re re";
+    }
+    #reagensrør-gruppe1, #reagensrør-gruppe2 {
+        padding-block: 10px;
+    }
+    #aktivt-salt {
+        top: 240px;
+    }
+    #reagensrør-gruppe1, #reagensrør-gruppe2 {
+        display: flex;
+        justify-content: space-around;
+    }
+    .salt img {
+        height: 250px;
+    }
+    .salt .saltfarge {
+        width: 40px;
+    }
+    .salt .saltnavn {
+        padding-right: 100px;
+    }
+}
+
+@keyframes fyll_begerglass {
+    0% {
+      height: var(--starthøyde);
+      background: var(--original_farge);
+    }
+    100% {
+      height: var(--slutthøyde);
+      background: var(--ny_farge);
+    }
+}
+
+@keyframes hell_salt {
+    0% {
+      height: 150px;
+    }
+    100% {
+      height: 0px;
+    }
+}
