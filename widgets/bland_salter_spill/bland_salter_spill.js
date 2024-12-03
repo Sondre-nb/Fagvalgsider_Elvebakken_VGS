@@ -12,7 +12,7 @@ let r = document.querySelector(':root');
 r.style.setProperty('--helleplassering', reagensrørplassering + "px");
 let x = 0;
 let y = 0;
-let blandbare_salter = []
+let blandbare_salter = [];
 let nullstill_knapp = document.querySelector('#nullstill-knapp').querySelector('button');
 
 let løsningsnavn_tabell =  [[["x"], ["AgCl(s) + NH4NO3(aq)"], ["-"], ["NH3(g) + NaCl(aq) + H2O(l)"], ["-"], ["-"], ["-"]],
@@ -57,8 +57,6 @@ function finnTabellplassering() {
         x = saltplasseringer[1];
         y = saltplasseringer[0];
     };
-    let produkt = løsningsnavn_tabell[y][x];
-    console.log(produkt);
 };
 
 function finnBlandbareSalter() {
@@ -73,7 +71,6 @@ function finnBlandbareSalter() {
     };
     let row = temp_counter;
     temp_counter++;
-    console.log(temp_counter);
     while (løsningsnavn_tabell[row][temp_counter] != "x" && temp_counter < 7) {
         if (løsningsnavn_tabell[row][temp_counter] != "-") {
             blandbare_salter.push(salter[temp_counter].id);
@@ -82,32 +79,26 @@ function finnBlandbareSalter() {
         }
         temp_counter++;
     }
-    console.log(blandbare_salter);
 };
 
 function leggTilSalt(saltplassering, aktivt_salt) {
     let gammel_løsningshøyde = getComputedStyle(document.documentElement).getPropertyValue('--slutthøyde');
     r.style.setProperty('--starthøyde', gammel_løsningshøyde);
     let løsningshøyde = 50 * saltplasseringer.length + "px";
-    console.log(gammel_løsningshøyde, løsningshøyde);
     r.style.setProperty('--slutthøyde', løsningshøyde);
 
     let saltfarge = window.getComputedStyle(aktivt_salt.querySelector(".saltfarge")).background;
     let løst_salt = aktivt_salt.querySelector(".saltfarge");
-    console.log(saltfarge)
     if (saltplasseringer.length == 1) {
         r.style.setProperty('--original_farge', saltfarge);
         r.style.setProperty('--ny_farge', saltfarge);
     } else {
         finnTabellplassering();
-        console.log(getComputedStyle(document.documentElement).getPropertyValue('--ny_farge'))
         r.style.setProperty('--original_farge', getComputedStyle(document.documentElement).getPropertyValue('--ny_farge'));
-        let produkt_farge = løsningsfarge_tabell[y][x]
-        console.log(produkt_farge)
+        let produkt_farge = løsningsfarge_tabell[y][x];
         r.style.setProperty('--ny_farge', produkt_farge);
     }
     let løsning = document.getElementById("løsningsfarge");
-    console.log(løsning)
     løsning.style.animation = 'fyll_begerglass 2s ease';
     løst_salt.style.animation = 'hell_salt 2s ease';
     løsning.style.background = "var(--ny_farge)";
@@ -116,7 +107,7 @@ function leggTilSalt(saltplassering, aktivt_salt) {
     setTimeout(() => {
         løsning.style.animation = "";
         løst_salt.style.animation = "";
-        saltplasseringsfelt[saltplassering].append(aktivt_salt)
+        saltplasseringsfelt[saltplassering].append(aktivt_salt);
         if (saltplasseringer.length == 1) { 
             finnBlandbareSalter();
         } else {
@@ -134,11 +125,8 @@ for (salt of salter) {
                 if (aktivt_salt == salter[i]) {
                     saltplassering = i;
                     saltplasseringer.push(saltplassering);
-                }
-            }
-            console.log(saltplassering, saltplasseringer, saltplasseringer.length)
-            console.log(aktivt_salt);
-            console.log("hei")
+                };
+            };
             aktivt_salt_plassering.append(aktivt_salt);
             let saltType = aktivt_salt.querySelector(".saltnavn").innerHTML;
             if (saltplasseringer.length == 2) {
@@ -170,6 +158,5 @@ window.onresize = function() {
     let reagensrørhøyde = document.querySelector('.salt img').getBoundingClientRect().height;
     let r = document.querySelector(':root');
     let reagensrørplassering = spillbredde/2 - begerglassbredde/2 - reagensrørhøyde/2;
-    console.log(spillbredde, begerglassbredde, reagensrørplassering);
     r.style.setProperty('--helleplassering', reagensrørplassering + "px");
 }
