@@ -21,7 +21,7 @@ let sannsynlighetForÅHaKommetSåLangt = 1;
 function sats() {
     hovedtekstEl.innerHTML = "Tror du det neste kastet er høyere eller lavere enn dette?";
     terningkastTekstEl.style.display = "block";
-    terningkastTekstEl.innerHTML = "du kastet en " + terningkast + "-er";
+    terningkastTekstEl.innerHTML = "Du kastet en " + terningkast + "-er";
     stoppKnappEl.style.display = "none";
     satseKnappEl.style.display = "none";
     lavereKnappEl.style.display = "block";

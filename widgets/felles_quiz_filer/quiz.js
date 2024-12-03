@@ -35,7 +35,7 @@ function nesteSpørsmål(){
     poengEl.innerHTML = "Poeng: " + poeng + "/" + spørsmålNr;
     if (spørsmålNr==spørsmålListe.length){ //sjekker om brukeren er på siste spørsmål
         // Skjuler alternativene og spill-igjen-knappen, viser poengn i spørsmålsteksten og viser spill-igjen-knappen
-        spørsmålEl.innerHTML = "Du er ferdig og fikk " + poeng + " av " + spørsmålListe.length + " mulige poeng!";
+        spørsmålEl.innerHTML = "Du fikk " + poeng + " av " + spørsmålListe.length + " mulige poeng!";
         for (let i = 0; i < alternativer.length; i++){
             alternativer[i].style.display = "none";
         };

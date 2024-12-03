@@ -37,6 +37,7 @@ button {
     background-color: var(--elvebakken_blå);
     border: none;
     cursor: pointer;
+    border-radius: 5px;
 }
 button:hover {
     background-color: var(--elvebakken_blå_lys);
