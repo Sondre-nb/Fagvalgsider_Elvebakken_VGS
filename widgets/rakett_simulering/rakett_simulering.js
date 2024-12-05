@@ -53,31 +53,150 @@ const noseColorInput = document.getElementById('nose-color');
 const finsColorInput = document.getElementById('fins-color');
 const bodyColorInput = document.getElementById('body-color');
 
-class Rocket {
-    constructor(pos) {
+class Node {
+    constructor(pos, mass) {
         this.pos = pos.clone(); // m
-        this.vel = new Vek2(0, 0); // m/s
+        this.lastPos = this.pos.clone(); // m/s
         this.acc = new Vek2(0, 0); // m/s^2
-        this.mass = parseFloat(massInput.value); // kg
-        this.k_L = 0.01; // luftmotstandskoeffisienten
-        this.launch_angle = angleInput.value / 180 * Math.PI; // rad
-        this.motor = {
-            vector: new Vek2(0, 0),
-            thrust: parseFloat(thrustInput.value), // N
-            burnTime: parseFloat(burnTimeInput.value) // s
-        };
+        this.mass = mass; // kg
     }
 
     // dt: delta time
     update(dt) {
-        this.vel.addV(Vek2.multN(this.acc, dt));
-        this.pos.addV(Vek2.multN(this.vel, dt));
+        const vel = Vek2.subV(this.pos, this.lastPos);
+        this.lastPos.set(this.pos);
+        this.pos = Vek2.addV(this.pos, Vek2.addV(vel, Vek2.multN(this.acc, dt*dt)));
         this.acc.set(0, 0);
     }
 
     // f: newton
     applyForce(f) {
         this.acc.addV(Vek2.divN(f, this.mass));
+    }  
+
+    vel() {
+        return Vek2.subV(this.pos, this.lastPos);
+    }
+
+    // Beveger node uten å påvirke hasigheten
+    move(offset) {
+        this.pos.addV(offset);
+        this.lastPos.addV(offset);
+    }
+    
+    // Beveger node uten å påvirke hasigheten
+    setPos(pos) {
+        const v = this.vel();
+        this.pos.set(pos);
+        this.lastPos.set(pos).subV(v);
+    } 
+}
+
+class Rocket {
+    constructor(pos) {
+        this.height = 100;
+        const totalMass = parseFloat(massInput.value);
+        this.nodes = [
+            new Node(Vek2.sub(pos, new Vek2(0, this.height)), totalMass/2), // tip
+            new Node(pos, totalMass/2), // tail
+
+        ]
+        this.k_L = 0.01; // luftmotstandskoeffisienten
+        this.motor = {
+            thrust: parseFloat(thrustInput.value), // N
+            burnTime: parseFloat(burnTimeInput.value) // s
+        };
+
+        this.parachuteDeployed = false;
+        this.parachute_k_L = 40000; // luftmotstandskoeffisienten
+    }
+
+    // dt: delta time
+    update(dt) {
+        // Motorens kraft
+        if (this.motor.burnTime > 0) {
+            const motorForce = this.dirVec().multN(this.motor.thrust);
+            this.applyForce(motorForce);
+            
+            this.motor.burnTime -= dt;
+        }
+        
+        // Fallskjerm
+        if(this.parachuteDeployed) {
+            const vel = this.tip().vel();
+            const forceMagnitude = this.parachute_k_L * vel.lenSq();
+            const forceDirection = Vek2.normalized(vel).negate();
+            this.tip().applyForce(forceDirection.multN(forceMagnitude));
+        }
+
+        // Rakettens luftmotstand
+        const airResistance = Vek2.normalized(this.vel()).multN(this.vel().lenSq() * this.k_L).negate(); // L = k * v^2
+        this.applyForce(airResistance);
+        
+        // Tyngdekraft
+        const gravity = new Vek2(0, 9.81).multN(this.mass());
+        this.applyForce(gravity);
+        
+        // Hold avstanden mellom tip og tail konstant
+        const o1 = this.tip();
+        const o2 = this.bottom();
+        let axis = Vek2.subV(o1.pos, o2.pos);
+        let dist = axis.len();
+        axis.normalize();
+        let delta = this.height - dist;
+        o1.pos.addV(Vek2.multN(axis,  0.5 * delta));
+        o2.pos.addV(Vek2.multN(axis, -0.5 * delta));
+        
+        for(const node of this.nodes) {
+            node.update(dt);
+        }
+    }
+
+    mass() {
+        let m = 0;
+        for(const node of this.nodes) {
+            m += node.mass;
+        }
+        return m;
+    }
+
+    // f: newton
+    applyForce(f) {
+        for(const node of this.nodes) {
+            node.applyForce(f);
+        }
+    }
+
+    pos() {
+        return Vek2.addV(this.tip().pos, this.bottom().pos).div(2);
+    }
+
+    // følger enhetsirkelen
+    dir() {
+        return this.dirVec().rotation();
+    }
+
+    // følger enhetsirkelen
+    dirVec() {
+        return Vek2.subV(this.tip().pos, this.bottom().pos).normalize();
+    }
+
+    // gjennomsnittlig hastighet
+    vel() {
+        let v = new Vek2();
+        for(const node of this.nodes) {
+            v.addV(node.vel());
+        }
+        v.divN(this.nodes.length);
+        return v;
+    }
+
+    tip() {
+        return this.nodes[0];
+    }
+
+    bottom() {
+        return this.nodes[1];
     }
 }
 
@@ -85,14 +204,16 @@ class Rocket {
 // Skaffer referanse til canvas og kontekst
 const canvas = document.getElementById('vektor-canvas');
 const ctx = canvas.getContext('2d');
+const cameraScale = 0.7;
+const cameraTranslation = new Vek2();
 
 // Rocket
 let rocketLaunch = false;
-const platformPos = new Vek2(20, canvas.height - 40);
-const platformWidth = 30;
-const platformHeight = 10;
+const platformPos = new Vek2(0, 0);
+const platformWidth = 300;
+const platformHeight = 100;
 
-const rocketStartPos = new Vek2(platformPos.x + platformWidth/2, platformPos.y - 10);
+const rocketStartPos = new Vek2(platformPos.x + platformWidth/2, platformPos.y);
 let rocket = new Rocket(rocketStartPos);
 
 // Buttons
@@ -103,26 +224,40 @@ document.getElementById("launch-rocket").addEventListener("click", function() {
     rocketLaunch = true;
 });
 
-function drawBackground() {
+document.getElementById("deploy-parachute").addEventListener("click", function() {
+    if(rocketLaunch){
+        rocket.parachuteDeployed = true;
+    }
+});
+
+function drawSky() {
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
+    
     ctx.fillStyle = 'lightblue';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    ctx.restore();
+}
 
+function drawGround() {
     ctx.fillStyle = 'grey';
-    ctx.fillRect(0, canvas.height - 30, canvas.width, 100);
+    ctx.fillRect(-2000, 30, 4000, 2000);
 
     ctx.fillStyle = 'darkgrey';
     ctx.fillRect(platformPos.x, platformPos.y, platformWidth, platformHeight);
 }
 
 function drawRocket(x, y, rotation) {
+    rotation += Math.PI/2;
     const rocketBodyColor = bodyColorInput.value;
     const rocketFinnColor = finsColorInput.value;
     const rocketNoseColor = noseColorInput.value;
     const rocketWidth = 10;
-    const rocketHeight = 30;
+    const rocketHeight = rocket.height;
     const coneHeight = 10;
-    const finnWidth = 5;
-    const finnPointyHeight = 15;
+    const finnWidth = 8;
+    const finnPointyHeight = 20;
 
     // Save the current context state
     ctx.save();
@@ -133,18 +268,15 @@ function drawRocket(x, y, rotation) {
     // Rotate the context
     ctx.rotate(rotation);
 
-    // Move the origin back to the top-left corner of the rocket
-    ctx.translate(-rocketWidth / 2, -rocketHeight / 2);
-
     // Rocket body
     ctx.fillStyle = rocketBodyColor;
-    ctx.fillRect(-rocketWidth / 2, -rocketHeight / 2, rocketWidth, rocketHeight);
+    ctx.fillRect(-rocketWidth / 2, -rocketHeight / 2 + coneHeight, rocketWidth, rocketHeight-coneHeight);
 
     // Rocket nose
     ctx.beginPath();
-    ctx.moveTo(-rocketWidth / 2, -rocketHeight / 2);
-    ctx.lineTo(0, -rocketHeight / 2 - coneHeight);
-    ctx.lineTo(rocketWidth / 2, -rocketHeight / 2);
+    ctx.moveTo(-rocketWidth / 2, -rocketHeight / 2 + coneHeight);
+    ctx.lineTo(0, -rocketHeight / 2);
+    ctx.lineTo(rocketWidth / 2, -rocketHeight / 2 + coneHeight);
     ctx.closePath();
     ctx.fillStyle = rocketNoseColor;
     ctx.fill();
@@ -180,16 +312,47 @@ function drawRocket(x, y, rotation) {
     }
     // Restore the context to its original state
     ctx.restore();
+
+    // Draw parachute
+    if(rocket.parachuteDeployed) {
+
+        ctx.save();
+        ctx.translate(rocket.tip().pos.x, rocket.tip().pos.y);
+        const parachuteDir = rocket.tip().vel().normalize();
+        ctx.rotate(parachuteDir.rotation()- Math.PI/2);
+        const parachuteLength = 50;
+        const parachuteRadius = 40;
+        ctx.fillStyle = "red";
+        ctx.strokeStyle = "white";
+        ctx.beginPath();
+        ctx.arc(0, -parachuteLength, parachuteRadius, Math.PI, 0);
+        ctx.fill();
+        
+        // Left cord
+        ctx.beginPath();
+        ctx.moveTo(-parachuteRadius, -parachuteLength);
+        ctx.lineTo(0, 0);
+        ctx.stroke();
+        
+        // Right cord
+        ctx.beginPath();
+        ctx.moveTo(parachuteRadius, -parachuteLength);
+        ctx.lineTo(0, 0);
+        ctx.stroke();
+
+        ctx.restore();
+    }
 }
+
+resetRocket();
 
 function resetRocket() {
     rocket = new Rocket(rocketStartPos);
     rocketLaunch = false;
     rocket.motor.burnTime  = parseFloat(burnTimeInput.value);
-}
-
-function getRotation(vector) {
-    return vector.rotation()+Math.PI/2;
+    const rotationDeg = parseFloat(angleValue.textContent);
+    const rotationRad = (rotationDeg / 180) * Math.PI;
+    rocket.tip().setPos(Vek2.rotate(rocket.tip().pos, rocket.bottom().pos, rotationRad));
 }
 
 function launchRocket() {
@@ -206,43 +369,27 @@ function draw() {
     const deltaTime = (now - lastDrawTime) / 1000; // s
     lastDrawTime = now;
 
+    cameraTranslation.set(rocket.tip().pos.clone().negate().add(new Vek2(canvas.width, canvas.height).div(2).div(cameraScale)).mult(cameraScale));
+
+    ctx.reset();
     // Tøm canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+   
+    ctx.translate(cameraTranslation.x, cameraTranslation.y);
+    ctx.scale(cameraScale, cameraScale);
 
     // Tegn bakgrunn
-    drawBackground();
+    drawSky();
+    drawGround();
 
-    if (rocketLaunch) {
-        // Apply engine force
-        if (rocket.motor.burnTime > 0) {
-            rocket.motor.vector = new Vek2(0, rocket.motor.thrust);
-            
-            rocket.motor.vector.rotate(rocket.launch_angle+Math.PI);
-
-            rocket.applyForce(rocket.motor.vector);
-
-            rocket.motor.burnTime -= deltaTime;
-        }
-
-        const airResistance = Vek2.normalized(rocket.vel).multN(rocket.vel.lenSq() * rocket.k_L).negate();
-        rocket.applyForce(airResistance);
-        
-        const gravity = new Vek2(0, 9.81).multN(rocket.mass);
-        rocket.applyForce(gravity, deltaTime);
-        
+    if (rocketLaunch) {    
+        // Jukser litt med å få tiden til å gå dobbelt så fort her    
+        rocket.update(deltaTime);
         rocket.update(deltaTime);
     }
 
-    // Oppdater rakettens rotasjon
-    if (rocketLaunch === false) {
-        rocketRotation = rocket.launch_angle;
-    }
-    else {
-        rocketRotation = getRotation(rocket.vel);
-    }
-
     // Tegn rakett
-    drawRocket(rocket.pos.x, rocket.pos.y, rocketRotation);
+    drawRocket(rocket.pos().x, rocket.pos().y, rocket.dir());
 }
 
 lastDrawTime = performance.now();

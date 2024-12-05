@@ -25,9 +25,9 @@ class Vek2 {
         return this;
     }
 
-    addV(vec) {
-        this.x += vec.x;
-        this.y += vec.y;
+    addV(vek) {
+        this.x += vek.x;
+        this.y += vek.y;
         return this;
     }
 
@@ -48,9 +48,9 @@ class Vek2 {
         return this;
     }
 
-    subV(vec) {
-        this.x -= vec.x;
-        this.y -= vec.y;
+    subV(vek) {
+        this.x -= vek.x;
+        this.y -= vek.y;
         return this;
     }
 
@@ -71,9 +71,9 @@ class Vek2 {
         return this;
     }
 
-    multV(vec) {
-        this.x *= vec.x;
-        this.y *= vec.y;
+    multV(vek) {
+        this.x *= vek.x;
+        this.y *= vek.y;
         return this;
     }
 
@@ -94,9 +94,9 @@ class Vek2 {
         return this;
     }
 
-    divV(vec) {
-        this.x /= vec.x;
-        this.y /= vec.y;
+    divV(vek) {
+        this.x /= vek.x;
+        this.y /= vek.y;
         return this;
     }
 
@@ -134,13 +134,11 @@ class Vek2 {
     }
 
     normalize() {
-        let x = this.x;
-        let y = this.y;
-        var len = x*x + y*y;
-        if (len > 0) {
-            len = 1 / Math.sqrt(len);
-            this.x = x*len;
-            this.y = y*len;
+        let lenSq = this.lenSq();
+        if (lenSq > 0) {
+            let len = Math.sqrt(lenSq);
+            this.x /= len;
+            this.y /= len;
         }
         return this;
     }
@@ -188,140 +186,135 @@ class Vek2 {
     }
     
     /**
-     * Rotate a 2D vector
-     * @param {Vek2} o The origin of the rotation. If omitted, the vector will be rotated around 0,0
+     * Rotate a 2D vektor
+     * @param {Vek2} o The origin of the rotation. If omitted, the vektor will be rotated around 0,0
      * @param {Number} rad The angle of rotation in radians
      * @returns {Vek2} this
      */
     rotate(o, rad) {
         if(typeof o === "object") {
             //Translate point to the origin
-            let p0 = this.x - o.x,
-                p1 = this.y - o.y,
-                sinC = Math.sin(rad),
-                cosC = Math.cos(rad);
+            let p = this.subV(o);
+            let sin = Math.sin(rad);
+            let cos = Math.cos(rad);
         
             //perform rotation and translate to correct position
-            this.x = p0 * cosC - p1 * sinC + o.x;
-            this.y = p0 * sinC + p1 * cosC + o.y;
+            this.x = p.x * cos - p.y * sin + o.x;
+            this.y = p.x * sin + p.y * cos + o.y;
         } else {
-            let p0 = this.x,
-                p1 = this.y,
-                sinC = Math.sin(o),
-                cosC = Math.cos(o);
+            let sin = Math.sin(rad);
+            let cos = Math.cos(rad);
         
             //perform rotation
-            this.x = p0 * cosC - p1 * sinC;
-            this.y = p0 * sinC + p1 * cosC;
+            this.x = this.x * cos - this.y * sin;
+            this.y = this.x * sin + this.y * cos;
         }
         return this;
     }
 
-    static addV(vec1, vek2) {
-        return new Vek2(vec1.x + vek2.x, vec1.y + vek2.y);
+    static addV(vek1, vek2) {
+        return new Vek2(vek1.x + vek2.x, vek1.y + vek2.y);
     }
 
-    static addN(vec, num) {
-        return new Vek2(vec.x + num, vec.y + num);
+    static addN(vek, num) {
+        return new Vek2(vek.x + num, vek.y + num);
     }
 
-    static add(vec, a) {
+    static add(vek, a) {
         if(typeof a === "object") {
-            return new Vek2(vec.x + a.x, vec.y + a.y);
+            return new Vek2(vek.x + a.x, vek.y + a.y);
         } else {
-            return new Vek2(vec.x + a, vec.y + a);
+            return new Vek2(vek.x + a, vek.y + a);
         }
     }
 
-    static subV(vec1, vek2) {
-        return new Vek2(vec1.x - vek2.x, vec1.y - vek2.y);
+    static subV(vek1, vek2) {
+        return new Vek2(vek1.x - vek2.x, vek1.y - vek2.y);
     }
 
-    static subN(vec, num) {
-        return new Vek2(vec.x - num, vec.y - num);
+    static subN(vek, num) {
+        return new Vek2(vek.x - num, vek.y - num);
     }
 
-    static sub(vec, a) {
+    static sub(vek, a) {
         if(typeof a === "object") {
-            return new Vek2(vec.x - a.x, vec.y - a.y);
+            return new Vek2(vek.x - a.x, vek.y - a.y);
         } else {
-            return new Vek2(vec.x - a, vec.y - a);
+            return new Vek2(vek.x - a, vek.y - a);
         }
     }
 
-    static multV(vec1, vek2) {
-        return new Vek2(vec1.x * vek2.x, vec1.y * vek2.y);
+    static multV(vek1, vek2) {
+        return new Vek2(vek1.x * vek2.x, vek1.y * vek2.y);
     }
 
-    static multN(vec, num) {
-        return new Vek2(vec.x * num, vec.y * num);
+    static multN(vek, num) {
+        return new Vek2(vek.x * num, vek.y * num);
     }
 
-    static mult(vec, a) {
+    static mult(vek, a) {
         if(typeof a === "object") {
-            return new Vek2(vec.x * a.x, vec.y * a.y);
+            return new Vek2(vek.x * a.x, vek.y * a.y);
         } else {
-            return new Vek2(vec.x * a, vec.y * a);
+            return new Vek2(vek.x * a, vek.y * a);
         }
     }
 
-    static divV(vec1, vek2) {
-        return new Vek2(vec1.x / vek2.x, vec1.y / vek2.y);
+    static divV(vek1, vek2) {
+        return new Vek2(vek1.x / vek2.x, vek1.y / vek2.y);
     }
 
-    static divN(vec, num) {
-        return new Vek2(vec.x / num, vec.y / num);
+    static divN(vek, num) {
+        return new Vek2(vek.x / num, vek.y / num);
     }
 
-    static div(vec, a) {
+    static div(vek, a) {
         if(typeof a === "object") {
-            return new Vek2(vec.x / a.x, vec.y / a.y);
+            return new Vek2(vek.x / a.x, vek.y / a.y);
         } else {
-            return new Vek2(vec.x / a, vec.y / a);
+            return new Vek2(vek.x / a, vek.y / a);
         }
     }
 
-    static negated(vec) {
-        return new Vek2(-vec.x, -vec.y);
+    static negated(vek) {
+        return new Vek2(-vek.x, -vek.y);
     }
 
-    static dist(vec1, vek2) {
-        const dx = vek2.x - vec1.x;
-        const dy = vek2.y - vec1.y;
+    static dist(vek1, vek2) {
+        const dx = vek2.x - vek1.x;
+        const dy = vek2.y - vek1.y;
         return Math.sqrt(dx * dx + dy * dy);
     }
 
-    static distSq(vec1, vek2) {
-        const dx = vek2.x - vec1.x;
-        const dy = vek2.y - vec1.y;
+    static distSq(vek1, vek2) {
+        const dx = vek2.x - vek1.x;
+        const dy = vek2.y - vek1.y;
         return dx * dx + dy * dy;
     }
 
-    static normalized(vec) {
-        var x = vec.x,
-            y = vec.y;
-        var len = x*x + y*y;
-        var out = new Vek2();
-        if (len > 0) {
-            len = 1 / Math.sqrt(len);
-            out.x = x*len;
-            out.y = y*len;
+    static normalized(vek) {
+        let lenSq = vek.lenSq();
+        let out = new Vek2();
+        if (lenSq > 0) {
+            let len = Math.sqrt(lenSq);
+            out.x = vek.x / len;
+            out.y = vek.y / len;
         }
         return out;
     }
 
-    static dot(vec1, vek2) {
-        return vec1.x * vek2.x + vec1.y * vek2.y;
+    static dot(vek1, vek2) {
+        return vek1.x * vek2.x + vek1.y * vek2.y;
     }
 
-    static cross(vec1, vek2) {
-        return vec1.x * vek2.y - vec1.y * vek2.x;
+    static cross(vek1, vek2) {
+        return vek1.x * vek2.y - vek1.y * vek2.x;
     }
 
     
-    static lerp(vec1, vek2, t) {
-        const x = vec1.x + t * (vek2.x - vec1.x);
-        const y = vec1.y + t * (vek2.y - vec1.y);
+    static lerp(vek1, vek2, t) {
+        const x = vek1.x + t * (vek2.x - vek1.x);
+        const y = vek1.y + t * (vek2.y - vek1.y);
         return new Vek2(x, y);
     }
 
@@ -332,52 +325,53 @@ class Vek2 {
     }
 
     /**
-     * The angle between the vectors a and b
+     * The angle between the vektors a and b
      * @returns the angle in radians
      */
     static angle(a, b) {
-        let x1 = a[0],
-            y1 = a[1],
-            x2 = b[0],
-            y2 = b[1],
-            // mag is the product of the magnitudes of a and b
-            mag = Math.sqrt((x1 * x1 + y1 * y1) * (x2 * x2 + y2 * y2)),
-            // mag &&.. short circuits if mag == 0
-            cosine = mag && (x1 * x2 + y1 * y2) / mag;
-        // Math.min(Math.max(cosine, -1), 1) clamps the cosine between -1 and 1
+        let x1 = a[0];
+        let y1 = a[1];
+        let x2 = b[0];
+        let y2 = b[1];
+        let mag = Math.sqrt((x1 * x1 + y1 * y1) * (x2 * x2 + y2 * y2));
+        let cosine;
+        if(mag == 0) {
+            cosine = mag;
+        } else {
+            cosine = (x1 * x2 + y1 * y2) / mag;
+        }
         return Math.acos(Math.min(Math.max(cosine, -1), 1));
     }
 
     /**
-     * Rotate a 2D vector
+     * Rotate a 2D vektor
      * @param {Vek2} a The Vek2 point to rotate
-     * @param {Vec3} b The origin of the rotation. If omitted, the vector will be rotated around 0,0
+     * @param {Vek2} b The origin of the rotation. If omitted, the vektor will be rotated around 0,0
      * @param {Number} rad The angle of rotation in radians
-     * @returns {Vek2} the rotated vector
+     * @returns {Vek2} the rotated vektor
      */
     static rotate(a, b, rad) {
         if(typeof b === "object") {
             let out = new Vek2();
             //Translate point to the origin
-            let p0 = a.x - b.x,
-                p1 = a.y - b.y,
-                sinC = Math.sin(rad),
-                cosC = Math.cos(rad);
+            let p = Vek2.subV(a, b);
+            let sin = Math.sin(rad);
+            let cos = Math.cos(rad);
         
             //perform rotation and translate to correct position
-            out.x = p0 * cosC - p1 * sinC + b.x;
-            out.y = p0 * sinC + p1 * cosC + b.y;
+            out.x = p.x * cos - p.y * sin + b.x;
+            out.y = p.x * sin + p.y * cos + b.y;
         
             return out;
         } else {
             let out = new Vek2();
 
-            let sinC = Math.sin(b),
-                cosC = Math.cos(b);
+            let sin = Math.sin(b);
+            let cos = Math.cos(b);
         
             //perform rotation
-            out.x = a.x * cosC - a.y * sinC;
-            out.y = a.x * sinC + a.y * cosC;
+            out.x = a.x * cos - a.y * sin;
+            out.y = a.x * sin + a.y * cos;
         
             return out;
         }
