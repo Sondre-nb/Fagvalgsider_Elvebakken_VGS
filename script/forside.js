@@ -81,3 +81,17 @@ function toggleMeny(){
         høyre_bla_knapp.style.display = "block";
     }
 }
+
+let mattefagene = document.querySelectorAll(".matte-fag");
+
+document.addEventListener("DOMContentLoaded", function(){
+    localStorage.setItem("sideManKommerIfraLagring", getComputedStyle(document.documentElement).getPropertyValue('--side_man_kommer_ifra'));
+    console.log()
+})
+
+/* for (mattefag of mattefagene) {
+    mattefag.onclick = function(){
+        localStorage.setItem("sideManKommerIfraLagring", getComputedStyle(document.documentElement).getPropertyValue('--side_man_kommer_ifra'));
+        console.log(getComputedStyle(document.documentElement).getPropertyValue('--side_man_kommer_ifra'))
+    }
+} */
