@@ -80,7 +80,7 @@ class Node {
         this.lastPos.set(this.pos);
         this.pos.addV(Vek2.addV(displacement, Vek2.multN(this.acc, dt*dt)));
         this.acc.set(0, 0);
-        
+
         this.prevDt = dt;
     }
 
@@ -152,7 +152,7 @@ class Rocket {
         // Finnenes luftmotstand
         const finAirResistance = Vek2.normalized(this.bottom().vel()).multN(this.bottom().vel().lenSq() * this.fin_k_L).negate();
         this.bottom().applyForce(finAirResistance);
-        
+
         // Tyngdekraft
         const gravity = new Vek2(0, 9.81).multN(this.mass());
         this.applyForce(gravity);
@@ -262,7 +262,7 @@ function drawSky() {
 
 function drawGround() {
     ctx.fillStyle = 'grey';
-    ctx.fillRect(-5000, 30, 10000, 4000);
+    ctx.fillRect(-200000, 30, 400000, 4000);
 
     ctx.fillStyle = 'darkgrey';
     ctx.fillRect(platformPos.x, platformPos.y, platformWidth, platformHeight);
@@ -394,7 +394,14 @@ function drawRocketVelocity() {
         unit = "km/s";
     }
 
-    ctx.fillText('Fart: ' + velocity + unit, 5, 59);
+    if (rocket.vel().rotation() < 0) {
+        direction_icon = "↑";
+    }
+    else {
+        direction_icon = "↓";
+    }
+
+    ctx.fillText('Fart: ' + velocity + unit + " " + direction_icon, 5, 59);
 }
 
 function drawHUD() {
@@ -451,7 +458,7 @@ function draw() {
     drawSky();
     drawGround();
 
-    if (rocketLaunch) {    
+    if (rocketLaunch) {
         rocket.update(deltaTime);
     }
 
