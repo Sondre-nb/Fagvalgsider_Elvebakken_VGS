@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="drag_and_drop_geofag_2_spill.css">
+    <title>Drag and drop</title>
+</head>
+<body>
+    <h1 id="spill-tittel">Match bergarten med riktig bilde</h1>
+
+    <!-- Tekst som vises når skjermbredden er for liten -->
+    <div id="for-liten-bredde">
+        <p>Skjermbredden din er for liten til å spille spillet. Roter skjermen eller øk størrelsen på vinduet.</p>
+    </div>
+
+    <!-- Spill-element (skjules når iframe-bredden er under 520 px) -->
+    <div id="spill">
+        <!-- Kjemi-temaer på venstre side -->
+        <div id="bilder_av_stein">
+            <div><img src="/assets/imgs/geofag2_spill/vulkansk stein.png" width="100px" alt="vulkansk sein"></div>
+            <div><img src="/assets/imgs/geofag2_spill/metamorfisk bergart.jpg" width="100px" alt="vulkansk sein"></div>
+            <div><img src="/assets/imgs/geofag2_spill/sedimentær_bergart.jpg" width="100px" alt="vulkansk sein"></div>
+        </div>
+        <!-- Firkanter på høyre side til å dra tekst inni -->
+        <div id="svar">
+            <div class="svar-boks"></div>
+            <div class="svar-boks"></div>
+            <div class="svar-boks"></div>
+        </div>
+        <!-- kjemi-påstander som skal dras inn i firkantene over -->
+        <div id="alternativer">
+            <div class="alternativ" draggable="true">Sedimentær</div>
+            <div class="alternativ" draggable="true">Magmatisk</div>
+            <div class="alternativ" draggable="true">Metamorfisk</div>
+        </div>
+        <!-- sjekk svar - knapp -->
+        <div id="sjekk-svar">
+            <button>Sjekk svar!</button>
+        </div>
+        <!-- nullstill - knapp -->
+        <div id="nullstill">
+            <button>Nullstill!</button>
+        </div>
+    </div>
+    <script src="drag_and_drop_geofag_2_spill.js"></script>
+</body>
+</html>

@@ -7,6 +7,8 @@
     --mørke_blå: #204B57;
     --mørke_grønn: #75DC98;
     --lyse_grønn: #89F1AC;
+    --geofag_blå: #2A2A72;
+    --geofag_oransje: #F09642;
 }
 * {
     margin: 0;
@@ -15,12 +17,13 @@
     box-sizing: border-box;
 }
 body {
-    background-color: var(--lyse_grønn);
+    background-color: var(--geofag_blå);
 }
 /* Overskrift */
 #spill-tittel {
     text-align: center;
     padding-top: 10px;
+    color: white;
 }
 /* Plassering av elementer i spillet */
 #spill {
@@ -39,7 +42,7 @@ body {
     padding: 10px;
 }
 /* Kjemitema-bokser */
-#kategorier {
+#bilder_av_stein {
     grid-area: ka;
 }
 /* Svar-boks-område */
@@ -47,18 +50,19 @@ body {
     grid-area: sv;
 }
 /* Plassering av div-elementer innenfor de ulike seksjonene */
-#kategorier, #svar {
+#bilder_av_stein, #svar {
     margin-top: 10px;
     display: flex;
     flex-direction: column;
     height: auto;
     justify-content: space-between;
 }
-/* 'Tekstboksene' for svar og kategorier */
-#kategorier > div, #svar > div {
+/* 'Tekstboksene' for svar og bilder_av_stein */
+#bilder_av_stein > div, #svar > div {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     padding: 5px;
     border: 3px solid black;
     margin: 5px;
@@ -70,24 +74,29 @@ body {
 #svar > div {
     height: 100%;
 }
-/* Gul firkant med påstander */
-#påstander {
+/* Gult område med alternativer */
+#alternativer {
     grid-area: pa;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    gap: 5px;
     text-align: center;
     padding: 10px;
-    background-color: var(--elvebakken_gul);
+    background-color: var(--geofag_oransje);
     border-radius: 15px;
     margin: 10px;
     border: 3px solid black;
 }
-#påstander div {
+#alternativer div {
     padding: 10px;
 }
-.påstand {
+.alternativ {
     cursor: pointer;
+    padding: 7px !important;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: var(--elvebakken_blå_lys);
 }
 #sjekk-svar {
     grid-area: sj;
@@ -113,7 +122,7 @@ body {
     transform: scale(1.1);
 }
 /* skjuler spill og viser tekst om at skjermen er for liten når iframe-bredden er på under 520px */
-@media (max-width: 520px) {
+@media (max-width: 360px) {
     #spill {
         display: none;
     }
