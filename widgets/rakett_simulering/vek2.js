@@ -136,9 +136,7 @@ class Vek2 {
     normalize() {
         let lenSq = this.lenSq();
         if (lenSq > 0) {
-            let len = Math.sqrt(lenSq);
-            this.x /= len;
-            this.y /= len;
+            this.divN(Math.sqrt(lenSq));
         }
         return this;
     }
@@ -296,9 +294,8 @@ class Vek2 {
         let lenSq = vek.lenSq();
         let out = new Vek2();
         if (lenSq > 0) {
-            let len = Math.sqrt(lenSq);
-            out.x = vek.x / len;
-            out.y = vek.y / len;
+            out.set(vek);
+            out.divN(out.len());
         }
         return out;
     }

@@ -75,7 +75,7 @@ class Node {
     update(dt) {
         const vel = Vek2.subV(this.pos, this.lastPos);
         this.lastPos.set(this.pos);
-        this.pos = Vek2.addV(this.pos, Vek2.addV(vel, Vek2.multN(this.acc, dt*dt)));
+        this.pos.addV(Vek2.addV(vel, Vek2.multN(this.acc, dt*dt)));
         this.acc.set(0, 0);
     }
 
@@ -119,6 +119,7 @@ class Rocket {
 
         this.parachuteDeployed = false;
         this.parachute_k_L = 40000; // luftmotstandskoeffisienten
+        this.fin_k_L = 600; // luftmotstandskoeffisienten
     }
 
     // dt: delta time
@@ -143,6 +144,10 @@ class Rocket {
         const airResistance = Vek2.normalized(this.vel()).multN(this.vel().lenSq() * this.k_L).negate(); // L = k * v^2
         this.applyForce(airResistance);
 
+        // Finnenes luftmotstand
+        const finAirResistance = Vek2.normalized(this.bottom().vel()).multN(this.bottom().vel().lenSq() * this.fin_k_L).negate();
+        this.bottom().applyForce(finAirResistance);
+        
         // Tyngdekraft
         const gravity = new Vek2(0, 9.81).multN(this.mass());
         this.applyForce(gravity);
@@ -438,9 +443,7 @@ function draw() {
     drawSky();
     drawGround();
 
-    if (rocketLaunch) {
-        // Jukser litt med å få tiden til å gå dobbelt så fort her
-        rocket.update(deltaTime);
+    if (rocketLaunch) {    
         rocket.update(deltaTime);
     }
 
