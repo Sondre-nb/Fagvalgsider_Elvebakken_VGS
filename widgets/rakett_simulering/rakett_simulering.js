@@ -125,6 +125,10 @@ class Rocket {
         this.parachuteDeployed = false;
         this.parachute_k_L = 20; // luftmotstandskoeffisienten
         this.fin_k_L = 0.7; // luftmotstandskoeffisienten
+
+        // State
+        this.crashed = false;
+        this.landed = false;
     }
 
     // dt: delta time
@@ -154,7 +158,6 @@ class Rocket {
         this.bottom().applyForce(finAirResistance);
 
         // Tyngdekraft
-        const gravity = new Vek2(0, 9.81).multN(this.mass());
         this.applyForce(gravity);
 
         // Hold avstanden mellom tip og tail konstant
@@ -218,6 +221,21 @@ class Rocket {
     bottom() {
         return this.nodes[1];
     }
+
+    should_crash() {
+        if (!(Math.round((this.pos().y*-1))<=0)) {
+            return false;
+        }
+
+        if (this.vel().len() > 40) {
+            return true;
+        }
+
+    }
+
+    is_on_ground() {
+        return this.pos().y >= 0;
+    }
 }
 
 
@@ -235,6 +253,8 @@ const platformHeight = 30;
 
 const rocketStartPos = new Vek2(platformPos.x + platformWidth/2, platformPos.y-2);
 let rocket = new Rocket(rocketStartPos);
+
+var gravity = new Vek2(0, 9.81).multN(rocket.mass());
 
 // Buttons
 document.getElementById("reset-rocket").addEventListener("click", function() {
@@ -366,7 +386,7 @@ function drawRocket(x, y, rotation) {
 
 function drawRocketHeight() {
     let unit = "m";
-    let height = Math.round((rocket.pos().y*-1)-rocket.height/4);
+    let height = Math.round((rocket.pos().y*-1));
 
     if (height > 1000) {
         height = Math.round(height/1000);
@@ -404,6 +424,21 @@ function drawRocketVelocity() {
     ctx.fillText('Fart: ' + velocity + unit + " " + direction_icon, 5, 59);
 }
 
+function drawRocketState() {
+    if (rocket.crashed) {
+        ctx.fillText('Status: Krasjet🧨', 5, 79);
+    }
+    else if (rocket.landed) {
+        ctx.fillText('Status: Landet🎉', 5, 79);
+    }
+    else if (rocketLaunch) {
+        ctx.fillText('Status: Skytes🚀', 5, 79);
+    }
+    else {
+        ctx.fillText('Status: Venter⏸️', 5, 79);
+    }
+}
+
 function drawHUD() {
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
@@ -413,6 +448,7 @@ function drawHUD() {
     drawRocketHeight();
     drawMotorBurnTime();
     drawRocketVelocity();
+    drawRocketState();
 
     ctx.restore();
 }
@@ -426,6 +462,7 @@ function resetRocket() {
     const rotationDeg = parseFloat(angleValue.textContent);
     const rotationRad = (rotationDeg / 180) * Math.PI;
     rocket.tip().setPos(Vek2.rotate(rocket.tip().pos, rocket.bottom().pos, rotationRad));
+    gravity = new Vek2(0, 9.81).multN(rocket.mass());
 }
 
 function launchRocket() {
@@ -459,7 +496,15 @@ function draw() {
     drawGround();
 
     if (rocketLaunch) {
-        rocket.update(deltaTime);
+        if (rocket.should_crash()) {
+            rocket.crashed = true;
+        }
+        else if (rocket.is_on_ground() && !rocket.crashed) {
+            rocket.landed = true;
+        }
+        else {
+            rocket.update(deltaTime);
+        }
     }
 
     // Tegn rakett
