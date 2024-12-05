@@ -136,7 +136,7 @@
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: 1fr 1fr auto auto auto auto; /* størrelse på bokser baserer seg på innhold */
-    grid-template-areas: 
+    grid-template-areas:
             "s r"
             "s v"
             "h h"
@@ -187,7 +187,7 @@
     display: grid;
     grid-template-rows: auto 1fr 1fr 1fr; /* fordeler elementene i listen utover boksen */
     align-items: center;
-    background-color: var(--elvebakken_rosa) !important; 
+    background-color: var(--elvebakken_rosa) !important;
 }
 .rask-oversikt li {
     font-size: 1.3rem;
@@ -236,7 +236,7 @@
     display: grid;
     grid-template-rows: auto 1fr 1fr; /* fordeler liste-elementer likt nedover boks */
     align-items: center;
-    background-color: var(--elvebakken_gul) !important; 
+    background-color: var(--elvebakken_gul) !important;
 }
 .mer-informasjon li {
     font-size: 1.1rem;
@@ -275,18 +275,6 @@
     .informasjonsbokser {
         display: flex;
         flex-direction: column;
-        /* grid-template-columns: 1fr;
-        grid-template-rows: repeat(8, auto);
-        grid-template-areas: 
-                "r"
-                "s"
-                "v"
-                "h"
-                "a"
-                "e"
-                "m"
-                "d"
-                "i"; */
     }
     .rask-oversikt li, .mer-informasjon li{
         padding-block: 10px;
