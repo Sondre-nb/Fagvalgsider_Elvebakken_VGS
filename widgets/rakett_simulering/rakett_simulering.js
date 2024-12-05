@@ -2,7 +2,7 @@
 document.getElementById('fullskjerm-link').addEventListener('click', function(event) {
     event.preventDefault();
     window.parent.location.href = this.href;
-    fullscreen = true;  
+    fullscreen = true;
 });
 
 document.getElementById('toggle-advanced-settings').addEventListener('change', function() {
@@ -72,7 +72,7 @@ class Node {
     // f: newton
     applyForce(f) {
         this.acc.addV(Vek2.divN(f, this.mass));
-    }  
+    }
 
     vel() {
         return Vek2.subV(this.pos, this.lastPos);
@@ -83,18 +83,18 @@ class Node {
         this.pos.addV(offset);
         this.lastPos.addV(offset);
     }
-    
+
     // Beveger node uten å påvirke hasigheten
     setPos(pos) {
         const v = this.vel();
         this.pos.set(pos);
         this.lastPos.set(pos).subV(v);
-    } 
+    }
 }
 
 class Rocket {
     constructor(pos) {
-        this.height = 100;
+        this.height = 50;
         const totalMass = parseFloat(massInput.value);
         this.nodes = [
             new Node(Vek2.sub(pos, new Vek2(0, this.height)), totalMass/2), // tip
@@ -117,10 +117,10 @@ class Rocket {
         if (this.motor.burnTime > 0) {
             const motorForce = this.dirVec().multN(this.motor.thrust);
             this.applyForce(motorForce);
-            
+
             this.motor.burnTime -= dt;
         }
-        
+
         // Fallskjerm
         if(this.parachuteDeployed) {
             const vel = this.tip().vel();
@@ -132,11 +132,11 @@ class Rocket {
         // Rakettens luftmotstand
         const airResistance = Vek2.normalized(this.vel()).multN(this.vel().lenSq() * this.k_L).negate(); // L = k * v^2
         this.applyForce(airResistance);
-        
+
         // Tyngdekraft
         const gravity = new Vek2(0, 9.81).multN(this.mass());
         this.applyForce(gravity);
-        
+
         // Hold avstanden mellom tip og tail konstant
         const o1 = this.tip();
         const o2 = this.bottom();
@@ -146,7 +146,7 @@ class Rocket {
         let delta = this.height - dist;
         o1.pos.addV(Vek2.multN(axis,  0.5 * delta));
         o2.pos.addV(Vek2.multN(axis, -0.5 * delta));
-        
+
         for(const node of this.nodes) {
             node.update(dt);
         }
@@ -210,10 +210,10 @@ const cameraTranslation = new Vek2();
 // Rocket
 let rocketLaunch = false;
 const platformPos = new Vek2(0, 0);
-const platformWidth = 300;
-const platformHeight = 100;
+const platformWidth = 75;
+const platformHeight = 30;
 
-const rocketStartPos = new Vek2(platformPos.x + platformWidth/2, platformPos.y);
+const rocketStartPos = new Vek2(platformPos.x + platformWidth/2, platformPos.y-2);
 let rocket = new Rocket(rocketStartPos);
 
 // Buttons
@@ -233,10 +233,10 @@ document.getElementById("deploy-parachute").addEventListener("click", function()
 function drawSky() {
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
-    
+
     ctx.fillStyle = 'lightblue';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
+
     ctx.restore();
 }
 
@@ -327,13 +327,13 @@ function drawRocket(x, y, rotation) {
         ctx.beginPath();
         ctx.arc(0, -parachuteLength, parachuteRadius, Math.PI, 0);
         ctx.fill();
-        
+
         // Left cord
         ctx.beginPath();
         ctx.moveTo(-parachuteRadius, -parachuteLength);
         ctx.lineTo(0, 0);
         ctx.stroke();
-        
+
         // Right cord
         ctx.beginPath();
         ctx.moveTo(parachuteRadius, -parachuteLength);
@@ -342,6 +342,39 @@ function drawRocket(x, y, rotation) {
 
         ctx.restore();
     }
+}
+
+function drawRocketHeight() {
+    let unit = "m";
+    let height = Math.round((rocket.pos().y*-1)-rocket.height/4);
+
+    if (height > 1000) {
+        height = Math.round(height/1000);
+        unit = "km";
+    }
+
+    ctx.fillText('Høyde: ' + height + unit, 5, 19);
+}
+
+function drawMotorBurnTime() {
+    if (rocket.motor.burnTime.toFixed(2) <= 0.00) {
+        ctx.fillText('Motor: Av', 5, 39);
+    }
+    else {
+        ctx.fillText('Motor: På (' + rocket.motor.burnTime.toFixed(2) + ' s)', 5, 39);
+    }
+}
+
+function drawHUD() {
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
+
+    ctx.fillStyle = 'black';
+    ctx.font = '14px "Roboto Mono"';
+    drawRocketHeight();
+    drawMotorBurnTime();
+
+    ctx.restore();
 }
 
 resetRocket();
@@ -362,7 +395,7 @@ function launchRocket() {
 
 let lastDrawTime; // ms
 
-// Tegn alt 
+// Tegn alt
 function draw() {
     // Regn ut tiden som har gått siden forrige draw
     const now = performance.now(); // ms
@@ -374,7 +407,7 @@ function draw() {
     ctx.reset();
     // Tøm canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-   
+
     ctx.translate(cameraTranslation.x, cameraTranslation.y);
     ctx.scale(cameraScale, cameraScale);
 
@@ -382,14 +415,16 @@ function draw() {
     drawSky();
     drawGround();
 
-    if (rocketLaunch) {    
-        // Jukser litt med å få tiden til å gå dobbelt så fort her    
+    if (rocketLaunch) {
+        // Jukser litt med å få tiden til å gå dobbelt så fort her
         rocket.update(deltaTime);
         rocket.update(deltaTime);
     }
 
     // Tegn rakett
     drawRocket(rocket.pos().x, rocket.pos().y, rocket.dir());
+
+    drawHUD();
 }
 
 lastDrawTime = performance.now();
