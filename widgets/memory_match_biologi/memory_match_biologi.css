@@ -1,0 +1,92 @@
+:root {
+    --elvebakken_blå: #74b2e1;
+    --elvebakken_blå_lys: #9CC9EB;
+    --elvebakken_rosa: #DC8EB6;
+    --elvebakken_gul: #F0E691;
+    --elvebakken_oransje: #FAB965;
+    --mørke_blå: #204B57;
+    --mørke_grønn: #75DC98;
+    --lyse_grønn: #89F1AC;
+    --biologi_blå: #0E1C36;
+    --biologi_grønn: #20BF55;
+    --biologi_lilla: #a78ca6;
+    --biologi_rosa: #ED6A5A;
+}
+* {
+    margin: 0;
+    font-family: 'Oslo Sans', sans-serif;
+    scroll-behavior: smooth;
+    box-sizing: border-box;
+}
+body {
+    background-color: var(--biologi_blå);
+}
+/* Overskrift */
+#spill-tittel {
+    text-align: center;
+    padding-top: 10px;
+    color: white;
+}
+/* Tekst som vises ved for liten bredde */
+#for-liten-bredde {
+    display: none;
+    text-align: center;
+    padding: 10px;
+}
+#spill {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.kort {
+    background-color: white;
+    padding: 10px;
+    height: 180px;
+    width: 120px;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.kort:hover {
+    transform: scale(1.05);
+}
+.kort img {
+    width: 80%;
+    margin: 10%;
+    border-radius: 5px;
+}
+.kort .tekst-til-bilde {
+    text-align: center;
+    padding: 5px;
+}
+.par2 .snudd-kort{
+    background-color: var(--elvebakken_blå_lys);
+}
+.par3 .snudd-kort{
+    background-color: var(--elvebakken_gul);
+}
+.par4 .snudd-kort{
+    background-color: var(--elvebakken_oransje);
+}
+.par5 .snudd-kort{
+    background-color: var(--elvebakken_rosa);
+}
+.par6 .snudd-kort{
+    background-color: var(--biologi_lilla);
+}
+.snudd-kort {
+    display: none;
+    background-color: var(--lyse_grønn);
+    height: 100%;
+    border-radius: 10px;
+}
+.skjult-kort {
+    height: 100%;
+    width: 100%;
+    display: grid;
+    justify-items: center;
+    align-content: center;
+}
+.skjult-kort img {
+    margin: 0;
+}

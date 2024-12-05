@@ -16,12 +16,16 @@
 
     <!-- Spill-element (skjules når iframe-bredden er under 520 px) -->
     <div id="spill">
+
+        <!-- Salt som helles plasseres i denne div-en -->
         <div id="aktivt-salt"></div>
+
+        <!-- Reagensrør på høyre side av skjermen -->
         <div id="reagensrør-gruppe1">
-            <div class="saltplassering">
+            <div class="saltplassering"> <!-- Lar saltene kunne bli plassert tilbake på samme plass -->
                 <div class="salt" id="NH4Cl">
                     <img src="/assets/imgs/kjemi/reagensrør.png" alt="reagensrør">
-                    <div class="saltfarge"></div>
+                    <div class="saltfarge"></div> <!-- Div med fargen til saltet som fyller halve reagensrøret -->
                     <div class="saltnavn">NH4Cl</div>
                 </div>
             </div>
@@ -47,6 +51,7 @@
                 </div>
             </div>
         </div>
+        <!-- Reagensrør på venstre side av skjermen -->
         <div id="reagensrør-gruppe2">
             <div class="saltplassering">
                 <div class="salt" id="BaNO32">
@@ -70,15 +75,18 @@
                 </div>
             </div>
         </div>
+        <!-- Begerglass i midten av skjermen -->
         <div id="begerglass">
             <img src="/assets/imgs/kjemi/begerglass.png" alt="begerglass">
             <div id="løsningsfarge"></div>
         </div>
+        <!-- Bunnseksjon med plass til å skrive reaksjonslikningen, reaksjonstypen og nullstill-knapp -->
         <div id="reaksjonsinfo">
             <div id="nullstill-knapp"><button>Nullstill</button></div>
             <div id="reaksjonstype">Reaksjonstype: </div>
             <div id="reaksjonslikning"></div>
         </div>
+        <!-- Forteller at reaksjonslikningen ikke er balansert når det har skjedd en reaksjon -->
         <div id="disclaimer">*Reaksjonslikningen er ikke balansert</div>
     </div>
     <script src="bland_salter_spill.js"></script>
