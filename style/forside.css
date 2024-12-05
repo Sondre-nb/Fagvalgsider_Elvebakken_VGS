@@ -2,7 +2,7 @@
     padding: 5%;
     padding-bottom: 0px;
     width: 100%;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .fag-element {
@@ -10,7 +10,7 @@
     display: flex;
     flex-direction: row;
     width: auto;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 50px;
     border: 0px transparent solid;
     border-radius: 10px;
@@ -21,12 +21,12 @@
     display: flex;
     flex-direction: column;
     margin: 20px;
-    box-sizing: border-box; 
+    box-sizing: border-box;
 }
 
 .fag-bilde {
     width: 40%;
-    height: 300px; 
+    height: 300px;
     object-fit: cover;
     object-position: center;
     border: 0px solid transparent;
@@ -91,11 +91,48 @@
 #intro {
     font-size: 1.5rem;
 }
+
+@media (max-width: 600px) {
+    .fag-element {
+        flex-direction: column;
+    }
+
+    .fag-element:nth-child(even) {
+        flex-direction: column-reverse;
+    }
+
+    .fag-bilde {
+        width: auto;
+        border-bottom-right-radius: 0px !important; /* Trengs for å overskrive den element spesifike radiusen */
+        border-bottom-left-radius: 0px !important; /* Trengs for å overskrive den element spesifike radiusen */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        margin-bottom: 10px;
+        height: 350px;
+    }
+
+    .fag-info {
+        margin: 0px;
+        padding: 10px;
+    }
+
+    .fag-se-mer-knapp {
+        margin-bottom: 10px;
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+
+    .fag-sitat {
+        text-align: center;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+}
 #fag_meny{
     overflow-x: auto;
     padding: 15px;
     display: grid;
-    grid-template-columns: repeat(8, 1fr); /* må endres til antall fag */
+    /* grid-template-columns: repeat(8, 1fr);  *//* må endres til antall fag */
     gap: 30px;
 
     /* skjuler scrollebaren til fag_menyen for IE, Edge og Firefox */
@@ -127,7 +164,7 @@
     height: 60%;
     object-fit: cover;
     border-radius: 10px 10px 0 0; /* avrunder de øverste hjørnene */
-}  
+}
 /* programfag-navnene i den øverste programfag-oversikten */
 #fag_meny p{
     padding-left: 10px;
@@ -321,7 +358,7 @@
         height: 350px;
     }
 
-    .fag-info { 
+    .fag-info {
         margin: 0px;
         padding: 10px;
     }

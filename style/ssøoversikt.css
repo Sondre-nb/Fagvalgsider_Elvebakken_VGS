@@ -1,0 +1,4 @@
+/*Endres til antall fag i menyen*/
+#fag_meny{
+    grid-template-columns: repeat(14, 1fr); /* må endres til antall fag */
+}
