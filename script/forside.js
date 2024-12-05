@@ -6,7 +6,6 @@ window.addEventListener("scroll", function () {
     header.style.opacity = 1 - scrollTop / scrollBunn;
 });
 
-
 //henter info fra css-fil for å bruke det til utregning av hvor langt man skal bla og når knappen for å bla il høyre i menyen skal skjules
 let fag_meny_info = document.querySelector('#fag_meny');
 let fag_meny_info_computed_style = getComputedStyle(fag_meny_info);
@@ -61,6 +60,9 @@ let menyStatus = "rad"
 let visAlleEl = document.querySelector('#vis-alle');
 visAlleEl.addEventListener("click", toggleMeny);
 
+// Henter variabelen antall_programfag
+let antall_fag_i_menyen = getComputedStyle(document.documentElement).getPropertyValue('--antall_programfag');
+
 // Endrer fra rad man kan bla i til alt under hverandre (og tilbake)
 function toggleMeny(){
     fag_meny = document.getElementById("fag_meny");
@@ -74,7 +76,7 @@ function toggleMeny(){
         venstre_bla_knapp.style.display = "none";
     } else{ // Legger elementene tilbake på en rad man kan bla
         visAlleEl.innerHTML = "vis alle >";
-        fag_meny.style.gridTemplateColumns = "repeat(8, 1fr)";
+        fag_meny.style.gridTemplateColumns = "repeat(" + antall_fag_i_menyen + ", 1fr)";
         menyStatus = "rad";
         høyre_bla_knapp.style.display = "block";
     }

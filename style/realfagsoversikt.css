@@ -1,4 +1,3 @@
-/*Endres til antall fag i menyen*/
-#fag_meny{
-    grid-template-columns: repeat(8, 1fr); /* må endres til antall fag */
+:root {
+    --antall_programfag: 8;
 }
