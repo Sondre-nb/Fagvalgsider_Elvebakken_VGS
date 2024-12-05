@@ -48,20 +48,24 @@ body {
 #reagensrør-gruppe2 {
     grid-area: r2;
 }
+/* Plasserer reagensrørene ved siden av hverandre med like mye avstand på hver side */
 #reagensrør-gruppe1, #reagensrør-gruppe2 {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     justify-items: center;
 }
+/* Salt som helles */
 #aktivt-salt {
     position: absolute;
     transform: rotate(45deg);
     top: 0px;
     left: var(--helleplassering);
 }
+/* Reagensrør-bilde */
 .salt img {
     height: 300px;
 }
+/* Får elementene til hvert salt til å plasseres på samme sted */
 .salt {
     display: grid;
     cursor: pointer;
@@ -80,8 +84,9 @@ body {
     position: absolute;
     align-self: center;
     padding-right: 150px;
-    transform: rotate(270deg);
+    transform: rotate(270deg); /* Vender teksten vertikalt */
 }
+/* Får elementene til begerglasset til å plasseres på samme sted */
 #begerglass {
     grid-area: be;
     display: grid;
@@ -91,6 +96,7 @@ body {
 #begerglass img {
     height: 250px;
 }
+/* Fargen til løsningen som blir laget */
 #løsningsfarge {
     z-index: -1;
     position: absolute;
@@ -98,6 +104,7 @@ body {
     width: 190px;
     height: 0px;
 }
+/* Grid til nederste del */
 #reaksjonsinfo {
     grid-area: re;
     padding: 10px;
@@ -142,14 +149,14 @@ body {
 #nullstill-knapp button:hover {
     background-color: #FFD9C5;
 }
-#NH4Cl .saltfarge {
+/*#NH4Cl .saltfarge {
     background: linear-gradient(0deg,rgba(230, 216, 138, 0.3)  95%, rgb(187, 179, 120) 95%);
-}
+}*/
 #NaOH .saltfarge, #Na2CO3 .saltfarge, #CaCl2 .saltfarge {
     /*background: linear-gradient(90deg,rgba(255,125,215,0.5)  0%, rgba(184,90,255,0.5) 50%, rgba(77,87,224,0.5) 100%);*/
     background: linear-gradient(0deg,rgba(219, 230, 243, 0.3)  95%, rgb(161, 181, 192) 95%);
 }
-#AgNO3 .saltfarge {
+#AgNO3 .saltfarge, #NH4Cl .saltfarge {
     /*NH4Cl: background: linear-gradient(0deg,rgba(230, 216, 138, 0.3)  95%, rgb(206, 194, 127) 95%);*/
     background: linear-gradient(0deg,rgba(219, 230, 243, 0.3)  95%, rgb(161, 181, 192) 95%);
 }
@@ -159,12 +166,13 @@ body {
 #CuSO4 .saltfarge {
     background: linear-gradient(0deg,rgba(196, 226, 233, 0.3)  95%, rgb(156, 179, 184) 95%);
 }
-
+/* Tekst som vises når reaksjonen har sett */
 #disclaimer {
     display: none;
     padding-left: 10px;
 }
 
+/* Skjuler spillet når skjermbredden er for liten og viser tekst som forteller dette */
 @media (max-width: 730px) {
     #spill {
         display: none;
@@ -174,6 +182,7 @@ body {
     }
 }
 
+/* Justerer format og størrelse på spill */
 @media (max-width: 1000px) {
     #spill {
         grid-template-columns: repeat(2, auto);
@@ -204,6 +213,7 @@ body {
     }
 }
 
+/* Endrer høyde på innhold og fargen i begerglass når salt er valgt */
 @keyframes fyll_begerglass {
     0% {
       height: var(--starthøyde);
@@ -215,6 +225,7 @@ body {
     }
 }
 
+/* Tømmer innhold i reagensrør */
 @keyframes hell_salt {
     0% {
       height: 150px;
