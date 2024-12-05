@@ -23,6 +23,9 @@ const massInput = document.getElementById('mass');
 const massValue = document.getElementById('mass-value');
 const burnTimeInput = document.getElementById('burn-time');
 const burnTimeValue = document.getElementById('burn-time-value');
+const zoomInput = document.getElementById('zoom');
+const zoomValue = document.getElementById('zoom-value');
+
 
 angleInput.addEventListener('input', function() {
     angleValue.textContent = angleInput.value;
@@ -48,6 +51,13 @@ burnTimeInput.addEventListener('input', function() {
     burnTimeValue.textContent = burnTimeInput.value + ' s';
     resetRocket();
 });
+
+zoomInput.addEventListener('input', function() {
+    zoomValue.textContent = zoomInput.value;
+    cameraScale = parseFloat(zoomInput.value);
+    console.log(cameraScale);
+});
+
 
 const noseColorInput = document.getElementById('nose-color');
 const finsColorInput = document.getElementById('fins-color');
@@ -204,7 +214,7 @@ class Rocket {
 // Skaffer referanse til canvas og kontekst
 const canvas = document.getElementById('vektor-canvas');
 const ctx = canvas.getContext('2d');
-const cameraScale = 0.7;
+var cameraScale = 0.7;
 const cameraTranslation = new Vek2();
 
 // Rocket
@@ -242,7 +252,7 @@ function drawSky() {
 
 function drawGround() {
     ctx.fillStyle = 'grey';
-    ctx.fillRect(-2000, 30, 4000, 2000);
+    ctx.fillRect(-5000, 30, 10000, 4000);
 
     ctx.fillStyle = 'darkgrey';
     ctx.fillRect(platformPos.x, platformPos.y, platformWidth, platformHeight);
@@ -365,6 +375,18 @@ function drawMotorBurnTime() {
     }
 }
 
+function drawRocketVelocity() {
+    let unit = "m/s";
+    let velocity = Math.round(rocket.vel().len());
+
+    if (velocity > 1000) {
+        velocity = Math.round(velocity/1000);
+        unit = "km/s";
+    }
+
+    ctx.fillText('Fart: ' + velocity + unit, 5, 59);
+}
+
 function drawHUD() {
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
@@ -373,6 +395,7 @@ function drawHUD() {
     ctx.font = '14px "Roboto Mono"';
     drawRocketHeight();
     drawMotorBurnTime();
+    drawRocketVelocity();
 
     ctx.restore();
 }
