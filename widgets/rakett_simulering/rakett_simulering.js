@@ -432,8 +432,11 @@ let lastDrawTime; // ms
 function draw() {
     // Regn ut tiden som har gått siden forrige draw
     const now = performance.now(); // ms
-    const deltaTime = (now - lastDrawTime) / 1000; // s
+    let deltaTime = (now - lastDrawTime) / 1000; // s
     lastDrawTime = now;
+    // For at fysikken ikke skal gjøre for store hopp etter for eksempel bytting av fane.
+    // Fysikken blir på en måte satt på pause.
+    deltaTime = Math.min(deltaTime, 1/20);
 
     cameraTranslation.set(rocket.tip().pos.clone().negate().add(new Vek2(canvas.width, canvas.height).div(2).div(cameraScale)).mult(cameraScale));
 
