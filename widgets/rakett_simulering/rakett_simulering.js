@@ -90,7 +90,7 @@ class Node {
     }
 
     vel() {
-        return Vek2.subV(this.pos, this.lastPos).div(2 * this.prevDt);
+        return Vek2.subV(this.pos, this.lastPos).div(this.prevDt);
     }
 
     // Beveger node uten å påvirke hasigheten
@@ -123,8 +123,8 @@ class Rocket {
         };
 
         this.parachuteDeployed = false;
-        this.parachute_k_L = 400; // luftmotstandskoeffisienten
-        this.fin_k_L = 6; // luftmotstandskoeffisienten
+        this.parachute_k_L = 20; // luftmotstandskoeffisienten
+        this.fin_k_L = 0.7; // luftmotstandskoeffisienten
     }
 
     // dt: delta time
