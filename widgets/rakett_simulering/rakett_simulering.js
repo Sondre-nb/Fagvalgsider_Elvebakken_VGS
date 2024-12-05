@@ -69,14 +69,19 @@ class Node {
         this.lastPos = this.pos.clone(); // m/s
         this.acc = new Vek2(0, 0); // m/s^2
         this.mass = mass; // kg
+
+        // Cache
+        this.prevDt = 1;
     }
 
     // dt: delta time
     update(dt) {
-        const vel = Vek2.subV(this.pos, this.lastPos);
+        const displacement = Vek2.subV(this.pos, this.lastPos);
         this.lastPos.set(this.pos);
-        this.pos.addV(Vek2.addV(vel, Vek2.multN(this.acc, dt*dt)));
+        this.pos.addV(Vek2.addV(displacement, Vek2.multN(this.acc, dt*dt)));
         this.acc.set(0, 0);
+        
+        this.prevDt = dt;
     }
 
     // f: newton
@@ -85,7 +90,7 @@ class Node {
     }
 
     vel() {
-        return Vek2.subV(this.pos, this.lastPos);
+        return Vek2.subV(this.pos, this.lastPos).div(2 * this.prevDt);
     }
 
     // Beveger node uten å påvirke hasigheten
@@ -118,8 +123,8 @@ class Rocket {
         };
 
         this.parachuteDeployed = false;
-        this.parachute_k_L = 40000; // luftmotstandskoeffisienten
-        this.fin_k_L = 600; // luftmotstandskoeffisienten
+        this.parachute_k_L = 400; // luftmotstandskoeffisienten
+        this.fin_k_L = 6; // luftmotstandskoeffisienten
     }
 
     // dt: delta time
