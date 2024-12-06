@@ -227,7 +227,7 @@ class Rocket {
             return false;
         }
 
-        if (this.vel().len() > 40) {
+        if (this.vel().y > 50) {
             return true;
         }
 
@@ -406,22 +406,36 @@ function drawMotorBurnTime() {
 }
 
 function drawRocketVelocity() {
-    let unit = "m/s";
-    let velocity = Math.round(rocket.vel().len());
+    let x_unit = "m/s";
+    let y_unit = "m/s";
+    let velocity_x = Math.round(rocket.vel().x);
+    let velocity_y = Math.round(rocket.vel().y);
 
-    if (velocity > 1000) {
-        velocity = Math.round(velocity/1000);
-        unit = "km/s";
+    if (velocity_x > 1000) {
+        velocity_x = Math.round(velocity_x/1000);
+        x_unit = "km/s";
     }
 
-    if (rocket.vel().rotation() < 0) {
-        direction_icon = "↑";
+    if (velocity_y > 1000) {
+        velocity_y = Math.round(velocity_y/1000);
+        y_unit = "km/s";
+    }
+
+    if (rocket.vel().x > 0) {
+        direction_icon_x = "→";
     }
     else {
-        direction_icon = "↓";
+        direction_icon_x = "←";
     }
 
-    ctx.fillText('Fart: ' + velocity + unit + " " + direction_icon, 5, 59);
+    if (rocket.vel().y < 0) {
+        direction_icon_y = "↑";
+    }
+    else {
+        direction_icon_y = "↓";
+    }
+
+    ctx.fillText('Fart: ' + velocity_x + x_unit + " " + direction_icon_x + " | " + Math.abs(velocity_y) + y_unit + " " + direction_icon_y, 5, 59);
 }
 
 function drawRocketState() {
