@@ -25,49 +25,15 @@ class Vek2 {
         return this;
     }
 
-    addV(vek) {
-        this.x += vek.x;
-        this.y += vek.y;
-        return this;
-    }
-
-    addN(num) {
-        this.x += num;
-        this.y += num;
-        return this;
-    }
-
     add(a) {
-        if(typeof a === "object") {
-            this.x += a.x;
-            this.y += a.y;
-        } else {
-            this.x += a;
-            this.y += a;
-        }
+        this.x += a.x;
+        this.y += a.y;
         return this;
     }
 
-    subV(vek) {
-        this.x -= vek.x;
-        this.y -= vek.y;
-        return this;
-    }
-
-    subN(num) {
-        this.x -= num;
-        this.y -= num;
-        return this;
-    }
-    
     sub(a) {
-        if(typeof a === "object") {
-            this.x -= a.x;
-            this.y -= a.y;
-        } else {
-            this.x -= a;
-            this.y -= a;
-        }
+        this.x -= a.x;
+        this.y -= a.y;
         return this;
     }
 
@@ -94,26 +60,9 @@ class Vek2 {
         return this;
     }
 
-    divV(vek) {
-        this.x /= vek.x;
-        this.y /= vek.y;
-        return this;
-    }
-
-    divN(num) {
+    div(num) {
         this.x /= num;
         this.y /= num;
-        return this;
-    }
-
-    div(a) {
-        if(typeof a === "object") {
-            this.x /= a.x;
-            this.y /= a.y;
-        } else {
-            this.x /= a;
-            this.y /= a;
-        }
         return this;
     }
 
@@ -136,8 +85,14 @@ class Vek2 {
     normalize() {
         let lenSq = this.lenSq();
         if (lenSq > 0) {
-            this.divN(Math.sqrt(lenSq));
+            this.div(Math.sqrt(lenSq));
         }
+        return this;
+    }
+
+    // Set the magnitude
+    setMag(mag) {
+        this.normalize().multN(mag);
         return this;
     }
 
@@ -192,7 +147,7 @@ class Vek2 {
     rotate(o, rad) {
         if(typeof o === "object") {
             //Translate point to the origin
-            let p = this.subV(o);
+            let p = Vek2.sub(this, o);
             let sin = Math.sin(rad);
             let cos = Math.cos(rad);
         
@@ -200,46 +155,23 @@ class Vek2 {
             this.x = p.x * cos - p.y * sin + o.x;
             this.y = p.x * sin + p.y * cos + o.y;
         } else {
-            let sin = Math.sin(rad);
-            let cos = Math.cos(rad);
+            let p = this.clone();
+            let sin = Math.sin(o);
+            let cos = Math.cos(o);
         
             //perform rotation
-            this.x = this.x * cos - this.y * sin;
-            this.y = this.x * sin + this.y * cos;
+            this.x = p.x * cos - p.y * sin;
+            this.y = p.x * sin + p.y * cos;
         }
         return this;
     }
 
-    static addV(vek1, vek2) {
-        return new Vek2(vek1.x + vek2.x, vek1.y + vek2.y);
-    }
-
-    static addN(vek, num) {
-        return new Vek2(vek.x + num, vek.y + num);
-    }
-
     static add(vek, a) {
-        if(typeof a === "object") {
-            return new Vek2(vek.x + a.x, vek.y + a.y);
-        } else {
-            return new Vek2(vek.x + a, vek.y + a);
-        }
-    }
-
-    static subV(vek1, vek2) {
-        return new Vek2(vek1.x - vek2.x, vek1.y - vek2.y);
-    }
-
-    static subN(vek, num) {
-        return new Vek2(vek.x - num, vek.y - num);
+        return new Vek2(vek.x + a.x, vek.y + a.y);
     }
 
     static sub(vek, a) {
-        if(typeof a === "object") {
-            return new Vek2(vek.x - a.x, vek.y - a.y);
-        } else {
-            return new Vek2(vek.x - a, vek.y - a);
-        }
+        return new Vek2(vek.x - a.x, vek.y - a.y);
     }
 
     static multV(vek1, vek2) {
@@ -258,36 +190,12 @@ class Vek2 {
         }
     }
 
-    static divV(vek1, vek2) {
-        return new Vek2(vek1.x / vek2.x, vek1.y / vek2.y);
-    }
-
-    static divN(vek, num) {
+    static div(vek, num) {
         return new Vek2(vek.x / num, vek.y / num);
-    }
-
-    static div(vek, a) {
-        if(typeof a === "object") {
-            return new Vek2(vek.x / a.x, vek.y / a.y);
-        } else {
-            return new Vek2(vek.x / a, vek.y / a);
-        }
     }
 
     static negated(vek) {
         return new Vek2(-vek.x, -vek.y);
-    }
-
-    static dist(vek1, vek2) {
-        const dx = vek2.x - vek1.x;
-        const dy = vek2.y - vek1.y;
-        return Math.sqrt(dx * dx + dy * dy);
-    }
-
-    static distSq(vek1, vek2) {
-        const dx = vek2.x - vek1.x;
-        const dy = vek2.y - vek1.y;
-        return dx * dx + dy * dy;
     }
 
     static normalized(vek) {
@@ -295,7 +203,7 @@ class Vek2 {
         let out = new Vek2();
         if (lenSq > 0) {
             out.set(vek);
-            out.divN(out.len());
+            out.div(out.len());
         }
         return out;
     }
@@ -351,7 +259,7 @@ class Vek2 {
         if(typeof b === "object") {
             let out = new Vek2();
             //Translate point to the origin
-            let p = Vek2.subV(a, b);
+            let p = Vek2.sub(a, b);
             let sin = Math.sin(rad);
             let cos = Math.cos(rad);
         

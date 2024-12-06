@@ -55,7 +55,6 @@ burnTimeInput.addEventListener('input', function() {
 zoomInput.addEventListener('input', function() {
     zoomValue.textContent = zoomInput.value;
     cameraScale = parseFloat(zoomInput.value);
-    console.log(cameraScale);
 });
 
 
@@ -76,9 +75,9 @@ class Node {
 
     // dt: delta time
     update(dt) {
-        const displacement = Vek2.subV(this.pos, this.lastPos);
+        const displacement = Vek2.sub(this.pos, this.lastPos);
         this.lastPos.set(this.pos);
-        this.pos.addV(Vek2.addV(displacement, Vek2.multN(this.acc, dt*dt)));
+        this.pos.add(Vek2.add(displacement, Vek2.multN(this.acc, dt*dt)));
         this.acc.set(0, 0);
 
         this.prevDt = dt;
@@ -86,30 +85,31 @@ class Node {
 
     // f: newton
     applyForce(f) {
-        this.acc.addV(Vek2.divN(f, this.mass));
+        this.acc.add(Vek2.div(f, this.mass));
     }
 
     vel() {
-        return Vek2.subV(this.pos, this.lastPos).div(this.prevDt);
+        return Vek2.sub(this.pos, this.lastPos).div(this.prevDt);
     }
 
     // Beveger node uten å påvirke hasigheten
     move(offset) {
-        this.pos.addV(offset);
-        this.lastPos.addV(offset);
+        this.pos.add(offset);
+        this.lastPos.add(offset);
     }
 
     // Beveger node uten å påvirke hasigheten
     setPos(pos) {
         const v = this.vel();
         this.pos.set(pos);
-        this.lastPos.set(pos).subV(v);
+        this.lastPos.set(pos).sub(v);
     }
 }
 
 class Rocket {
     constructor(pos) {
         this.height = 50;
+        this.width = 10;
         const totalMass = parseFloat(massInput.value);
         this.nodes = [
             new Node(Vek2.sub(pos, new Vek2(0, this.height)), totalMass/2), // tip
@@ -123,7 +123,7 @@ class Rocket {
         };
 
         this.parachuteDeployed = false;
-        this.parachute_k_L = 15; // luftmotstandskoeffisienten
+        this.parachute_k_L = 10; // luftmotstandskoeffisienten
         this.fin_k_L = 0.7; // luftmotstandskoeffisienten
 
         // State
@@ -149,13 +149,7 @@ class Rocket {
             this.tip().applyForce(forceDirection.multN(forceMagnitude));
         }
 
-        // Rakettens luftmotstand
-        const airResistance = Vek2.normalized(this.vel()).multN(this.vel().lenSq() * this.k_L).negate(); // L = k * v^2
-        this.applyForce(airResistance);
-
-        // Finnenes luftmotstand
-        const finAirResistance = Vek2.normalized(this.bottom().vel()).multN(this.bottom().vel().lenSq() * this.fin_k_L).negate();
-        this.bottom().applyForce(finAirResistance);
+        this.applyAirResistance();
 
         // Tyngdekraft
         var gravity = new Vek2(0, 9.81).multN(rocket.mass());
@@ -164,16 +158,55 @@ class Rocket {
         // Hold avstanden mellom tip og tail konstant
         const o1 = this.tip();
         const o2 = this.bottom();
-        let axis = Vek2.subV(o1.pos, o2.pos);
+        let axis = Vek2.sub(o1.pos, o2.pos);
         let dist = axis.len();
         axis.normalize();
         let delta = this.height - dist;
-        o1.pos.addV(Vek2.multN(axis,  0.5 * delta));
-        o2.pos.addV(Vek2.multN(axis, -0.5 * delta));
+        o1.pos.add(Vek2.multN(axis,  0.5 * delta));
+        o2.pos.add(Vek2.multN(axis, -0.5 * delta));
 
         for(const node of this.nodes) {
             node.update(dt);
         }
+    }
+
+    applyAirResistance() {
+        // Rakettkroppens luftmotstand:
+        // Bruker denne formelen: Fd = 1/2 * ρ * v^2 * Cd * A https://snl.no/luftmotstand
+        const rho = airDensity(-this.pos().y); // -y siden alt er opp ned
+        const v = this.vel().len();
+        const Cd = this.k_L;
+        // For å regne areal forenkles raketten til et rektangel.
+        // Illustrasjon:
+        // |--T--T2
+        // |     |
+        // |     |
+        // |     |
+        // |     |
+        // |     |
+        // B3-B--B2
+        const T = this.tip().pos.clone();
+        const B = this.bottom().pos.clone();
+        const velocityAngle = this.vel().normalize().rotation();
+        
+        // For å finne overflatearealet relativt til fartsretningen roteres T og B rundt sentrum
+        T.rotate(this.pos(), -velocityAngle + Math.PI/2);
+        B.rotate(this.pos(), -velocityAngle + Math.PI/2);
+
+        const T2 = Vek2.add(T, Vek2.sub(T, B).setMag(this.width/2).rotate(-Math.PI/2));
+        const B2 = Vek2.add(B, Vek2.sub(B, T).setMag(this.width/2).rotate(Math.PI/2));
+        const B3 = Vek2.add(B, Vek2.sub(B, T).setMag(this.width/2).rotate(-Math.PI/2));
+        const s1 = Math.abs(T2.x-B2.x);
+        const s2 = Math.abs(B2.x-B3.x);
+
+        const A = s1 + s2;
+        const airResistance = Vek2.normalized(this.vel()).negate().multN(0.5 * rho * v*v * Cd * A);
+        this.applyForce(airResistance);
+        console.log(airResistance);
+
+        // Finnenes luftmotstand:
+        const finAirResistance = Vek2.normalized(this.bottom().vel()).multN(this.bottom().vel().lenSq() * this.fin_k_L).negate();
+        this.bottom().applyForce(finAirResistance);
     }
 
     mass() {
@@ -192,7 +225,7 @@ class Rocket {
     }
 
     pos() {
-        return Vek2.addV(this.tip().pos, this.bottom().pos).div(2);
+        return Vek2.add(this.tip().pos, this.bottom().pos).div(2);
     }
 
     // følger enhetsirkelen
@@ -202,16 +235,16 @@ class Rocket {
 
     // følger enhetsirkelen
     dirVec() {
-        return Vek2.subV(this.tip().pos, this.bottom().pos).normalize();
+        return Vek2.sub(this.tip().pos, this.bottom().pos).normalize();
     }
 
     // gjennomsnittlig hastighet
     vel() {
         let v = new Vek2();
         for(const node of this.nodes) {
-            v.addV(node.vel());
+            v.add(node.vel());
         }
-        v.divN(this.nodes.length);
+        v.div(this.nodes.length);
         return v;
     }
 
@@ -242,6 +275,10 @@ class Rocket {
             return ((this.tip().pos.y*-1 <= 30) || (this.bottom().pos.y*-1 <= 30));
         }
     }
+}
+
+function airDensity(altitude) {
+    return 1.225 * Math.exp(-altitude / 8400);
 }
 
 
@@ -358,7 +395,7 @@ function drawRocket(x, y, rotation) {
     const rocketBodyColor = bodyColorInput.value;
     const rocketFinnColor = finsColorInput.value;
     const rocketNoseColor = noseColorInput.value;
-    const rocketWidth = 10;
+    const rocketWidth = rocket.width;
     const rocketHeight = rocket.height;
     const coneHeight = 10;
     const finnWidth = 8;
@@ -566,6 +603,18 @@ function draw() {
     // Fysikken blir på en måte satt på pause.
     deltaTime = Math.min(deltaTime, 1/20);
 
+    if (rocketLaunch) {
+        if (rocket.should_crash()) {
+            rocket.crashed = true;
+        }
+        else if (rocket.is_on_ground() && !rocket.crashed) {
+            rocket.landed = true;
+        }
+        else {
+            rocket.update(deltaTime);
+        }
+    }
+
     cameraTranslation.set(rocket.tip().pos.clone().negate().add(new Vek2(canvas.width, canvas.height).div(2).div(cameraScale)).mult(cameraScale));
 
     ctx.reset();
@@ -579,24 +628,15 @@ function draw() {
     drawSky();
     drawGround();
 
-    if (rocketLaunch) {
-        if (rocket.should_crash()) {
-            rocket.crashed = true;
-        }
-        else if (rocket.is_on_ground() && !rocket.crashed) {
-            rocket.landed = true;
-        }
-        else {
-            rocket.update(deltaTime);
-        }
-    }
-
     // Tegn rakett
     drawRocket(rocket.pos().x, rocket.pos().y, rocket.dir());
 
     drawHUD();
+
+    window.requestAnimationFrame(draw);
 }
 
 lastDrawTime = performance.now();
 // Tegn canvas hver frame
-setInterval(draw, 1000 / 60);
+draw();
+// setInterval(draw, 1000 / 60);

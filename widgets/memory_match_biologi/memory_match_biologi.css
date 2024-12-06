@@ -24,7 +24,7 @@ body {
 /* Overskrift */
 #spill-tittel {
     text-align: center;
-    padding-top: 10px;
+    padding: 10px;
     color: white;
 }
 /* Tekst som vises ved for liten bredde */
@@ -88,6 +88,34 @@ body {
     align-content: center;
 }
 .skjult-kort img {
-    display: block;
     margin: 0;
+}
+#nullstill-knapp {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+#nullstill-knapp button {
+    border: none;
+    background-color: white;
+    height: 40px;
+    padding: 10px 30px;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-block: 10px;
+}
+#nullstill-knapp button:hover {
+    background-color: var(--elvebakken_blå_lys);
+}
+
+@media (max-width: 600px) {
+    .kort {
+        transform: scale(0.8);
+        margin: 0px;
+    }
+    .kort:hover {
+        transform: scale(0.85);
+    }
 }
