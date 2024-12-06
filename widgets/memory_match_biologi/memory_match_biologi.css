@@ -33,7 +33,7 @@ body {
     text-align: center;
     padding: 10px;
 }
-#spill {
+#stokket_kort {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -81,12 +81,13 @@ body {
     border-radius: 10px;
 }
 .skjult-kort {
+    display: grid; /*grid*/
     height: 100%;
     width: 100%;
-    display: grid;
     justify-items: center;
     align-content: center;
 }
 .skjult-kort img {
+    display: block;
     margin: 0;
 }

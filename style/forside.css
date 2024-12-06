@@ -322,6 +322,21 @@
 #programområder a:nth-child(6) {
     background-color: var(--elvebakken_gul);
 }
+#programområder a:nth-child(2):hover {
+    background-color: #A5F5C0;
+}
+#programområder a:nth-child(3):hover {
+    background-color: var(--elvebakken_blå_lys);
+}
+#programområder a:nth-child(4):hover {
+    background-color: #FFC982;
+}
+#programområder a:nth-child(5):hover {
+    background-color: #E5B1CB;
+}
+#programområder a:nth-child(6):hover {
+    background-color: #F4EBA7;
+}
 
 /* endrer skriftstørrelse på overksrift, størrelse på logo, og fjerner logoen i footeren når bredden er under 700px */
 @media (max-width: 700px) {
