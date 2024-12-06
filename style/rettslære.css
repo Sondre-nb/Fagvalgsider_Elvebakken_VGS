@@ -1,0 +1,34 @@
+:root {
+    --rettslære_grønn: #DEF6CA;
+    --rettslære_turkis: #BBA0B2;
+    --rettslære_rød: #ed5a5a;
+}
+
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/assets/imgs/rettslære/placeholder_rettslære.jpg"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/assets/imgs/rettslære/placeholder_rettslære.jpg"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/assets/imgs/rettslære/placeholder_rettslære.jpg"); /* bilde kan byttes ut */
+}
+
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
+.rask-oversikt, .divider-element {
+    background-color: var(--rettslære_turkis) !important;
+}
+.hvordan-jobber-vi, .interaktivt-element, #andre-fag {
+    background-color: var(--rettslære_rød) !important; /* overstyrer originalfarge */
+    /* color: white !important; */
+}
+#andre-fag:hover {
+    background-color: #f06b6b !important;
+}
+.mer-informasjon {
+    background-color: var(--rettslære_grønn) !important;
+}

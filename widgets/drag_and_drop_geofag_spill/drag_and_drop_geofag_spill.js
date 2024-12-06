@@ -12,6 +12,7 @@ for (alternativ of alternativer) {
             svarbokser[i].style.backgroundColor = "white"; // Nullstiller farger om man har sjekket svar
         }
         let selected = e.target; // diven med teksten man drar på
+        /* selected.style.borderRadius = "10px"; */ //Prøvde å fjerne oransje bakgrunn bak de runde hjørnene
         for (svarboks of svarbokser) {
             svarboks.addEventListener("dragover", function(e){
                 e.preventDefault();
