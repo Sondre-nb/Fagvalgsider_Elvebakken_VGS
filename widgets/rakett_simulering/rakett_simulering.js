@@ -435,7 +435,7 @@ function drawRocketVelocity() {
         direction_icon_y = "↓";
     }
 
-    ctx.fillText('Fart: ' + velocity_x + x_unit + " " + direction_icon_x + " | " + Math.abs(velocity_y) + y_unit + " " + direction_icon_y, 5, 59);
+    ctx.fillText('Fart: ' + Math.abs(velocity_x) + x_unit + " " + direction_icon_x + " | " + Math.abs(velocity_y) + y_unit + " " + direction_icon_y, 5, 59);
 }
 
 function drawRocketState() {
