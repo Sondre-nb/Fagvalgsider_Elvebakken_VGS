@@ -46,9 +46,12 @@
 /* informerende tekst om programfag */
 #intro-tekst {
     width: 100%;
-    padding: 30px 20px 10px 20px;
+    padding: 25px 15px 5px 15px;
     font-size: 1.5rem;
     text-align: center;
+}
+#intro-tekst > p{
+    padding: 5px;
 }
 /* knapper som tar deg ønsket del av siden */
 #fagnummer-knapper {

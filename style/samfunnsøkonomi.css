@@ -1,0 +1,27 @@
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/assets/imgs/samfunnsøkonomi/placeholder_samfunnsøkonomi.webp"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/assets/imgs/samfunnsøkonomi/placeholder_samfunnsøkonomi.webp"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/assets/imgs/samfunnsøkonomi/placeholder_samfunnsøkonomi.webp"); /* bilde kan byttes ut */
+}
+
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
+
+@media(max-width: 910px){ /* Justerer skriftstørrelsen på overskriften til skjermbredden */
+    #forside-bilde {
+        font-size: 4.5vw;
+    }
+}
+
+@media(max-width:440px){ /* Justerer skriftstørrelsen til underoverskriftene til skjermbredden */
+    .fag-informasjon > h2{
+        font-size: 8vw;
+    }
+}
