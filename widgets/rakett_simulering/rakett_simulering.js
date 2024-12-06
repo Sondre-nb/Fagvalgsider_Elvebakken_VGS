@@ -123,7 +123,7 @@ class Rocket {
         };
 
         this.parachuteDeployed = false;
-        this.parachute_k_L = 20; // luftmotstandskoeffisienten
+        this.parachute_k_L = 15; // luftmotstandskoeffisienten
         this.fin_k_L = 0.7; // luftmotstandskoeffisienten
 
         // State
@@ -158,6 +158,7 @@ class Rocket {
         this.bottom().applyForce(finAirResistance);
 
         // Tyngdekraft
+        var gravity = new Vek2(0, 9.81).multN(rocket.mass());
         this.applyForce(gravity);
 
         // Hold avstanden mellom tip og tail konstant
@@ -223,18 +224,23 @@ class Rocket {
     }
 
     should_crash() {
-        if (!(Math.round((this.pos().y*-1))<=0)) {
+        if (!this.is_on_ground()) {
             return false;
         }
 
-        if (this.vel().y > 50) {
+        if (this.vel().y > 40) {
             return true;
         }
 
     }
 
     is_on_ground() {
-        return this.pos().y >= 0;
+        if ((this.tip().pos.y*-1 <= 0) || (this.bottom().pos.y*-1 <= 0)) {
+            return true;
+        }
+        else if (this.pos().x < 75 && this.pos().x > 0) {
+            return ((this.tip().pos.y*-1 <= 30) || (this.bottom().pos.y*-1 <= 30));
+        }
     }
 }
 
@@ -247,14 +253,33 @@ const cameraTranslation = new Vek2();
 
 // Rocket
 let rocketLaunch = false;
-const platformPos = new Vek2(0, 0);
+const platformPos = new Vek2(0, -30);
 const platformWidth = 75;
 const platformHeight = 30;
 
 const rocketStartPos = new Vek2(platformPos.x + platformWidth/2, platformPos.y-2);
 let rocket = new Rocket(rocketStartPos);
 
-var gravity = new Vek2(0, 9.81).multN(rocket.mass());
+// Clouds
+const clouds = [];
+
+for (let i = 0; i < 1000; i++) {
+    clouds.push({
+        x: Math.random() * 40000 - 20000,
+        y: ((Math.random() * 11000) + 2000) *-1,
+        scale: Math.random() * 0.5 + 0.5
+    });
+}
+
+// Stars
+const stars = [];
+for (let i = 0; i < 10000; i++) {
+    stars.push({
+        x: Math.random() * 40000 - 20000,
+        y: ((Math.random() * 150000) + 100000) * -1,
+        size: Math.random() * 2 + 1
+    });
+}
 
 // Buttons
 document.getElementById("reset-rocket").addEventListener("click", function() {
@@ -270,19 +295,59 @@ document.getElementById("deploy-parachute").addEventListener("click", function()
     }
 });
 
-function drawSky() {
-    ctx.save();
-    ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
+function drawCloud(x, y, scale) {
+    ctx.fillStyle = 'white';
 
-    ctx.fillStyle = 'lightblue';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.save();
+    ctx.translate(x, y);
+    ctx.scale(scale, scale);
+
+    ctx.beginPath();
+    ctx.arc(0, 0, 20, Math.PI * 0.5, Math.PI * 1.5);
+    ctx.arc(30, 0, 30, Math.PI * 1, Math.PI * 1.85);
+    ctx.arc(70, 0, 20, Math.PI * 1.37, Math.PI * 0.5);
+    ctx.closePath();
+    ctx.fill();
 
     ctx.restore();
 }
 
+function drawStar(x, y, size) {
+    ctx.fillStyle = 'white';
+    ctx.beginPath();
+    ctx.arc(x, y, size, 0, Math.PI * 2);
+    ctx.fill();
+}
+
+function drawSky() {
+    ctx.save();
+    ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
+
+    if (Math.round((rocket.pos().y*-1) > 100000)) {
+        // Draw space
+        ctx.fillStyle = '#1c1e2b';
+    }
+    else {
+        ctx.fillStyle = 'lightblue';
+    }
+
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.restore();
+
+    // Draw clouds
+    for (let cloud of clouds) {
+        drawCloud(cloud.x, cloud.y, cloud.scale);
+    }
+
+    // Draw stars
+    for (let star of stars) {
+        drawStar(star.x, star.y, star.size);
+    }
+}
+
 function drawGround() {
     ctx.fillStyle = 'grey';
-    ctx.fillRect(-200000, 30, 400000, 4000);
+    ctx.fillRect(-200000, 0, 400000, 4000);
 
     ctx.fillStyle = 'darkgrey';
     ctx.fillRect(platformPos.x, platformPos.y, platformWidth, platformHeight);
@@ -384,7 +449,7 @@ function drawRocket(x, y, rotation) {
     }
 }
 
-function drawRocketHeight() {
+function drawRocketHeight(x, y) {
     let unit = "m";
     let height = Math.round((rocket.pos().y*-1));
 
@@ -393,19 +458,19 @@ function drawRocketHeight() {
         unit = "km";
     }
 
-    ctx.fillText('Høyde: ' + height + unit, 5, 19);
+    ctx.fillText('Høyde: ' + height + unit, x, y);
 }
 
-function drawMotorBurnTime() {
+function drawMotorBurnTime(x, y) {
     if (rocket.motor.burnTime.toFixed(2) <= 0.00) {
-        ctx.fillText('Motor: Av', 5, 39);
+        ctx.fillText('Motor: Av', x, y);
     }
     else {
-        ctx.fillText('Motor: På (' + rocket.motor.burnTime.toFixed(2) + ' s)', 5, 39);
+        ctx.fillText('Motor: På (' + rocket.motor.burnTime.toFixed(2) + ' s)', x, y);
     }
 }
 
-function drawRocketVelocity() {
+function drawRocketVelocity(x, y) {
     let x_unit = "m/s";
     let y_unit = "m/s";
     let velocity_x = Math.round(rocket.vel().x);
@@ -435,21 +500,21 @@ function drawRocketVelocity() {
         direction_icon_y = "↓";
     }
 
-    ctx.fillText('Fart: ' + Math.abs(velocity_x) + x_unit + " " + direction_icon_x + " | " + Math.abs(velocity_y) + y_unit + " " + direction_icon_y, 5, 59);
+    ctx.fillText('Fart: ' + Math.abs(velocity_x) + x_unit + " " + direction_icon_x + " | " + Math.abs(velocity_y) + y_unit + " " + direction_icon_y, x, y);
 }
 
-function drawRocketState() {
+function drawRocketState(x, y) {
     if (rocket.crashed) {
-        ctx.fillText('Status: Krasjet🧨', 5, 79);
+        ctx.fillText('Status: Krasjet🧨', x, y);
     }
     else if (rocket.landed) {
-        ctx.fillText('Status: Landet🎉', 5, 79);
+        ctx.fillText('Status: Landet🎉', x, y);
     }
     else if (rocketLaunch) {
-        ctx.fillText('Status: Skytes🚀', 5, 79);
+        ctx.fillText('Status: Skytes🚀', x, y);
     }
     else {
-        ctx.fillText('Status: Venter⏸️', 5, 79);
+        ctx.fillText('Status: Venter⏸️', x, y);
     }
 }
 
@@ -457,12 +522,17 @@ function drawHUD() {
     ctx.save();
     ctx.setTransform(1, 0, 0, 1, 0, 0); // Identity matrix
 
-    ctx.fillStyle = 'black';
+    if (Math.round((rocket.pos().y*-1) > 100000)) {
+        ctx.fillStyle = 'white';
+    }
+    else {
+        ctx.fillStyle = 'black';
+    }
     ctx.font = '14px "Roboto Mono"';
-    drawRocketHeight();
-    drawMotorBurnTime();
-    drawRocketVelocity();
-    drawRocketState();
+    drawRocketHeight(5, 19);
+    drawRocketVelocity(5, 39);
+    drawMotorBurnTime(5, 59);
+    drawRocketState(5, 79);
 
     ctx.restore();
 }
