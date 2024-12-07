@@ -5,21 +5,15 @@ let stokket_kort = document.getElementById("stokket_kort");
 let snudd_kort = [];
 let snudd_kort_divs = [];
 let nullstill_knapp = document.querySelector('#nullstill-knapp').querySelector('button');
-console.log(kort)
 
 function stokkKort() {
     for (i = antall_kort; i > 0; i--) {
-        //console.log(Math.floor(Math.random() * i));
         kort_stokker.append(kort[Math.floor(Math.random() * i)])
-    }
-    console.log(kort_stokker)
+    };
     let kort_stokket = kort_stokker.querySelectorAll('.kort');
-    console.log(antall_kort);
     for (i = 0; i < antall_kort; i++) {
-        console.log(kort_stokket[i])
         stokket_kort.append(kort_stokket[i])
-    }
-    console.log(kort)
+    };
 };
 
 function snuTilbake() {
@@ -41,8 +35,6 @@ for (enkelt_kort of kort) {
             this.querySelector(".skjult-kort").style.display = "none";
             snudd_kort.push(this.className)
             snudd_kort_divs.push(this)
-            console.log(snudd_kort)
-            console.log(snudd_kort_divs)
             if (snudd_kort.length == 2) {
                 if (snudd_kort[0] != snudd_kort[1]) {
                     snuTilbake();
@@ -52,7 +44,6 @@ for (enkelt_kort of kort) {
                 };
             };
         };
-        console.log(valgt_kort)
     });
 };
 
