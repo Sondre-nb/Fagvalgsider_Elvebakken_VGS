@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style/global.css">
+    <link rel="stylesheet" href="/style/SIDESPESEFIKTSTILARK.css">
+    <link rel="stylesheet" href="/style/forside.css">
+    <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+    <title>Elvebakken X</title>
+</head>
+<body>
+    <header>
+        <!-- forside når man åpner nettsiden, bakgrunnsbide endres i css -->
+        <div id="forside">
+            <a href="https://elvebakken.vgs.no/" id="elvebakken-logo" target="_blank"><img src="/assets/imgs/elvebakken_logo/hvit_sirkel_bakgrunn.png" alt="Elvebakken-logo"></a>
+
+            <h1>Elvebakken X</h1>
+            <div id="ned-knapp"><a href="#intro-område"></a></div>
+        </div>
+    </header>
+    <main>
+        <div id="programområder">
+            <div>Programområder: </div>
+            <a href="/realfag/">Realfag</a>
+            <a href="/ssø/">SSØ</a>
+            <a href="/mk/">MK</a>
+            <a href="#">KDA</a>
+            <a href="#">Idrettsfag</a>
+        </div>
+        <!-- informerende tekst som introduserer "programfagstypen" -->
+        <div id="intro-område">
+            <p id="intro"></p>
+        </div>
+
+        <!-- meny over programfagene-->
+        <div id="fag-meny-område">
+            <div id="fag-meny-tittel">
+                <h1>Programfag</h1>
+                <p id="vis-alle">Vis alle ></p>
+            </div>
+
+            <div id="fag_meny">
+                <!-- om antall fag endres, må også css endres (grid_template_columns) -->
+                <a href="/programfag/" class="fag_i_meny">
+                    <img src="/assets/imgs/" alt="test bilde" class="fagmeny_bilde">
+                    <p></p>
+                    <img src="/assets/icons/aunivers_pil.png" alt="pil som beveger seg ved hover" class="lenke_pil">
+                </a>
+                <a href="/programfag/" class="fag_i_meny">
+                    <img src="/assets/imgs/" alt="test bilde" class="fagmeny_bilde">
+                    <p></p>
+                    <img src="/assets/icons/aunivers_pil.png" alt="pil som beveger seg ved hover" class="lenke_pil">
+                </a>
+                <button id="venstre_bla_knapp" class="bla_knapp" onclick="flyttMeny('venstre')"></button>
+                <button id="høyre_bla_knapp" class="bla_knapp" onclick="flyttMeny('høyre')"></button>
+            </div>
+        </div>
+
+        <!-- Rask oversikt der man kan få en oversikt over hva fagene innegår. -->
+        <!-- For å legge til nye fag, kopier et helt "fag-element" div og endre tittel, bilde, hvor se mer linken går etc. -->
+        <!-- For å fjerne fag, slett den "fag-element" diven du vil fjerne. -->
+        <div id="fag-oversikt">
+            <div class="fag-element">
+                <img src="/assets/imgs/" class="fag-bilde">
+                <div class="fag-info">
+                    <h3 class="fag-tittel"></h3>
+                    <p class="fag-beskrivelse"></p>
+                    <p class="fag-sitat">"" - Person</p>
+                    <a class ="fag-se-mer-knapp" href="/programfag/">Se mer →</a>
+                </div>
+            </div>
+            <div class="fag-element">
+                <div class="fag-info">
+                    <h3 class="fag-tittel"></h3>
+                    <p class="fag-beskrivelse"></p>
+                    <p class="fag-sitat">"" - Person</p>
+                    <a class ="fag-se-mer-knapp" href="/programfag/">Se mer →</a>
+                </div>
+                <img src="/assets/imgs/" class="fag-bilde">
+            </div>
+        </div>
+    </main>
+    <!-- Footer -->
+    <div id="footer-placeholder"></div>
+    <script src="/script/footer.js"></script>
+    <script src="/script/global.js"></script>
+    <script src="/script/forside.js"></script>
+</body>
+</html>
