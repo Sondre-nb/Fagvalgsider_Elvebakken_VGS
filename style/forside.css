@@ -55,6 +55,8 @@
     color: var(--elvebakken_blå);
     font-size: 2.5rem;
     margin-bottom: 10px;
+    word-wrap: break-word; 
+    word-break: break-word;
 }
 
 .fag-sitat {
