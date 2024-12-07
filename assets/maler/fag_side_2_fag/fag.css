@@ -1,0 +1,36 @@
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/assets/imgs/"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/assets/imgs/"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/assets/imgs/"); /* bilde kan byttes ut */
+}
+
+/* Ha med det under om du vil ha eget tema for sien */
+
+:root {
+    --fag_blå: #2A2A72;
+    --fag_grønn: #64F58D;
+    --fag_sort: #232528;
+    --fag_oransje: #F09642;
+}
+.sentrale-temaer > ul > li{
+    padding: 15px !important;
+    font-size: 1.1rem;
+}
+.rask-oversikt, .divider-element {
+    background-color: var(--fag_grønn) !important;
+}
+.hvordan-jobber-vi, .interaktivt-element, #andre-fag {
+    background-color: var(--fag_blå) !important; /* overstyrer originalfarge */
+    color: white !important;
+}
+#andre-fag:hover {
+    background-color: #3E3E7D !important;
+}
+.mer-informasjon {
+    background-color: var(--fag_oransje) !important;
+}
