@@ -1,7 +1,7 @@
 :root {
     --samfunnsgeografi_gul: #FFC000;
-    --samfunnsgeografi_blå: #323f50;
-    --samfunnsgeografi_oransje: #ED7D31;
+    --entrepernærskap_grønn: #323f50;
+    --samfunnsgeografi_oransje: #20BF55;
 }
 
 /* bakgrunnsbilde øverst på side */
@@ -23,7 +23,7 @@
     background-color: var(--samfunnsgeografi_oransje) !important;
 }
 .hvordan-jobber-vi, .interaktivt-element, #andre-fag {
-    background-color: var(--samfunnsgeografi_blå) !important; /* overstyrer originalfarge */
+    background-color: var(--entrepernærskap_grønn) !important; /* overstyrer originalfarge */
     color: white !important;
 }
 .mer-informasjon {
