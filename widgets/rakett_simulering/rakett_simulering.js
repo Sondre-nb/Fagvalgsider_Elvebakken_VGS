@@ -188,7 +188,7 @@ class Rocket {
         const T = this.tip().pos.clone();
         const B = this.bottom().pos.clone();
         const velocityAngle = this.vel().normalize().rotation();
-        
+
         // For å finne overflatearealet relativt til fartsretningen roteres T og B rundt sentrum
         T.rotate(this.pos(), -velocityAngle + Math.PI/2);
         B.rotate(this.pos(), -velocityAngle + Math.PI/2);
@@ -261,7 +261,7 @@ class Rocket {
             return false;
         }
 
-        if (this.vel().y > 40) {
+        if (this.vel().y > 50) {
             return true;
         }
 
