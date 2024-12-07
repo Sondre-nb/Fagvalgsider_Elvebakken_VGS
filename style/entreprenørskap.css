@@ -1,0 +1,40 @@
+:root {
+    --samfunnsgeografi_gul: #FFC000;
+    --samfunnsgeografi_blå: #323f50;
+    --samfunnsgeografi_oransje: #ED7D31;
+}
+
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/assets/imgs/entreprenørskap/handshake.png"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/assets/imgs/entreprenørskap/jorda.png"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/assets/imgs/samfunnsgeografi/placeholder_samfunnsgeografi.jpg"); /* bilde kan byttes ut */
+}
+
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
+.rask-oversikt, .divider-element {
+    background-color: var(--samfunnsgeografi_oransje) !important;
+}
+.hvordan-jobber-vi, .interaktivt-element, #andre-fag {
+    background-color: var(--samfunnsgeografi_blå) !important; /* overstyrer originalfarge */
+    color: white !important;
+}
+.mer-informasjon {
+    background-color: var(--samfunnsgeografi_oransje) !important;
+}
+
+@media(max-width: 770px){
+    #forside-bilde {
+        font-size: 5.5vw;
+    }
+    h2 {
+        font-size: 2.2rem !important;
+    }
+}
