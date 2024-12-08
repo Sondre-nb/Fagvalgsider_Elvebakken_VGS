@@ -9,6 +9,15 @@
     background-image: url("/assets/imgs/"); /* bilde kan byttes ut */
 }
 
+@media(max-width: 770px){
+    #forside-bilde {
+        font-size: 5.5vw;
+    }
+    h2 {
+        font-size: 2.2rem !important;
+    }
+}
+
 /* Ha med det under om du vil ha eget tema for sien */
 
 :root {
