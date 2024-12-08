@@ -1,0 +1,10 @@
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/assets/imgs/hifi/sokrates.png"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/assets/imgs/"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/assets/imgs/"); /* bilde kan byttes ut */
+}
