@@ -1,6 +1,6 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("/assets/imgs/informasjonsteknologi/placeholder_IT.png"); /* her kan bildet endres */
+    background-image: url("/assets/imgs/informasjonsteknologi/codingbackground.png"); /* her kan bildet endres */
 }
 .visuelt-element {
     background-image: url("/assets/imgs/informasjonsteknologi/placeholder_IT.png"); /* bilde kan byttes ut */
