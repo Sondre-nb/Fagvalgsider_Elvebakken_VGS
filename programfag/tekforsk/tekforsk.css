@@ -1,0 +1,15 @@
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/teknologi_og_forskningslære/placeholder_tekforsk.png"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/teknologi_og_forskningslære/placeholder_tekforsk.png"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/teknologi_og_forskningslære/placeholder_tekforsk.png"); /* bilde kan byttes ut */
+}
+@media(max-width: 770px){
+    #forside-bilde {
+        font-size: 5.5vw;
+    }
+}
