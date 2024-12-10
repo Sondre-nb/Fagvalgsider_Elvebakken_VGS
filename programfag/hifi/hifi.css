@@ -1,0 +1,19 @@
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/hifi/sokrates.png"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/"); /* bilde kan byttes ut */
+}
+
+@media(max-width: 770px){
+    #forside-bilde {
+        font-size: 5.5vw;
+    }
+    h2 {
+        font-size: 2.2rem !important;
+    }
+}
