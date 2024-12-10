@@ -1,0 +1,15 @@
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/psykologi/placeholder_psykologi.jpg"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/psykologi/placeholder_psykologi.jpg"); /* bilde kan byttes ut */
+}
+#fagnummer2 .visuelt-element {
+    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/psykologi/placeholder_psykologi.jpg"); /* bilde kan byttes ut */
+}
+
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
