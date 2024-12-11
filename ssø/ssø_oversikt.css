@@ -1,4 +1,4 @@
 :root {
     --antall_programfag: 15;
-    --side_man_kommer_ifra: "SSØ";
+    --side_man_kommer_ifra: "SSØ"; /* Brukes til å gå tilbake til riktig side når man går inn på en av mattesidene*/
 }
