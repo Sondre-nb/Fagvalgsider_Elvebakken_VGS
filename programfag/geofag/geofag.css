@@ -6,13 +6,13 @@
 }
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/geofag/jordklode.png"); /* her kan bildet endres */
+    background-image: url("../../assets/imgs/geofag/jordklode.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/geofag/vannkraft.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/geofag/vannkraft.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/geofag/bølge.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/geofag/bølge.png"); /* bilde kan byttes ut */
 }
 .sentrale-temaer > ul > li{
     padding: 15px !important;

@@ -1,13 +1,13 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/kjemi/periodesystemet.png"); /* her kan bildet endres */
+    background-image: url("../../assets/imgs/kjemi/periodesystemet.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/kjemi/kjemi_nærbilde2.jpg"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/kjemi/kjemi_nærbilde2.jpg"); /* bilde kan byttes ut */
     background-position: bottom;
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/kjemi/kjem_vertikalt.jpg"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/kjemi/kjem_vertikalt.jpg"); /* bilde kan byttes ut */
     background-position: center;
 }
 /*Liste over sentrale temaer*/
@@ -40,7 +40,7 @@
     height: 100%;
     margin: auto;
     justify-items: center;
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/kjemi/bilde_fra_timen_1.jpg");
+    background-image: url("../../assets/imgs/kjemi/bilde_fra_timen_1.jpg");
     background-position: center;
     border-radius: 15px;
     background-blend-mode: overlay;
