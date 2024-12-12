@@ -151,6 +151,7 @@
 /* området under intro-tekst, ned til de avlange programfag-boksene */
 #fag-meny-område{
     margin: 50px 5% 0 5%;
+    position: relative;
 }
 /*lenke til de forskjellige valgfagene*/
 .fag_i_meny{
@@ -209,7 +210,7 @@
 .bla_knapp{
     position: absolute;
     /*sentrerer vertikalt inni fag-menyen*/
-    align-self: center;
+    top: 160px;
     width: 40px;
     height: 40px;
     border: 0;
@@ -233,14 +234,24 @@
     height: 100%;
 }
 #høyre_bla_knapp{
-    right: 20px;
+    right: -2.5%;
     transform: rotate(45deg);
 }
 #venstre_bla_knapp{
     transform: rotate(-135deg);
     display: none;
-    left: 20px;
+    left: -2.5%;
 }
+
+@media (min-width: 800px){
+    #høyre_bla_knapp{
+        right: -4%;
+    }
+    #venstre_bla_knapp{
+        left: -4%;
+    }
+}
+
 /* bakgrunnsbilde øverst på siden */
 #forside {
     position: relative;
