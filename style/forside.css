@@ -55,7 +55,7 @@
     color: var(--elvebakken_blå);
     font-size: 2.5rem;
     margin-bottom: 10px;
-    word-wrap: break-word; 
+    word-wrap: break-word;
     word-break: break-word;
 }
 
@@ -245,7 +245,7 @@
     top: 0;
     left: 0;
     background-color: rgba(0, 0, 0, 0.3);
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/forside/forsidebilde_realfag.png"); /* her kan bakgrunnsbilde endres */
+    background-image: url("../assets/imgs/forside/forsidebilde_realfag.png"); /* her kan bakgrunnsbilde endres */
     background-position: center;
     background-repeat: no-repeat;
     background-blend-mode: overlay; /* gir bakgrunnen en mørkere farge */

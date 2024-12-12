@@ -19,7 +19,7 @@
     width: 100%;
     height: 40px;
     background-color: white;
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/icons/bølge.png");
+    background-image: url("../assets/icons/bølge.png");
     background-repeat: repeat-x;
     background-size: contain;
     margin-block: 10px;
