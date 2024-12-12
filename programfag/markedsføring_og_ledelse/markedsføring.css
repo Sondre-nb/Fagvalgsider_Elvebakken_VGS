@@ -1,0 +1,9 @@
+@media(max-width: 1080px){ /* Justerer skriftstørrelsen til skjermbredden */
+    #forside-bilde {
+        font-size: 4vw;
+    }
+}
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
