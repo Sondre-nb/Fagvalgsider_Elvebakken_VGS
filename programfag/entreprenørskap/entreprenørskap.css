@@ -6,13 +6,13 @@
 
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/entreprenørskap/handshake.png"); /* her kan bildet endres */
+    background-image: url("../../assets/imgs/entreprenørskap/handshake.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/entreprenørskap/jorda.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/entreprenørskap/jorda.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("/Fagvalgsider_Elvebakken_VGS/assets/imgs/samfunnsgeografi/placeholder_samfunnsgeografi.jpg"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/samfunnsgeografi/placeholder_samfunnsgeografi.jpg"); /* bilde kan byttes ut */
 }
 
 /*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
