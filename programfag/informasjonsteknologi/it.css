@@ -3,13 +3,35 @@
     background-image: url("../../assets/imgs/informasjonsteknologi/codingbackground.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/informasjonsteknologi/placeholder_IT.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/informasjonsteknologi/mer_kode.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("../../assets/imgs/informasjonsteknologi/placeholder_IT.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/informasjonsteknologi/kanskje_mer_kode.png"); /* bilde kan byttes ut */
 }
 @media(max-width: 1080px){ /* Justerer skriftstørrelsen til skjermbredden */
     #forside-bilde {
         font-size: 4vw;
     }
+}
+.informasjonsbokser > div, .flere-prosjekter {
+    background-color: #030B11;
+    color: var(--elvebakken_blå);
+}
+.rask-oversikt, .divider-element {
+    background-color: #10050A !important; 
+    color: var(--elvebakken_rosa) !important;
+}
+.hvordan-jobber-vi, .interaktivt-element, #andre-fag {
+    background-color: #021208 !important; /* overstyrer originalfarge */
+    color: var(--lyse_grønn) !important;
+}
+#andre-fag:hover {
+    background-color: #3E3E7D !important;
+}
+.mer-informasjon {
+    background-color: #121002 !important; 
+    color: var(--elvebakken_gul) !important;
+}
+.mer-informasjon a{
+    color: var(--elvebakken_gul) !important;
 }
