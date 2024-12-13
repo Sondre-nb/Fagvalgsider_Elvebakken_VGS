@@ -1,0 +1,33 @@
+<!-- <div class="image">
+    <div class="text">
+        <h2 class ="Hfade-in textsim dissapear">Simulering av pendel</h2>
+    </div>
+    <canvas class="dissapear" id="canvas" width="800" height="400"></canvas>
+    <div class="dissapear" id="snor-lengde"></div>
+    <div class="dissapear" id="gravitasjons-lengde"></div>
+</div> -->
+<!DOCTYPE html>
+<html lang="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./pendel.css">
+    <title>Simulering av pendel</title>
+</head>
+<body>
+    <h1 id="spill-tittel">Simulering av pendel</h1>
+
+    <!-- Tekst som vises når skjermbredden er for liten -->
+    <div id="for-liten-bredde">
+        <p>Skjermbredden din er for liten til å spille spillet. Roter skjermen eller øk størrelsen på vinduet.</p>
+    </div>
+
+    <!-- Spill-element (skjules når iframe-bredden er under 520 px) -->
+    <div id="spill">
+        <canvas class="dissapear" id="canvas" width="800" height="400"></canvas>
+        <div class="dissapear" id="snor-lengde"></div>
+        <div class="dissapear" id="gravitasjons-lengde"></div>
+    </div>
+    <script src="pendel.js"></script>
+</body>
+</html>

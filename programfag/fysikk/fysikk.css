@@ -14,3 +14,8 @@
 #andre-fag:hover {
     background-color: #B7B2D2 !important;
 }
+#pendel {
+    width: 100%;
+    height: 520px;
+    border: none;
+}
