@@ -17,6 +17,10 @@
     background-color: #030B11;
     color: var(--elvebakken_blå);
 }
+#første-fag{
+    background-color: #030B11 !important;
+    color: var(--elvebakken_blå) !important;
+}
 .rask-oversikt, .divider-element {
     background-color: #10050A !important; 
     color: var(--elvebakken_rosa) !important;
@@ -26,7 +30,10 @@
     color: var(--lyse_grønn) !important;
 }
 #andre-fag:hover {
-    background-color: #3E3E7D !important;
+    background-color: #063719 !important;
+}
+#første-fag:hover {
+    background-color: #092134 !important;
 }
 .mer-informasjon {
     background-color: #121002 !important; 
