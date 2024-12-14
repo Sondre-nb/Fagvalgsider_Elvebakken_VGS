@@ -1,7 +1,9 @@
-// Listen med spørsmålene. Fylles ut for hver quiz
 let spørsmålListe = [
-    {"spørsmål":"Hva er 1+1?", "alternativer":[1, 2, 3, 4], "svar":2},
-    {"spørsmål":"Hva er 1+2?", "alternativer":["Weimarrepublikken sitt mareritt", 3, 2, 100], "svar":3},
-    {"spørsmål":"Hva er hovedstaden i Oslo?", "alternativer":["Weimarrepublikken", "Røa", "Hovseter", "Sarabråtveien 11B :("], "svar":"Hovseter"},
-    {"spørsmål":"Hva er hovedstaden i Bergen?", "alternativer":["Weimarrepublikken", "Røa", "Bergen", "Njåstadveien"], "svar":"Weimarrepublikken"}
-    ];
+    {"spørsmål":"Hva kan forhistorisk klima hjelpe oss med?", "alternativer":["Prognoser", "Værkart", "Numeriske modeller", "Energiomsetning"], "svar":"Prognoser"},
+    {"spørsmål":"Hva beskriver vekselvirkninger mellom jordsystemene?", "alternativer":["Hav, atmosfære og kryosfære", "Strålingsbalanse", "Numeriske modeller", "Værsystemer"], "svar":"Hav, atmosfære og kryosfære"},
+    {"spørsmål":"Hva er strålingspådriv?", "alternativer":["Energi fra solen", "Tetthetsforskjeller", "Numeriske modeller", "Værkart"], "svar":"Energi fra solen"},
+    {"spørsmål":"Hvordan påvirker jordens rotasjon atmosfæren?", "alternativer":["Skaper trykkforskjeller", "Skaper vind", "Endrer strålingsbalansen", "Forsterker kryosfæren"], "svar":"Skaper vind"},
+    {"spørsmål":"Hva viser værkart?", "alternativer":["Numeriske modeller", "Værutvikling", "Kryosfærens struktur", "Forhistorisk klima"], "svar":"Værutvikling"},
+    {"spørsmål":"Hva brukes numeriske modeller til i geofag?", "alternativer":["Værvarsling", "Beregne havnivå", "Skape tetthetsforskjeller", "Løse strålingspådriv"], "svar":"Værvarsling"},
+    {"spørsmål":"Hva innebærer geofaglig feltarbeid?", "alternativer":["Innsamling av data", "Analyser av kryosfæren", "Strålingsbalanse", "Værvarsling"], "svar":"Innsamling av data"},
+];
