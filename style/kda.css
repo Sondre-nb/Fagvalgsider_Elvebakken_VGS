@@ -1,0 +1,35 @@
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+    background-color: var(--elvebakken_rosa) !important; /* overstyrer originalfarge */
+}
+
+/* boksene med informasjon endres her siden kda ikke har "hvordan jobbervi?", men heller "dette gjør vi" og "nyttig fordi" */
+.informasjonsbokser {
+    grid-template-areas:
+            "s r"
+            "s v"
+            "g n"
+            "a a"
+            "e m"
+            "d d"
+            "i i";
+}
+
+.dette-gjør-vi {
+    grid-area: g;
+    background-color: var(--lyse_grønn) !important; /* overstyrer originalfarge */
+}
+
+.nyttig-fordi {
+    grid-area: n;
+    background-color: var(--lyse_grønn) !important; /* overstyrer originalfarge */
+}
+
+.dette-gjør-vi > ul, .nyttig-fordi > ul{
+    padding: 10px 25px;
+}
+.dette-gjør-vi > ul > li, .nyttig-fordi > ul > li{
+    padding: 5px;
+    font-size: 1.1rem;
+}
