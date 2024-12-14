@@ -107,16 +107,16 @@ class Node {
 }
 
 class Rocket {
-    constructor(pos) {
+    constructor(pos, mass) {
         this.height = 50;
         this.width = 10;
-        const totalMass = parseFloat(massInput.value);
+        const totalMass = mass;
         this.nodes = [
             new Node(Vek2.sub(pos, new Vek2(0, this.height)), totalMass/2), // tip
             new Node(pos, totalMass/2), // tail
 
         ]
-        this.k_L = 0.01; // luftmotstandskoeffisienten
+        this.k_L = 0.1; // luftmotstandskoeffisienten
         this.motor = {
             thrust: parseFloat(thrustInput.value), // N
             burnTime: parseFloat(burnTimeInput.value) // s
@@ -124,7 +124,7 @@ class Rocket {
 
         this.parachuteDeployed = false;
         this.parachute_k_L = 10; // luftmotstandskoeffisienten
-        this.fin_k_L = 0.7; // luftmotstandskoeffisienten
+        this.fin_k_L = 0.15; // luftmotstandskoeffisienten
 
         // State
         this.crashed = false;
@@ -172,7 +172,7 @@ class Rocket {
 
     applyAirResistance() {
         // Rakettkroppens luftmotstand:
-        // Bruker denne formelen: Fd = 1/2 * ρ * v^2 * Cd * A https://snl.no/luftmotstand
+        // Bruker formelen Fd = 1/2 * rho * v^2 * Cd * A fra https://snl.no/luftmotstand
         const rho = airDensity(-this.pos().y); // -y siden alt er opp ned
         const v = this.vel().len();
         const Cd = this.k_L;
@@ -198,14 +198,16 @@ class Rocket {
         const B3 = Vek2.add(B, Vek2.sub(B, T).setMag(this.width/2).rotate(-Math.PI/2));
         const s1 = Math.abs(T2.x-B2.x);
         const s2 = Math.abs(B2.x-B3.x);
-
         const A = s1 + s2;
+
         const airResistance = Vek2.normalized(this.vel()).negate().multN(0.5 * rho * v*v * Cd * A);
         this.applyForce(airResistance);
-        console.log(airResistance);
 
         // Finnenes luftmotstand:
-        const finAirResistance = Vek2.normalized(this.bottom().vel()).multN(this.bottom().vel().lenSq() * this.fin_k_L).negate();
+        const vf = this.bottom().vel();
+        const Cdf = this.fin_k_L;
+        const Af = this.width; // Forenkler veldig, men vil skalere det litt med rakettens størrelse
+        const finAirResistance = Vek2.normalized(vf).multN(0.5 * rho * vf.lenSq() * Cdf * Af).negate();
         this.bottom().applyForce(finAirResistance);
     }
 
@@ -226,6 +228,12 @@ class Rocket {
 
     pos() {
         return Vek2.add(this.tip().pos, this.bottom().pos).div(2);
+    }
+
+    setPos(position) {
+        const movement = Vek2.sub(position, this.pos());
+        this.tip().move(movement);
+        this.bottom().move(movement); 
     }
 
     // følger enhetsirkelen
@@ -577,7 +585,7 @@ function drawHUD() {
 resetRocket();
 
 function resetRocket() {
-    rocket = new Rocket(rocketStartPos);
+    rocket = new Rocket(rocketStartPos, parseFloat(massInput.value));
     rocketLaunch = false;
     rocket.motor.burnTime  = parseFloat(burnTimeInput.value);
     const rotationDeg = parseFloat(angleValue.textContent);
