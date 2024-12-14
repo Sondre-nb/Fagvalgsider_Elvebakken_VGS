@@ -139,7 +139,6 @@
     display: grid;
     grid-template-columns: repeat(var(--antall_programfag), 1fr);
     gap: 30px;
-
     /* skjuler scrollebaren til fag_menyen for IE, Edge og Firefox */
     -ms-overflow-style: none;  /* IE og Edge */
     scrollbar-width: none;  /* Firefox */

@@ -6,20 +6,21 @@ window.addEventListener("scroll", function () {
     header.style.opacity = 1 - scrollTop / scrollBunn;
 });
 
-//henter info fra css-fil for å bruke det til utregning av hvor langt man skal bla og når knappen for å bla il høyre i menyen skal skjules
+//henter info fra css-fil for å bruke det til utregning av hvor langt man skal bla og når knappen for å bla til høyre i menyen skal skjules
 let fag_meny_info = document.querySelector('#fag_meny');
 let fag_meny_info_computed_style = getComputedStyle(fag_meny_info);
 let fag_i_meny_info = document.querySelectorAll('.fag_i_meny');
 let fag_i_meny_info_computed_style = getComputedStyle(fag_i_meny_info[0]);
 let total_bredde_meny_element = parseFloat(fag_meny_info_computed_style.gap) + parseFloat(fag_i_meny_info_computed_style.width);
 
+let fag_meny = document.querySelector("#fag_meny");
+
 // blar i menyen over fagvalgene
 function flyttMeny(retning){
     let skjermbredde = document.documentElement.clientWidth;
-    let fag_meny = document.getElementById("fag_meny");
 
     // regner ut hvor langt menyen skal bla om man trykker på knappene
-    const blaLengde = skjermbredde - (skjermbredde % total_bredde_meny_element);
+    let blaLengde = skjermbredde - (skjermbredde % total_bredde_meny_element);
 
     if (retning == 'høyre'){
         // blar til høyre
@@ -28,11 +29,28 @@ function flyttMeny(retning){
         // blar til venstre
         fag_meny.scrollBy({ left: -blaLengde, behavior: 'smooth' });
     }
-}
+};
 
 // Henter knappene for å bla i menyen. Brukes når menyen scrolles og når man viser alle fagene i menyen under hverandre
 let høyre_bla_knapp = document.getElementById("høyre_bla_knapp");
 let venstre_bla_knapp = document.getElementById("venstre_bla_knapp");
+
+//henter info om fag-meny-område for å bruke det til utregning om når pilen til høyre skal skjules
+let fag_meny_område = document.querySelector('#fag-meny-område');
+let fag_meny_område_computed_style = getComputedStyle(fag_meny_område);
+
+// Fjerner bla-knappen til høyre om den minimale plassen manyen kan ta er mindre eller lik skjermbredden
+function fjernBlaPilHøyreOmMenyenErMindreEnnSkjermen(){
+    if (total_bredde_meny_element*antall_fag_i_menyen - parseFloat(getComputedStyle(fag_meny).gap) + 2*parseFloat(getComputedStyle(fag_meny).padding) + 2*parseFloat(fag_meny_område_computed_style.marginRight) <= window.innerWidth){
+        høyre_bla_knapp.style.display = "none";
+    } else {
+        høyre_bla_knapp.style.display = "block";
+    }
+};
+
+// Fjerner og legger til bla-høyre knapp om nødvendig ved dom-fully-loaded og resize
+document.addEventListener("DOMContentLoaded", fjernBlaPilHøyreOmMenyenErMindreEnnSkjermen);
+window.addEventListener("resize", fjernBlaPilHøyreOmMenyenErMindreEnnSkjermen);
 
 //skjuler og viser knappene man bruker til å bla menyen
 fag_meny.addEventListener("scroll", function(){
@@ -44,16 +62,15 @@ fag_meny.addEventListener("scroll", function(){
     } else{
         venstre_bla_knapp.style.display = "block";
     }
-    //henter info om fag-meny-område for å bruke det til utregning om når pilen til høyre skal skjules
-    let fag_meny_område_info = document.querySelector('#fag-meny-område');
-    fag_meny_område_info_computed_style = getComputedStyle(fag_meny_område_info);
+
     //regner ut når pilen for å bla til høyre skal skjules
-    if (fag_meny.scrollLeft + skjermbredde >= fag_meny.scrollWidth + 2*parseInt(fag_meny_område_info_computed_style.marginRight)){
+    if (fag_meny.scrollLeft + skjermbredde >= fag_meny.scrollWidth + 2*parseInt(fag_meny_område_computed_style.marginRight)){
         høyre_bla_knapp.style.display = "none";
     } else{
         høyre_bla_knapp.style.display = "block";
     }
-})
+});
+
 
 let menyStatus = "rad"
 // Finner ut når "vis-alle" blir klikket
@@ -70,7 +87,7 @@ function toggleMeny(){
     //Viser alle elementene i menyen
     if (menyStatus == "rad"){
         visAlleEl.innerHTML = "klapp sammen <";
-        fag_meny.style.gridTemplateColumns = "repeat(auto-fit, minmax(200px, 1fr))";
+        fag_meny.style.gridTemplateColumns = "repeat(auto-fit, minmax(" + fag_i_meny_info_computed_style + ", 1fr))";
         menyStatus = "alle";
         høyre_bla_knapp.style.display = "none";
         venstre_bla_knapp.style.display = "none";
@@ -82,16 +99,7 @@ function toggleMeny(){
     }
 }
 
-let mattefagene = document.querySelectorAll(".matte-fag");
-
+/* Lagrer siden man kommer ifra slik at man kommer tilbae til den etter å ha vært på en av matte-sidene */
 document.addEventListener("DOMContentLoaded", function(){
     localStorage.setItem("sideManKommerIfraLagring", getComputedStyle(document.documentElement).getPropertyValue('--side_man_kommer_ifra'));
-    console.log()
 })
-
-/* for (mattefag of mattefagene) {
-    mattefag.onclick = function(){
-        localStorage.setItem("sideManKommerIfraLagring", getComputedStyle(document.documentElement).getPropertyValue('--side_man_kommer_ifra'));
-        console.log(getComputedStyle(document.documentElement).getPropertyValue('--side_man_kommer_ifra'))
-    }
-} */
