@@ -147,3 +147,4 @@ function tilpassStørrelse(){
 };
 
 window.addEventListener('resize', tilpassStørrelse);
+document.addEventListener('DOMContentLoaded', tilpassStørrelse);
