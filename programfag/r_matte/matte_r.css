@@ -3,10 +3,10 @@
     background-image: url("../../assets/imgs/matte_r/matte_r_placeholder.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/matte_r/matte_r_placeholder.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/matte_r/matte_greier.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("../../assets/imgs/matte_r/matte_r_placeholder.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/matte_r/matte_sort.png"); /* bilde kan byttes ut */
 }
 /*Liste over sentrale temaer*/
 .sentrale-temaer > ul > li {
@@ -20,6 +20,9 @@
 }
 .sentrale-temaer li {
     padding: 1vw;
+}
+#bilde2 {
+    object-position: left;
 }
 @media(max-width: 670px){
     #forside-bilde {
