@@ -1,0 +1,10 @@
+let spørsmålListe = [
+    {"spørsmål":"Hva er en rekursiv sammenheng?", "alternativer":["En funksjon definert med trigonometriske formler", "En formel som bygger på forrige verdi", "En statistisk fordeling", "En ligning med integraler"], "svar":"En formel som bygger på forrige verdi"},
+    {"spørsmål":"Hva er det bestemte integralet definert som?", "alternativer":["Summen av en rekke", "Arealet under en kurve", "Grensekostnaden til en modell", "Forventningsverdien av en variabel"], "svar":"Arealet under en kurve"},
+    {"spørsmål":"Hva beskriver analysens fundamentalteorem?", "alternativer":["Sammenhengen mellom derivasjon og integrasjon", "Forholdet mellom eksponentiell og logistisk vekst", "Grenseverdien av rekker", "Normalfordelingens egenskaper"], "svar":"Sammenhengen mellom derivasjon og integrasjon"},
+    {"spørsmål":"Hva beskriver eksponentiell vekst?", "alternativer":["Konstant vekst", "Vekst som øker proporsjonalt med størrelsen", "Vekst som avtar over tid", "En stokastisk variabel"], "svar":"Vekst som øker proporsjonalt med størrelsen"},
+    {"spørsmål":"Hva måler standardavvik?", "alternativer":["Gjennomsnittet i et datasett", "Spredningen i et datasett", "Maksimumsverdien i et datasett", "Summen av stokastiske variabler"], "svar":"Spredningen i et datasett"},
+    {"spørsmål":"Hva beskriver normalfordelingen?", "alternativer":["En symmetrisk fordeling rundt et gjennomsnitt", "En vekstmodell", "En rekursiv sammenheng", "En metode for integrasjon"], "svar":"En symmetrisk fordeling rundt et gjennomsnitt"},
+    {"spørsmål":"Hva er grensekostnaden i en økonomisk modell?", "alternativer":["Totalkostnad", "Kostnaden for å produsere én enhet til", "Gjennomsnittskostnaden", "Forventningsverdien av kostnadene"], "svar":"Kostnaden for å produsere én enhet til"},
+    {"spørsmål":"Hva er formålet med hypotesetesting?", "alternativer":["Å bevise en påstand", "Å finne normalfordeling", "Å evaluere en påstands sannsynlighet", "Å beregne integralet til en funksjon"], "svar":"Å evaluere en påstands sannsynlighet"},
+];
