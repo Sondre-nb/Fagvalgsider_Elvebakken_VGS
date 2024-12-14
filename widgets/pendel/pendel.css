@@ -28,6 +28,8 @@ body {
     text-align: center;
     padding: 10px;
 }
-canvas {
-    position: absolute;
+#spill {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
