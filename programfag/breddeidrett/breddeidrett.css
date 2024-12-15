@@ -1,0 +1,35 @@
+@media(max-width: 770px){
+    #forside-bilde {
+        font-size: 5.5vw;
+    }
+    h2 {
+        font-size: 2.2rem !important;
+    }
+}
+/*Liste over sentrale temaer*/
+.sentrale-temaer > ul > li {
+    list-style-type: none;
+    font-weight: bold;
+}
+.sentrale-temaer > ul {
+    -webkit-padding-start: 0;
+    padding-block: 1vw;
+    padding: 0;
+}
+.sentrale-temaer li {
+    padding: 5px;
+}
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("../../assets/imgs/breddeidrett/badminton.png"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("../../assets/imgs/breddeidrett/klatrevegg.png"); /* bilde kan byttes ut */
+}
+#bilde2 {
+    object-position: bottom;
+}
