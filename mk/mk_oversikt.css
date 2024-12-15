@@ -2,3 +2,8 @@
     --antall_programfag: 8;
     --side_man_kommer_ifra: "mk";
 }
+@media (max-width: 770px){
+    #forside > h1{
+        font-size: 10vw;
+    };
+};
