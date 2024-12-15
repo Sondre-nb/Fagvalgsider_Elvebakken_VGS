@@ -1,6 +1,6 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/pom/freedom_tagget.png"); /* her kan bildet endres */
+    background-image: url("../../assets/imgs/pom/person_foran_gjerde.png"); /* her kan bildet endres */
 }
 .visuelt-element {
     background-image: url("../../assets/imgs/pom/freedom_tagget.png"); /* bilde kan byttes ut */
