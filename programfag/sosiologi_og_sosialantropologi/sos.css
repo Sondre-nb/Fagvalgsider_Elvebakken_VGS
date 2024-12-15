@@ -1,15 +1,35 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/sosialkunnskap/statue_leser.png"); /* her kan bildet endres */
+    background-image: url("../../assets/imgs/sosiologi_og_sosialantropologi/statue_leser.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/sosialkunnskap/statue_leser.png"); /* bilde kan byttes ut */
+    background-image: url("../../assets/imgs/sosiologi_og_sosialantropologi/statue_leser.png"); /* bilde kan byttes ut */
 }
-@media(max-width: 770px){
+
+.elev-sitat > ul{
+    padding: 10px 25px;
+}
+.elev-sitat > ul > li{
+    padding: 5px;
+    font-size: 1.1rem;
+}
+
+/* Justerer overskriften etter skjermbreden*/
+@media(max-width: 850px){
     #forside-bilde {
-        font-size: 5.5vw;
+        font-size: 5vw;
     }
     h2 {
         font-size: 2.2rem !important;
+    }
+}
+
+/* Justerer underoverskriftene etter skjermbreden*/
+@media(max-width: 340px){
+    h2{
+        font-size: 10vw !important;
+    }
+    h3{
+        font-size: 7vw !important;
     }
 }
