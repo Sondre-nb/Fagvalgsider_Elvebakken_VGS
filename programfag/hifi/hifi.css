@@ -6,6 +6,11 @@
     background-image: url("../../assets/imgs/hifi/solnedgang.png"); /* bilde kan byttes ut */
 }
 
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
+
 @media(max-width: 770px){
     #forside-bilde {
         font-size: 5.5vw;

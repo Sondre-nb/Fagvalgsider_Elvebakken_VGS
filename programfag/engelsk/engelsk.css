@@ -9,6 +9,14 @@
     background-image: url("../../assets/imgs/engelsk/america.png"); /* bilde kan byttes ut */
 }
 
+.elev-sitat > ul{
+    padding: 10px 25px;
+}
+.elev-sitat > ul > li{
+    padding: 5px;
+    font-size: 1.1rem;
+}
+
 @media(max-width: 770px){
     #forside-bilde {
         font-size: 5.5vw;
