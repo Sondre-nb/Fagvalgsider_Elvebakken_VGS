@@ -15,10 +15,6 @@
     background-image: url("../../assets/imgs/samfunnsgeografi/placeholder_samfunnsgeografi.jpg"); /* bilde kan byttes ut */
 }
 
-/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
-.rask-oversikt {
-    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
-}
 .rask-oversikt, .divider-element {
     background-color: var(--samfunnsgeografi_oransje) !important;
 }
