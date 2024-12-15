@@ -2,3 +2,6 @@
     --antall_programfag: 4;
     --side_man_kommer_ifra: "kda";
 }
+.fag-beskrivelse {
+    font-size: 1.5rem;
+}
