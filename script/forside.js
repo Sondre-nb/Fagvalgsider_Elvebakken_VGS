@@ -87,7 +87,7 @@ function toggleMeny(){
     //Viser alle elementene i menyen
     if (menyStatus == "rad"){
         visAlleEl.innerHTML = "klapp sammen <";
-        fag_meny.style.gridTemplateColumns = "repeat(auto-fit, minmax(" + fag_i_meny_info_computed_style + ", 1fr))";
+        fag_meny.style.gridTemplateColumns = "repeat(auto-fit, minmax(" + fag_i_meny_info_computed_style.width + ", 1fr))";
         menyStatus = "alle";
         høyre_bla_knapp.style.display = "none";
         venstre_bla_knapp.style.display = "none";
@@ -95,7 +95,7 @@ function toggleMeny(){
         visAlleEl.innerHTML = "vis alle >";
         fag_meny.style.gridTemplateColumns = "repeat(" + antall_fag_i_menyen + ", 1fr)";
         menyStatus = "rad";
-        høyre_bla_knapp.style.display = "block";
+        fjernBlaPilHøyreOmMenyenErMindreEnnSkjermen();
     }
 }
 
