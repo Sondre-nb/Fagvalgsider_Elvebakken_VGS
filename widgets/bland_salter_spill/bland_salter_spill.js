@@ -151,27 +151,35 @@ function finnBlandbareSalter() {
 };
 
 for (salt of salter) {
+    // Sjekker om hvert salt er trykket
     salt.addEventListener("click", function(){
+        // Sjekker om reagensrør er tomt og om innholdet vil kunne reagere med det som er i begerglasset
         if (aktivt_salt_plassering.innerHTML == "" && saltplasseringer.length <= 1 && window.getComputedStyle(this.querySelector(".saltfarge")).height != "0px" && window.getComputedStyle(this).opacity != "0.3") {
             aktivt_salt = this;
             let saltplassering = 0;
+            // Finner og lagrer saltplassering
             for (i = 0; i < salter.length; i++) {
                 if (aktivt_salt == salter[i]) {
                     saltplassering = i;
                     saltplasseringer.push(saltplassering);
                 };
             };
+            // Flytter valgt salt til helle-plassering
             aktivt_salt_plassering.append(aktivt_salt);
             let saltType = aktivt_salt.querySelector(".saltnavn").innerHTML;
+            // Legger til "+" i reaksjonslikningen om et salt allerede er valgt
             if (saltplasseringer.length == 2) {
                 reaksjonslikning.innerHTML += " + ";
             }
+            // Legger til salt-typen i reaksjonslikningen
             reaksjonslikning.innerHTML += saltType + "(s)";
+            // Legger til salt begerglass
             leggTilSalt(saltplassering, aktivt_salt);
         };
     });
 };
 
+// Nullstiller knapp når nullstill-knappen trykkes
 nullstill_knapp.onclick = function() {
     reaksjonslikning.innerHTML = "";
     reaksjonstype.innerHTML = "Reaksjonstype: ";
@@ -187,6 +195,7 @@ nullstill_knapp.onclick = function() {
     document.getElementById("disclaimer").style.display = "none";
 };
 
+// Flytter helleplassering basert på skjermbredde
 window.onresize = function() {
     let spillbredde = document.querySelector('body').getBoundingClientRect().width;
     let begerglassbredde = document.querySelector('#begerglass img').getBoundingClientRect().width;
