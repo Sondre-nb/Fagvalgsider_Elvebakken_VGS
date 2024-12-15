@@ -11,6 +11,9 @@
 .visuelt-element {
     background-image: url("../../assets/imgs/rettslære/justice-scrabble.png"); /* bilde kan byttes ut */
 }
+#fagnummer2 .visuelt-element {
+    background-image: url("../../assets/imgs/rettslære/tegning-lovbøker.png"); /* bilde kan byttes ut */
+}
 
 /*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
 .rask-oversikt {
