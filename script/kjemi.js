@@ -44,11 +44,11 @@ function skalerBilde () {
         slides_container.style.height = "auto";
     }
     if (hoyde_bilde > 400) {
-        console.log("Ting burde være 400px")
         slides[slideIndex-1].querySelector('img').style.height = "400px";
         slides[slideIndex-1].querySelector('img').style.borderRadius = "0px";
         slides[slideIndex-1].querySelector('img').style.width = "unset";
     }
+    console.log("Funksjonen har i det minste kjørt og bredde bilde = " + bredde_bilde + " og bredde_totalt = " + bredde_totalt)
 };
 
 function test() {
