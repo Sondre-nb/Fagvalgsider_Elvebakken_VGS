@@ -1,9 +1,9 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/foto_og_grafikk/flere-vinkler-jente.jpg"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/foto_og_grafikk/flere-vinkler-jente.jpg"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/foto_og_grafikk/rødt-trykk-menneske.jpg"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/foto_og_grafikk/rødt-trykk-menneske.jpg"); /* bilde kan byttes ut */
 }
 @media(max-width: 770px){
     #forside-bilde {

@@ -1,9 +1,9 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/kunst_og_skapende/skjelett.png"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/kunst_og_skapende/skjelett.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/kunst_og_skapende/shiny-bakgrunn.jpg"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/kunst_og_skapende/shiny-bakgrunn.jpg"); /* bilde kan byttes ut */
 }
 @media(max-width: 770px){
     #forside-bilde {
