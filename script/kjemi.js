@@ -35,6 +35,12 @@ function skalerBilde () {
     let slides_container = document.getElementById("slideshow-container");
     let bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
     let hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;
+
+    while (bredde_bilde == 0 || hoyde_bilde == 0){
+        bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
+        hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;    
+    }
+
     let bredde_totalt = slides[slideIndex-1].getBoundingClientRect().width;
     if (bredde_bilde > bredde_totalt) {
         console.log("Ting burde bli mindre")
@@ -56,7 +62,8 @@ function test() {
 }
 
 document.addEventListener("DOMContentLoaded", test);
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", skalerBilde);
+/* document.addEventListener("DOMContentLoaded", function(){
     setTimeout(skalerBilde, 50)
-});
+}); */
 window.addEventListener("resize", skalerBilde);
