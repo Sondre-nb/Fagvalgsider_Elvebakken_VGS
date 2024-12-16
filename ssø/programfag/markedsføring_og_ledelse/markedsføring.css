@@ -8,8 +8,8 @@
     grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
 }
 #forside-bilde {
-    background-image: url("../../assets/imgs/markedsføring/rosa_megafon.png"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/markedsføring/rosa_megafon.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/markedsføring/graa.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/markedsføring/graa.png"); /* bilde kan byttes ut */
 }

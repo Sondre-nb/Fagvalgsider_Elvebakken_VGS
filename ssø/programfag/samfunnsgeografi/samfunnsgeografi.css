@@ -6,10 +6,10 @@
 
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/samfunnsgeografi/placeholder_samfunnsgeografi.jpg"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/samfunnsgeografi/placeholder_samfunnsgeografi.jpg"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/samfunnsgeografi/by-fra-lufta.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/samfunnsgeografi/by-fra-lufta.png"); /* bilde kan byttes ut */
 }
 
 .rask-oversikt, .divider-element {

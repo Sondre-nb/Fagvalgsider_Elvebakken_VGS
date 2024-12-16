@@ -6,20 +6,20 @@
 }
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/geofag/jordklode.png"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/geofag/jordklode.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/geofag/vannkraft.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/geofag/vannkraft.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("../../assets/imgs/geofag/bølge.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/geofag/bølge.png"); /* bilde kan byttes ut */
 }
 .sentrale-temaer > ul > li{
     padding: 15px !important;
     font-size: 1.1rem;
 }
 .rask-oversikt, .divider-element {
-    background-color: var(--geofag_grønn) !important; 
+    background-color: var(--geofag_grønn) !important;
 }
 .hvordan-jobber-vi, .interaktivt-element, #andre-fag {
     background-color: var(--geofag_blå) !important; /* overstyrer originalfarge */
@@ -29,5 +29,5 @@
     background-color: #3E3E7D !important;
 }
 .mer-informasjon {
-    background-color: var(--geofag_oransje) !important; 
+    background-color: var(--geofag_oransje) !important;
 }

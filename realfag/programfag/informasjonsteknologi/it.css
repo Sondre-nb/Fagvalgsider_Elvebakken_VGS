@@ -1,12 +1,12 @@
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/informasjonsteknologi/codingbackground.png"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/informasjonsteknologi/codingbackground.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/informasjonsteknologi/mer_kode.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/informasjonsteknologi/mer_kode.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("../../assets/imgs/informasjonsteknologi/kanskje_mer_kode.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/informasjonsteknologi/kanskje_mer_kode.png"); /* bilde kan byttes ut */
 }
 @media(max-width: 1080px){ /* Justerer skriftstørrelsen til skjermbredden */
     #forside-bilde {
@@ -25,7 +25,7 @@
     color: var(--elvebakken_blå) !important;
 }
 .rask-oversikt, .divider-element {
-    background-color: #10050A !important; 
+    background-color: #10050A !important;
     color: var(--elvebakken_rosa) !important;
 }
 .hvordan-jobber-vi, .interaktivt-element, #andre-fag {
@@ -39,7 +39,7 @@
     background-color: #092134 !important;
 }
 .mer-informasjon {
-    background-color: #121002 !important; 
+    background-color: #121002 !important;
     color: var(--elvebakken_gul) !important;
 }
 .mer-informasjon a{

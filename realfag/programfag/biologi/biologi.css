@@ -6,13 +6,13 @@
 }
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/biologi/dna.png"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/biologi/dna.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/biologi/blodceller.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/biologi/blodceller.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
-    background-image: url("../../assets/imgs/biologi/sommerfugler.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/biologi/sommerfugler.png"); /* bilde kan byttes ut */
 }
 /*Liste over sentrale temaer*/
 .sentrale-temaer > ul > li {
@@ -34,7 +34,7 @@
     background-color: var(--lyse_grønn) !important;
 }*/
 .rask-oversikt, .divider-element {
-    background-color: var(--biologi_rosa) !important; 
+    background-color: var(--biologi_rosa) !important;
 }
 .hvordan-jobber-vi, .interaktivt-element, #andre-fag {
     background-color: var(--biologi_blå) !important; /* overstyrer originalfarge */
@@ -44,7 +44,7 @@
     background-color: #1A2843 !important;
 }
 .mer-informasjon {
-    background-color: var(--biologi_grønn) !important; 
+    background-color: var(--biologi_grønn) !important;
 }
 iframe {
     width: 100%;
