@@ -56,5 +56,7 @@ function test() {
 }
 
 document.addEventListener("DOMContentLoaded", test);
-document.addEventListener("DOMContentLoaded", skalerBilde);
+document.addEventListener("DOMContentLoaded", function(){
+    setTimeout(skalerBilde, 50)
+});
 window.addEventListener("resize", skalerBilde);
