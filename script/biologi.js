@@ -4,12 +4,5 @@ function skalerIframe() {
     iframe.style.height = bunn + 70 + "px";
 }
 
-//document.addEventListener("DOMContentLoaded", skalerIframe);
+document.addEventListener("DOMContentLoaded", skalerIframe);
 window.addEventListener("resize", skalerIframe);
-
-let biologiiframe = document.getElementById("biologi-iframe");
-biologiiframe.onreadystatechange = function() {
-    if ( biologiiframe.readyState == 'complete' ) {
-        skalerIframe();
-    };
-};
