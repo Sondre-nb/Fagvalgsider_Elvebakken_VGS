@@ -4,6 +4,15 @@
     --rettslære_rød: #ed5a5a;
 }
 
+@media(max-width: 770px){
+    #forside-bilde {
+        font-size: 5.5vw;
+    }
+    h2 {
+        font-size: 2.2rem !important;
+    }
+}
+
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
     background-image: url("../../../assets/imgs/rettslære/placeholder_rettslære.jpg"); /* her kan bildet endres */

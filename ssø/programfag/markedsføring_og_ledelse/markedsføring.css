@@ -3,6 +3,11 @@
         font-size: 4vw;
     }
 }
+@media(max-width: 300px){ /* Justerer skriftstørrelsen til skjermbredden */
+    h2 {
+        font-size: 10vw !important;
+    }
+}
 /*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
 .rask-oversikt {
     grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */

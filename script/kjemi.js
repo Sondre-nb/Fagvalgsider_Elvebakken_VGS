@@ -36,6 +36,7 @@ function skalerBilde () {
     let slides_container = document.getElementById("slideshow-container");
     let bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
     let hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;
+    console.log("Bilde:" + slides[slideIndex-1].querySelector('img'))
 
 /*     while (bredde_bilde == 0 || hoyde_bilde == 0){
         slides = document.getElementsByClassName("mySlides");
@@ -64,8 +65,8 @@ function test() {
 }
 
 document.addEventListener("DOMContentLoaded", test);
-//document.addEventListener("DOMContentLoaded", skalerBilde);
-document.addEventListener("DOMContentLoaded", function(){
+document.addEventListener("DOMContentLoaded", skalerBilde);
+/* document.addEventListener("DOMContentLoaded", function(){
     setTimeout(skalerBilde, 500)
-});
+}); */
 window.addEventListener("resize", skalerBilde);

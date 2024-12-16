@@ -5,11 +5,13 @@
 .visuelt-element {
     background-image: url("../../../assets/imgs/pom/freedom_tagget.png"); /* bilde kan byttes ut */
 }
-@media(max-width: 770px){
+@media(max-width: 1080px){ /* Justerer skriftstørrelsen til skjermbredden */
     #forside-bilde {
-        font-size: 5.5vw;
+        font-size: 4vw;
     }
+}
+@media(max-width: 430px){ /* Justerer skriftstørrelsen til skjermbredden */
     h2 {
-        font-size: 2.2rem !important;
+        font-size: 9vw !important;
     }
 }
