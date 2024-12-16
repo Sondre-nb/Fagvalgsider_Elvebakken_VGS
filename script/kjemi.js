@@ -49,4 +49,5 @@ function skalerBilde () {
     }
 };
 
+document.addEventListener("DOMContentLoaded", skalerBilde);
 window.addEventListener("resize", skalerBilde);
