@@ -36,11 +36,11 @@ function skalerBilde () {
     let bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
     let hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;
 
-    while (bredde_bilde == 0 || hoyde_bilde == 0){
+/*     while (bredde_bilde == 0 || hoyde_bilde == 0){
         slides = document.getElementsByClassName("mySlides");
         bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
         hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;    
-    }
+    } */
 
     let bredde_totalt = slides[slideIndex-1].getBoundingClientRect().width;
     if (bredde_bilde > bredde_totalt) {
@@ -63,8 +63,8 @@ function test() {
 }
 
 document.addEventListener("DOMContentLoaded", test);
-document.addEventListener("DOMContentLoaded", skalerBilde);
-/* document.addEventListener("DOMContentLoaded", function(){
-    setTimeout(skalerBilde, 50)
-}); */
+//document.addEventListener("DOMContentLoaded", skalerBilde);
+document.addEventListener("DOMContentLoaded", function(){
+    setTimeout(skalerBilde, 500)
+});
 window.addEventListener("resize", skalerBilde);
