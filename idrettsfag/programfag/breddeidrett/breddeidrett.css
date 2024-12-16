@@ -25,10 +25,10 @@
 }
 /* bakgrunnsbilde øverst på side */
 #forside-bilde {
-    background-image: url("../../assets/imgs/breddeidrett/badminton.png"); /* her kan bildet endres */
+    background-image: url("../../../assets/imgs/breddeidrett/badminton.png"); /* her kan bildet endres */
 }
 .visuelt-element {
-    background-image: url("../../assets/imgs/breddeidrett/klatrevegg.png"); /* bilde kan byttes ut */
+    background-image: url("../../../assets/imgs/breddeidrett/klatrevegg.png"); /* bilde kan byttes ut */
 }
 #bilde2 {
     object-position: bottom;
