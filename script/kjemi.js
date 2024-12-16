@@ -37,6 +37,8 @@ function skalerBilde () {
     let bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
     let hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;
     console.log("Bilde:" + slides[slideIndex-1].querySelector('img'))
+    console.log("Høyde: " + slides[slideIndex-1].querySelector('img').getBoundingClientRect().height)
+    console.log("Bredde: " + slides[slideIndex-1].querySelector('img').getBoundingClientRect().width)
 
 /*     while (bredde_bilde == 0 || hoyde_bilde == 0){
         slides = document.getElementsByClassName("mySlides");
