@@ -17,6 +17,9 @@
     background-color: #030B11;
     color: var(--elvebakken_blå);
 }
+.flere-prosjekter a {
+    color: var(--elvebakken_blå);
+}
 #første-fag{
     background-color: #030B11 !important;
     color: var(--elvebakken_blå) !important;

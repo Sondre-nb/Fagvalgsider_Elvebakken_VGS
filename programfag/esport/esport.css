@@ -1,0 +1,18 @@
+/*endrer grid-template-rows her siden programfag.css baserer seg på realfagene som også har info om realfagspoeng*/
+.rask-oversikt {
+    grid-template-rows: auto 1fr 1fr; /* fordeler elementene i listen utover boksen */
+}
+.hvordan-jobber-vi p{
+    font-size: 1.4rem;
+    text-align: center;
+}
+/* bakgrunnsbilde øverst på side */
+#forside-bilde {
+    background-image: url("../../assets/imgs/friluftsliv/folk_paa_tur.png"); /* her kan bildet endres */
+}
+.visuelt-element {
+    background-image: url("../../assets/imgs/friluftsliv/kajakk.png"); /* bilde kan byttes ut */
+}
+.sentrale-temaer p{
+    font-size: 1.2rem;
+}
