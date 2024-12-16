@@ -49,5 +49,10 @@ function skalerBilde () {
     }
 };
 
+function test() {
+    console.log("Hei")
+}
+
+document.addEventListener("DOMContentLoaded", test);
 document.addEventListener("DOMContentLoaded", skalerBilde);
 window.addEventListener("resize", skalerBilde);
