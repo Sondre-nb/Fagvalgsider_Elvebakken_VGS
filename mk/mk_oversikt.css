@@ -1,5 +1,5 @@
 :root {
-    --antall_programfag: 8;
+    --antall_programfag: 5;
     --side_man_kommer_ifra: "mk";
 }
 @media (max-width: 770px){
