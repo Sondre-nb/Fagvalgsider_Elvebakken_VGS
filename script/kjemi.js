@@ -37,12 +37,14 @@ function skalerBilde () {
     let hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;
     let bredde_totalt = slides[slideIndex-1].getBoundingClientRect().width;
     if (bredde_bilde > bredde_totalt) {
+        console.log("Ting burde bli mindre")
         slides[slideIndex-1].querySelector('img').style.height = "auto";
         slides[slideIndex-1].querySelector('img').style.width = "100%";
         slides[slideIndex-1].querySelector('img').style.borderRadius = "15px";
         slides_container.style.height = "auto";
     }
     if (hoyde_bilde > 400) {
+        console.log("Ting burde være 400px")
         slides[slideIndex-1].querySelector('img').style.height = "400px";
         slides[slideIndex-1].querySelector('img').style.borderRadius = "0px";
         slides[slideIndex-1].querySelector('img').style.width = "unset";
