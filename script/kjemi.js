@@ -32,6 +32,7 @@ function showSlides(n) {
 
 function skalerBilde () {
     let slides = document.getElementsByClassName("mySlides");
+    console.log(slides)
     let slides_container = document.getElementById("slideshow-container");
     let bredde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().width;
     let hoyde_bilde = slides[slideIndex-1].querySelector('img').getBoundingClientRect().height;
