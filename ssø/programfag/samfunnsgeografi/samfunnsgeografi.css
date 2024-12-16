@@ -22,3 +22,15 @@
 .mer-informasjon {
     background-color: var(--samfunnsgeografi_oransje) !important;
 }
+
+@media(max-width: 910px){ /* Justerer skriftstørrelsen på overskriften til skjermbredden */
+    #forside-bilde {
+        font-size: 4.5vw;
+    }
+}
+
+@media(max-width:440px){ /* Justerer skriftstørrelsen til underoverskriftene til skjermbredden */
+    .fag-informasjon > h2{
+        font-size: 8vw;
+    }
+}

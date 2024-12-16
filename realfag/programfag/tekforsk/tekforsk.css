@@ -13,3 +13,8 @@
         font-size: 5.5vw;
     }
 }
+@media(max-width:380px){ /* Justerer skriftstørrelsen til underoverskriftene til skjermbredden */
+    .fag-informasjon > h2{
+        font-size: 10vw;
+    }
+}

@@ -10,7 +10,7 @@
 }
 @media(max-width: 1080px){ /* Justerer skriftstørrelsen til skjermbredden */
     #forside-bilde {
-        font-size: 4vw;
+        font-size: 3.5vw;
     }
 }
 .informasjonsbokser > div, .flere-prosjekter {
