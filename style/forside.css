@@ -22,6 +22,7 @@
     flex-direction: column;
     margin: 20px;
     box-sizing: border-box;
+    flex-grow: 1;
 }
 
 .fag-bilde {
