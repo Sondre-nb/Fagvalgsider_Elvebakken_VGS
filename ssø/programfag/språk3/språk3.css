@@ -13,3 +13,17 @@
         font-size: 2.2rem !important;
     }
 }
+
+/*Liste over sentrale temaer*/
+.sentrale-temaer > ul > li {
+    list-style-type: none;
+    font-weight: bold;
+}
+.sentrale-temaer > ul {
+    -webkit-padding-start: 0;
+    padding-block: 1vw;
+    padding: 0;
+}
+.sentrale-temaer li {
+    padding: 1vw;
+}
