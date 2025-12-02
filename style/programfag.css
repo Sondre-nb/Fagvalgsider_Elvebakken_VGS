@@ -195,6 +195,7 @@
 .rask-oversikt li {
     font-size: 1.3rem;
     padding-left: 5px;
+    list-style-position: inside;
 }
 .visuelt-element {
     grid-area: v;
@@ -244,6 +245,7 @@
 .mer-informasjon li {
     font-size: 1.1rem;
     padding-left: 5px;
+    list-style-position: inside;
 }
 .mer-informasjon li a {
     color: black;
