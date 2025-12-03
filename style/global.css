@@ -1,12 +1,17 @@
 :root {
-    --elvebakken_blå: #74b2e1;
-    --elvebakken_blå_lys: #9CC9EB;
-    --elvebakken_rosa: #DC8EB6;
+    --elvebakken_blå: #32ACC7;
+    --elvebakken_blå_lys: #6CC6DA;
+    --elvebakken_rosa: #DE5474;
+    --elvebakken_rosa_lys: #E57690;
     --elvebakken_gul: #F0E691;
-    --elvebakken_oransje: #FAB965;
+    --elvebakken_grå: #8696AC;
+    --elvebakken_grå_lys: #9EAABD;
+    --elvebakken_oransje: #DE8647;
+    --elvebakken_oransje_lys: #E39863;
     --mørke_blå: #204B57;
-    --mørke_grønn: #75DC98;
-    --lyse_grønn: #89F1AC;
+    --mørke_grønn: #6AA070;
+    --lyse_grønn: #83AF89;
+    --lyse_lyse_grønn: #9BBFA0;
 }
 * {
     margin: 0;

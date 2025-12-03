@@ -336,22 +336,22 @@
     background-color: var(--elvebakken_rosa);
 }
 #programområder a:nth-child(6) {
-    background-color: var(--elvebakken_gul);
+    background-color: var(--elvebakken_grå);
 }
 #programområder a:nth-child(2):hover {
-    background-color: #A5F5C0;
+    background-color: var(--lyse_lyse_grønn);
 }
 #programområder a:nth-child(3):hover {
     background-color: var(--elvebakken_blå_lys);
 }
 #programområder a:nth-child(4):hover {
-    background-color: #FFC982;
+    background-color: var(--elvebakken_oransje_lys);
 }
 #programområder a:nth-child(5):hover {
-    background-color: #E5B1CB;
+    background-color: var(--elvebakken_rosa_lys);
 }
 #programområder a:nth-child(6):hover {
-    background-color: #F4EBA7;
+    background-color: var(--elvebakken_grå_lys);
 }
 
 /* endrer skriftstørrelse på overksrift, størrelse på logo, og fjerner logoen i footeren når bredden er under 700px */

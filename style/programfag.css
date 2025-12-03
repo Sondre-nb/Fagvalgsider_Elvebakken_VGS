@@ -100,7 +100,7 @@
     margin: 20px 40px 50px 40px;
     padding: 20px;
     border-radius: 15px;
-    background-color: var(--elvebakken_gul);
+    background-color: var(--elvebakken_grå);
     font-size: 1.3rem;
 }
 #om-r-matte-og-de-nye-mattefagene > h2{
@@ -240,7 +240,7 @@
     display: grid;
     grid-template-rows: auto 1fr 1fr; /* fordeler liste-elementer likt nedover boks */
     align-items: center;
-    background-color: var(--elvebakken_gul) !important;
+    background-color: var(--elvebakken_grå) !important;
 }
 .mer-informasjon li {
     font-size: 1.1rem;
