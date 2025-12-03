@@ -96,18 +96,18 @@
 }
 
 /*Liste med forskjeller mellom R- og S-matte. Eksisterer bare på matte-sidene*/
-#forskjell-r-og-s-matte{
+#om-r-matte-og-de-nye-mattefagene{
     margin: 20px 40px 50px 40px;
     padding: 20px;
     border-radius: 15px;
     background-color: var(--elvebakken_gul);
     font-size: 1.3rem;
 }
-#forskjell-r-og-s-matte > h2{
+#om-r-matte-og-de-nye-mattefagene > h2{
     text-align: center;
     padding: 5px;
 }
-#forskjell-r-og-s-matte p{
+#om-r-matte-og-de-nye-mattefagene p{
     padding: 7px;
 }
 
@@ -124,7 +124,7 @@
     #fagnummer-knapper {
         padding: 10px;
     }
-    #forskjell-r-og-s-matte{
+    #om-r-matte-og-de-nye-mattefagene{
         margin: 20px 30px 40px 30px;
         font-size: 1.1rem;
     }
