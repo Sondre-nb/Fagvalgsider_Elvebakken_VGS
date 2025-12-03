@@ -6,6 +6,9 @@
     background-image: url("../../../assets/imgs/matte_s/matte_på_tavle.png"); /* bilde kan byttes ut */
 }
 #fagnummer2 .visuelt-element {
+    background-image: url("../../../assets/imgs/matte_s/forstorrelsesglass_paa_graf.png"); /* bilde kan byttes ut */
+}
+#fagnummer3 .visuelt-element {
     background-image: url("../../../assets/imgs/matte_s/integrasjon.png"); /* bilde kan byttes ut */
 }
 

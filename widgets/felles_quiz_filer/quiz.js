@@ -23,10 +23,10 @@ function velgAlternativ(alternativNummer){
 
     for (let i = 0; i < alternativer.length; i++){
         //bytter fargen til alle alternativene til standarden (elvebakken-rosa)
-        alternativer[i].style.backgroundColor = "#DC8EB6";
+        alternativer[i].style.backgroundColor = "#DE5474";
     }
     // bytter fargen til det valgte alternativet til elvebakken-blå
-    alternativer[valgt_alernativ].style.backgroundColor = "#74b2e1";
+    alternativer[valgt_alernativ].style.backgroundColor = "#32ACC7";
 }
 
 //Bytter til neste spørsmål
@@ -45,7 +45,7 @@ function nesteSpørsmål(){
         spørsmålEl.innerHTML = spørsmålListe[spørsmålNr]["spørsmål"];
         for (let i = 0; i < alternativer.length; i++){
             alternativer[i].innerHTML = spørsmålListe[spørsmålNr]["alternativer"][i];
-            alternativer[i].style.backgroundColor = "#DC8EB6";
+            alternativer[i].style.backgroundColor = "#DE5474";
         };
         valgt_alernativ = "ingen";
     };
@@ -70,7 +70,7 @@ function spillIgjen(){
     for (let i = 0; i < alternativer.length; i++){
         alternativer[i].style.display = "block";
         alternativer[i].innerHTML = spørsmålListe[spørsmålNr]["alternativer"][i];
-        alternativer[i].style.backgroundColor = "#DC8EB6";
+        alternativer[i].style.backgroundColor = "#DE5474";
     };
     svarKnappEl.style.display = "block";
     spillIgjenKnappEl.style.display = "none";
